@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "641072688782",
+    "firebase_url": "https://project-2581007719456375150.firebaseio.com",
+    "project_id": "project-2581007719456375150",
+    "storage_bucket": "project-2581007719456375150.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:641072688782:android:adf4e81f2d9a5bc6",
+        "android_client_info": {
+          "package_name": "ffoc.campuseats"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "641072688782-rdbgecl77rt2lkpa8dujr5inpv6bp54u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkWhr1WE3ZC6pYiRSppqT-zHbVCIGw_nY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
