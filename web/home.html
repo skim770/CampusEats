@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusEats</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+  	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+  	<link rel="stylesheet" href="main.css">
+
+  	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+		<script>
+		  // Initialize Firebase
+		  var config = {
+		    apiKey: "AIzaSyDVe12w7nFUG6gF8J1Drm_v3olm97zZp2E",
+		    authDomain: "project-2581007719456375150.firebaseapp.com",
+		    databaseURL: "https://project-2581007719456375150.firebaseio.com",
+		    storageBucket: "project-2581007719456375150.appspot.com",
+		  };
+		  firebase.initializeApp(config);
+		</script>
+  </head>
+
+  <body>
+  	<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		  <!-- Header section containing title -->
+		  <header class="mdl-layout__header mdl-color-text--white mdl-color--orange-900">
+		    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+		      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
+		        <a href="/"><h3>CampusEats</h3></a>
+		      </div>
+		    </div>
+		  </header>
+	  </div>
+  </body>
+</html>
