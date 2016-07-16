@@ -9,9 +9,10 @@
 import UIKit
 import Firebase
 
-class HomeTableViewController: UITableViewController{
+class HomeTableViewController: UITableViewController {
     
-    var tempLabels = [String]()
+    var posts = [Post]()
+    var ref:FIRDatabaseReference!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +23,13 @@ class HomeTableViewController: UITableViewController{
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        loadSampleLabels()
+        ref = FIRDatabase.database().reference()
+        populatePosts()
+    }
+    
+    @IBAction func RefreshDidTapped(sender: AnyObject) {
+        posts = [Post]()
+        populatePosts()
     }
     
     @IBAction func LogoutDidTapped(sender: AnyObject) {
@@ -36,82 +43,47 @@ class HomeTableViewController: UITableViewController{
         }
     }
     
-    func loadSampleLabels(){
-        let label1 = "Hello, this is a test"
-        let label2 = "This is another test"
-        
-        tempLabels += [label1, label2]
+    func populatePosts(){
+//        let activePosts = ref.child("posts").queryOrderedByChild("status").queryEqualToValue("Active")
+        let activePosts = ref.child("posts").queryOrderedByChild("date")
+//        let orderedPosts = activePosts.queryOrderedByChild("date")
+        activePosts.observeSingleEventOfType(FIRDataEventType.Value, withBlock: {(snapshot) in
+            if (snapshot.childrenCount > 0){
+                for item in snapshot.children {
+//                    let key = item.key!
+                    let title = item.value!["title"] as! String
+                    print(title)
+                    let description = item.value!["description"] as! String
+                    let date = item.value!["date"] as! String
+                    let post = Post(title: title, description: description, date: date)
+                    self.posts += [post]
+                    self.tableView.reloadData()
+                    
+                }
+            }
+        })
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // MARK: - Table view data source
-
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tempLabels.count
+        return posts.count
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "HomeTableViewCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! HomeTableViewCell
         
-        //Fetch labels and insert here
-        let label = tempLabels[indexPath.row]
-        cell.titleLabel.text = label
+        
+        // MARK: - Fetch labels and insert here
+        // find record for current cell
+        let thisRecord : Post  = self.posts[indexPath.row]
+        cell.titleLabel.text = thisRecord.title
         
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

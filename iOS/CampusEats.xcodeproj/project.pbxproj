@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3DCAA14DB8CFCDF1CC02F5CC /* Pods_CampusEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 868CD57BC8DD83769A3C55BA /* Pods_CampusEats.framework */; };
+		752C9D081D3ACDD1009B4540 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752C9D071D3ACDD1009B4540 /* Post.swift */; };
 		754A22FD1D39EA9C00C66579 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754A22FC1D39EA9C00C66579 /* RegisterViewController.swift */; };
 		7571F2531D355D61005D243F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7571F2521D355D61005D243F /* AppDelegate.swift */; };
 		7571F2551D355D61005D243F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7571F2541D355D61005D243F /* LoginViewController.swift */; };
@@ -19,6 +20,7 @@
 		7571F2811D355D7F005D243F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7571F2801D355D7F005D243F /* GoogleService-Info.plist */; };
 		75759A481D3AAF6900E16D8F /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75759A471D3AAF6900E16D8F /* HomeTableViewController.swift */; };
 		75759A4B1D3AB08E00E16D8F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75759A4A1D3AB08E00E16D8F /* HomeTableViewCell.swift */; };
+		75759A521D3ABD7200E16D8F /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75759A511D3ABD7200E16D8F /* Common.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		38435C4234EF09D452504ECA /* Pods-CampusEats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusEats.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusEats/Pods-CampusEats.release.xcconfig"; sourceTree = "<group>"; };
+		752C9D071D3ACDD1009B4540 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		754A22FC1D39EA9C00C66579 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7571F24F1D355D61005D243F /* CampusEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7571F2521D355D61005D243F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		7571F2801D355D7F005D243F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75759A471D3AAF6900E16D8F /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		75759A4A1D3AB08E00E16D8F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		75759A511D3ABD7200E16D8F /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		868CD57BC8DD83769A3C55BA /* Pods_CampusEats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampusEats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2745DB16D11B39EF5849EC8 /* Pods-CampusEats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusEats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusEats/Pods-CampusEats.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +128,7 @@
 				75759A4C1D3AB61300E16D8F /* Classes */,
 				75759A491D3AAF8900E16D8F /* View Controllers */,
 				7571F2521D355D61005D243F /* AppDelegate.swift */,
+				75759A511D3ABD7200E16D8F /* Common.swift */,
 				7571F2561D355D61005D243F /* Main.storyboard */,
 				7571F2591D355D61005D243F /* Assets.xcassets */,
 				7571F25B1D355D61005D243F /* LaunchScreen.storyboard */,
@@ -165,6 +170,7 @@
 		75759A4C1D3AB61300E16D8F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				752C9D071D3ACDD1009B4540 /* Post.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -366,8 +372,10 @@
 				75759A4B1D3AB08E00E16D8F /* HomeTableViewCell.swift in Sources */,
 				754A22FD1D39EA9C00C66579 /* RegisterViewController.swift in Sources */,
 				7571F2551D355D61005D243F /* LoginViewController.swift in Sources */,
+				752C9D081D3ACDD1009B4540 /* Post.swift in Sources */,
 				7571F2531D355D61005D243F /* AppDelegate.swift in Sources */,
 				75759A481D3AAF6900E16D8F /* HomeTableViewController.swift in Sources */,
+				75759A521D3ABD7200E16D8F /* Common.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

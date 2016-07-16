@@ -43,8 +43,7 @@ class RegisterViewController: UIViewController {
                 self.ref.child("/organizations/\(1)/users/\(thisUser!.uid)").setValue(true)
                 
                 print("Register successful")
-                let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeView")
-                self.presentViewController(vc!, animated: false, completion: nil)
+                self.performSegueWithIdentifier("GoToHome", sender: nil)
             }
             else{
                 print(error?.localizedDescription)

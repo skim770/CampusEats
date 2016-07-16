@@ -20,6 +20,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         
         let email = defaults.stringForKey("Email")
         let password = defaults.stringForKey("Password")
@@ -48,9 +49,9 @@ class LoginViewController: UIViewController {
             defaults.setValue(nil, forKey: "Email")
             defaults.setValue(nil, forKey: "Password")
         }
-        
-        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeView")
-        self.presentViewController(vc!, animated: false, completion: nil)
+        self.performSegueWithIdentifier("GoToHome", sender: nil)
+//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeView")
+//        self.presentViewController(vc!, animated: false, completion: nil)
     }
     
     @IBAction func loginDidTapped(sender: AnyObject) {
