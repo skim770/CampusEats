@@ -13,7 +13,10 @@ class LoginViewController: UIViewController {
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
     @IBOutlet var saveSwitch: UISwitch!
+    
+    
     let defaults = NSUserDefaults.standardUserDefaults()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
