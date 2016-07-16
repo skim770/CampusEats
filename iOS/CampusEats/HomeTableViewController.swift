@@ -44,20 +44,19 @@ class HomeTableViewController: UITableViewController {
     }
     
     func populatePosts(){
-//        let activePosts = ref.child("posts").queryOrderedByChild("status").queryEqualToValue("Active")
         let activePosts = ref.child("posts").queryOrderedByChild("date")
-//        let orderedPosts = activePosts.queryOrderedByChild("date")
         activePosts.observeSingleEventOfType(FIRDataEventType.Value, withBlock: {(snapshot) in
             if (snapshot.childrenCount > 0){
                 for item in snapshot.children {
-//                    let key = item.key!
-                    let title = item.value!["title"] as! String
-                    print(title)
-                    let description = item.value!["description"] as! String
-                    let date = item.value!["date"] as! String
-                    let post = Post(title: title, description: description, date: date)
-                    self.posts += [post]
-                    self.tableView.reloadData()
+                    if item.value!["status"] as! String == "Active"{
+                        let title = item.value!["title"] as! String
+                        print(title)
+                        let description = item.value!["description"] as! String
+                        let date = item.value!["date"] as! String
+                        let post = Post(title: title, description: description, date: date)
+                        self.posts += [post]
+                        self.tableView.reloadData()
+                    }
                     
                 }
             }

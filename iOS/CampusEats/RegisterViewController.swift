@@ -27,27 +27,31 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func RegisterDidTapped(sender: AnyObject) {
-        FIRAuth.auth()?.createUserWithEmail(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
-            if error == nil{
-                //Add to users
-                let thisUser = FIRAuth.auth()?.currentUser!
-                let post = ["first_name": self.firstNameTextField.text!,
-                    "last_name": self.lastNameTextField.text!,
-                    "email": self.emailTextField.text!,
-                    "affiliation": 1,
-                    "score": 80]
-                let childUpdates = ["/users/\(thisUser!.uid)": post]
-                self.ref.updateChildValues(childUpdates)
-                
-                //Add to list of user for organization
-                self.ref.child("/organizations/\(1)/users/\(thisUser!.uid)").setValue(true)
-                
-                print("Register successful")
-                self.performSegueWithIdentifier("GoToHome", sender: nil)
-            }
-            else{
-                print(error?.localizedDescription)
-            }
-        })
+        if !emailTextField.hasText() || !passwordTextField.hasText() || !firstNameTextField.hasText() || !lastNameTextField.hasText() {
+            errorMessage(TEXT_FIELD_EMPTY_TITLE, message: TEXT_FIELD_ERROR, location: self)
+        }
+        else {
+            FIRAuth.auth()?.createUserWithEmail(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+                if error == nil{
+                    //Add to users
+                    let thisUser = FIRAuth.auth()?.currentUser!
+                    let post = ["first_name": self.firstNameTextField.text!,
+                        "last_name": self.lastNameTextField.text!,
+                        "email": self.emailTextField.text!,
+                        "affiliation": 1,
+                        "score": 80]
+                    let childUpdates = ["/users/\(thisUser!.uid)": post]
+                    self.ref.updateChildValues(childUpdates)
+                    
+                    //Add to list of user for organization
+                    self.ref.child("/organizations/\(1)/users/\(thisUser!.uid)").setValue(true)
+                    
+                    self.performSegueWithIdentifier("GoToHome", sender: nil)
+                }
+                else{
+                    errorMessage(REGISTER_ERROR, message: error!.localizedDescription, location: self)
+                }
+            })
+        }
     }
 }

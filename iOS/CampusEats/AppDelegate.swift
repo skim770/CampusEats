@@ -43,28 +43,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
-}
-
-extension String {
-    var floatValue: Float {
-        return (self as NSString).floatValue
-    }
-}
-
-extension NSUserDefaults {
-    func setString(string:String, forKey:String) {
-        setObject(string, forKey: forKey)
-    }
-}
-
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        view.addGestureRecognizer(tap)
-    }
-    
-    func dismissKeyboard() {
-        view.endEditing(true)
-    }
 }

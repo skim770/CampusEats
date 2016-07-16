@@ -38,33 +38,29 @@ class LoginViewController: UIViewController {
             defaults.setString(emailTextField.text!, forKey: "Email")
             defaults.setString(passwordTextField.text!, forKey: "Password")
             defaults.synchronize()
-            
-            let email = defaults.stringForKey("Email")
-            let password = defaults.stringForKey("Password")
-            print(email)
-            print(password)
-            
         }
         else{
             defaults.setValue(nil, forKey: "Email")
             defaults.setValue(nil, forKey: "Password")
         }
         self.performSegueWithIdentifier("GoToHome", sender: nil)
-//        let vc = self.storyboard?.instantiateViewControllerWithIdentifier("HomeView")
-//        self.presentViewController(vc!, animated: false, completion: nil)
     }
     
     @IBAction func loginDidTapped(sender: AnyObject) {
-        FIRAuth.auth()?.signInWithEmail(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
-            if error == nil{
-                print("Login successful")
-                self.doLogin()
-            }
-            else{
-                print("The Username and password combination does not exist")
-                print(error?.localizedDescription)
-            }
-        })
+        if !emailTextField.hasText() || !passwordTextField.hasText() {
+            errorMessage(TEXT_FIELD_EMPTY_TITLE, message: TEXT_FIELD_ERROR, location: self)
+        }
+        else {
+            FIRAuth.auth()?.signInWithEmail(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+                if error == nil{
+                    self.doLogin()
+                }
+                else{
+                    errorMessage(LOGIN_ERROR, message: error!.localizedDescription, location: self)
+                }
+            })
+        }
     }
 }
+
 
