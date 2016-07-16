@@ -1,5 +1,6 @@
 package ffoc.campuseats;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,15 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //create user
                 auth.createUserWithEmailAndPassword(emailEdit.getText().toString(),passwordEdit.getText().toString());
+            }
+        });
+
+        final Button signInButton = (Button) findViewById(R.id.signin_button);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                //sign in user
+                auth.signInWithEmailAndPassword(emailEdit.getText().toString(),passwordEdit.getText().toString());
+                startActivity(new Intent(LoginActivity.this, FeedActivity.class));
             }
         });
     }
