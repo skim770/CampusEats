@@ -44,45 +44,43 @@ limitations under the License.
     function handleSignUp() {
       var firstName = document.getElementById('firstname').value;
       var lastName = document.getElementById('lastname').value;
-      var email = document.getElementById('email').value;
+      var email = document.getElementById('email').value + "@gatech.edu";
       var password = document.getElementById('password').value;
-      var cnfrmPass = document.getElementById('cnfrmpassword').value;
-      if (firstName.length < 4) {
+      var confirmPass = document.getElementById('confirmpassword').value;
+      if (firstName.length < 1) {
         alert('Please enter a first name.');
         return;
       }
-      if (lastName.length < 4) {
+      if (lastName.length < 1) {
         alert('Please enter a last name.');
         return;
       }
-      if (email.length < 4) {
+      if (email.length < 1) {
         alert('Please enter an email address.');
         return;
       }
-      if (!email.endsWith("@gatech.edu")) {
-        alert('Please use Georgia Tech\'s email.');
+      if (password.length < 6) {
+        alert('Password should be at least 6 characters.');
         return;
       }
-      if (password.length < 4) {
-        alert('Please enter a password.');
-        return;
-      }
-      if (password != cnfrmPass) {
+      if (password !== confirmPass) {
         alert('Password doesn\'t match!');
         return;
       }
-      // Sign in with email and pass.
+      // Sign in with  and pass.
       // [START createwithemail]
       firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
+        alert(error.message);
         // [START_EXCLUDE]
         if (errorCode == 'auth/weak-password') {
           alert('The password is too weak.');
         } else {
           console.error(error);
         }
+        return;
         // [END_EXCLUDE]
       });
       // [END createwithemail]
@@ -99,7 +97,7 @@ limitations under the License.
     function initApp() {
       // Listening for auth state changes.
       // [START authstatelistener]
-      firebase.auth().onAuthStateChanged(function(user)) {
+      firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
           var displayName = user.displayName;
@@ -110,22 +108,12 @@ limitations under the License.
           var uid = user.uid;
           var refreshToken = user.refreshToken;
           var providerData = user.providerData;
-          // [START_EXCLUDE silent]
-          document.getElementById('sign-in').textContent = 'Sign out';
-          // [END_EXCLUDE]
-        } else {
-          // User is signed out.
-          // [START_EXCLUDE silent]
-          document.getElementById('sign-in').textContent = 'Sign in';
-          // [END_EXCLUDE]
-        }
-        // [START_EXCLUDE silent]
-        document.getElementById('sign-in').disabled = false;
-        // [END_EXCLUDE]
+
+          window.location.href="home.html";
+        } 
       });
       // [END authstatelistener]
-
-      document.getElementById('submit').addEventListener('click', handleSignUp, false);
+      document.getElementById('sign-up').addEventListener('click', handleSignUp, false);
     }
 
     window.onload = function() {
@@ -133,13 +121,16 @@ limitations under the License.
     };
   </script>
 </head>
-<body>
+<body>  
 <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
   <!-- Header section containing title -->
   <header class="mdl-layout__header mdl-color-text--white mdl-color--orange-900">
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
       <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
+        <a href="login.html">
+          <img src="CE_Icon.png" alt="CampusEats Icon" style="width: 90px; height: 90px" href="login.html">
+        </a>
         <a href="login.html"><h3>CampusEats</h3></a>
       </div>
     </div>
@@ -166,13 +157,13 @@ limitations under the License.
           <div class="right">
             <input class="mdl-textfield__input" style="display:inline;width:300px;"   type="text" id="firstname" name="firstname" placeholder="First Name"/><br>
             <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="lastname" name="lastname" placeholder="Last Name"/><br>
-            <input class="mdl-textfield__input" style="display:inline;width:300px;" type="email" id="email" name="email" placeholder="@gatech.edu"/><br>
+            <input class="mdl-textfield__input" style="display:inline;width:197px;" type="email" id="email" name="email" placeholder="GT Username"/>@gatech.edu<br>
             <input class="mdl-textfield__input" style="display:inline;width:300px;" type="password" id="password" name="password" placeholder="Password"/><br>
-            <input class="mdl-textfield__input" style="display:inline;width:300px;" type="password" id="cnfrmpassword" name="cnfrmpassword" placeholder="Confirm Password"/><br><br><br>
+            <input class="mdl-textfield__input" style="display:inline;width:300px;" type="password" id="confirmpassword" name="confirmpassword" placeholder="Confirm Password"/><br><br><br>
           </div>
-          <a href="home.html">
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" type= "submit" id="submit" name="submit">Submit</button>
-          </a>
+          <div align="center">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="sign-up" name="signup">Submit</button>
+          </div>
         </div>
       </div>
 
