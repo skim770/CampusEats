@@ -52,11 +52,11 @@ limitations under the License.
       } else {
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
-        if (email.length < 4) {
+        if (email.length < 1) {
           alert('Please enter an email address.');
           return;
         }
-        if (password.length < 4) {
+        if (password.length < 1) {
           alert('Please enter a password.');
           return;
         }
@@ -67,44 +67,21 @@ limitations under the License.
           var errorCode = error.code;
           var errorMessage = error.message;
           // [START_EXCLUDE]
+          if (errorCode === 'auth/invalid-email') {
+            alert('Invalid email.');
+          }
+          if (errorCode === 'auth/user-not-found') {
+            alert('User not found.');
+          }
           if (errorCode === 'auth/wrong-password') {
             alert('Wrong password.');
           } else {
-            console.error(error);
+            console.log(error);
           }
           // [END_EXCLUDE]
         });
         // [END authwithemail]
       }
-      document.getElementById('sign-in').disabled = true;
-    }
-
-    function handleSignUp() {
-      var email = document.getElementById('email').value;
-      var password = document.getElementById('password').value;
-      if (email.length < 4) {
-        alert('Please enter an email address.');
-        return;
-      }
-      if (password.length < 4) {
-        alert('Please enter a password.');
-        return;
-      }
-      // Sign in with email and pass.
-      // [START createwithemail]
-      firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // [START_EXCLUDE]
-        if (errorCode == 'auth/weak-password') {
-          alert('The password is too weak.');
-        } else {
-          console.error(error);
-        }
-        // [END_EXCLUDE]
-      });
-      // [END createwithemail]
     }
 
     /**
@@ -120,7 +97,7 @@ limitations under the License.
       // [START authstatelistener]
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-          // User is signed in.
+          // User is signed in. 
           var displayName = user.displayName;
           var email = user.email;
           var emailVerified = user.emailVerified;
@@ -130,21 +107,13 @@ limitations under the License.
           var refreshToken = user.refreshToken;
           var providerData = user.providerData;
           // [START_EXCLUDE silent]
-          document.getElementById('sign-in').textContent = 'Sign out';
+          window.location.href="home.html";
           // [END_EXCLUDE]
-        } else {
-          // User is signed out.
-          // [START_EXCLUDE silent]
-          document.getElementById('sign-in').textContent = 'Sign in';
-          // [END_EXCLUDE]
-        }
-        // [START_EXCLUDE silent]
-        document.getElementById('sign-in').disabled = false;
-        // [END_EXCLUDE]
+        } 
       });
       // [END authstatelistener]
 
-      document.getElementById('sign-in').addEventListener('click', toggleSignIn, false);
+      document.getElementById('sign-in').addEventListener('click', toggleSignIn);
     }
 
     window.onload = function() {
@@ -159,6 +128,7 @@ limitations under the License.
   <header class="mdl-layout__header mdl-color-text--white mdl-color--orange-900">
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
       <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
+        <img src="CE_Icon.png" alt="CampusEats Icon" style="width: 90px; height: 90px">
         <a href="/"><h3>CampusEats</h3></a>
       </div>
     </div>
@@ -173,19 +143,21 @@ limitations under the License.
           <h2 class="mdl-card__title-text">Login/Register</h2>
         </div>
         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-          <p>Enter an email and password below and either sign in to an existing account or register</p>
+          <p><small>Enter an email and password below and sign in to an existing account</small></p>
 
           <input class="mdl-textfield__input" style="display:inline;width:auto;" type="text" id="email" name="email" placeholder="Email"/>
           &nbsp;&nbsp;&nbsp;
           <input class="mdl-textfield__input" style="display:inline;width:auto;" type="password" id="password" name="password" placeholder="Password"/>
           <br/><br/>
-          <a href="home.html">
-          <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="sign-in" name="signin">Sign In</button>
-          </a>
-          &nbsp;&nbsp;&nbsp;
-          <a href="register.html">
-            <button class="mdl-button mdl-js-button mdl-button--raised" id="sign-up" name="signup">Register</button>
-          </a>
+          <div style="float: left">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="sign-in" name="signin">Sign In</button>
+          </div>
+          <div style="float: right">
+            <small>Doesn't have an account?</small> &nbsp;
+            <a href="register.html">
+              <button class="mdl-button mdl-js-button mdl-button--raised" id="sign-up" name="signup">Register</button>
+            </a>
+          </div>
         </div>
       </div>
 
