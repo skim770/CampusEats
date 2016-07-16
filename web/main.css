@@ -49,3 +49,14 @@ h3 {
   padding-left: 50px;
   color: white;
 }
+.left {
+    width: 30%;
+    float: left;
+    text-align: right;
+    line-height: 2;
+}
+.right {
+    width: 65%;
+    margin-left: 10px;
+    float:left;
+}

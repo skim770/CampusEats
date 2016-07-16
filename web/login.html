@@ -145,7 +145,6 @@ limitations under the License.
       // [END authstatelistener]
 
       document.getElementById('sign-in').addEventListener('click', toggleSignIn, false);
-      document.getElementById('sign-up').addEventListener('click', handleSignUp, false);
     }
 
     window.onload = function() {
@@ -174,15 +173,19 @@ limitations under the License.
           <h2 class="mdl-card__title-text">Login/Register</h2>
         </div>
         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-          <p>Enter an email and password below and either sign in to an existing account or sign up</p>
+          <p>Enter an email and password below and either sign in to an existing account or register</p>
 
           <input class="mdl-textfield__input" style="display:inline;width:auto;" type="text" id="email" name="email" placeholder="Email"/>
           &nbsp;&nbsp;&nbsp;
           <input class="mdl-textfield__input" style="display:inline;width:auto;" type="password" id="password" name="password" placeholder="Password"/>
           <br/><br/>
-          <button disabled class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="sign-in" name="signin">Sign In</button>
+          <a href="home.html">
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="sign-in" name="signin">Sign In</button>
+          </a>
           &nbsp;&nbsp;&nbsp;
-          <button class="mdl-button mdl-js-button mdl-button--raised" id="sign-up" name="signup">Sign Up</button>
+          <a href="register.html">
+            <button class="mdl-button mdl-js-button mdl-button--raised" id="sign-up" name="signup">Register</button>
+          </a>
         </div>
       </div>
 
