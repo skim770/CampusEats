@@ -11,7 +11,7 @@ var sys = require("util");
 
 var firebase = require("firebase");
 firebase.initializeApp({
-	serviceAccount: "firebaseServiceAccountCred/node_server_private_key.json",
+	serviceAccount: "../../resources/firebase/node_server_private_key.json",
 	databaseURL: "https://project-2581007719456375150.firebaseio.com/"
 });
 
@@ -116,5 +116,7 @@ function refreshGTCalData() { fetchGTCal(); }
 
 // Refresh GT Calendar data at 5 AM (EST) everyday.
 scheduler.scheduleJob({hour: 5, minute: 0}, function() {
+	console.log(new Date().toString() + " : GT Calendar refreshing began.");
 	refreshGTCalData();
+	console.log(new Date().toString() + " : GT Calendar refreshing finished.");
 });
