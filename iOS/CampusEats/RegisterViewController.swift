@@ -23,7 +23,11 @@ class RegisterViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         self.hideKeyboardWhenTappedAround()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
         self.ref = FIRDatabase.database().reference()
+    }
+    @IBAction func BackDidTapped(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     @IBAction func RegisterDidTapped(sender: AnyObject) {
@@ -53,5 +57,9 @@ class RegisterViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
 }
