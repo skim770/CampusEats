@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
         
         let email = defaults.stringForKey("Email")
         let password = defaults.stringForKey("Password")
@@ -60,6 +61,10 @@ class LoginViewController: UIViewController {
                 }
             })
         }
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
 }
 
