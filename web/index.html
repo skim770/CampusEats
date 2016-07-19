@@ -15,16 +15,35 @@
   	<link rel="stylesheet" href="css/main.css">
 
   	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-		<!-- <script>
-		  // Initialize Firebase
-		  var config = {
-		    apiKey: "AIzaSyDVe12w7nFUG6gF8J1Drm_v3olm97zZp2E",
-		    authDomain: "project-2581007719456375150.firebaseapp.com",
-		    databaseURL: "https://project-2581007719456375150.firebaseio.com",
-		    storageBucket: "project-2581007719456375150.appspot.com",
-		  };
-		  firebase.initializeApp(config);
-		</script> -->
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyDVe12w7nFUG6gF8J1Drm_v3olm97zZp2E",
+	    authDomain: "project-2581007719456375150.firebaseapp.com",
+	    databaseURL: "https://project-2581007719456375150.firebaseio.com",
+	    storageBucket: "project-2581007719456375150.appspot.com",
+	  };
+	  firebase.initializeApp(config);
+	</script>
+
+	<script type="text/javascript">
+
+		function handleSignOut() {
+			firebase.auth().signOut().then(function() {
+			  window.location.href="src/login/index.html";
+			}, function(error) {
+			  alert(error.message);
+			});
+		}
+
+		function initApp() {
+		    document.getElementById('sign-out').addEventListener('click', handleSignOut);
+		}
+
+		window.onload = function() {
+		    initApp();
+		};
+	</script>
   </head>
 
   <body>
@@ -33,12 +52,24 @@
 		  <header class="mdl-layout__header mdl-color-text--white mdl-color--orange-900">
 		    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
 		      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
-		        <a href="/"><h3>CampusEats</h3></a>
+		         <img src="resources/img/CE_Icon.png" alt="CampusEats Icon" style="width: 85px; height: 85px">
+		        <h3>CampusEats</h3>
 		      </div>
 		    </div>
 		  </header>
-	  </div>
-	  <div>
-	  </div>
-  </body>
+
+<main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid mdl-login">
+
+      <!-- Container for the sign out window -->
+      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="sign-out" name="signout">Sign Out</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+</body>
 </html>
