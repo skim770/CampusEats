@@ -37,6 +37,8 @@ limitations under the License.
 	    storageBucket: "project-2581007719456375150.appspot.com",
 	  };
 	  firebase.initializeApp(config);
+
+    var database = firebase.database();
 	</script>
 
   <script type="text/javascript">
@@ -87,6 +89,21 @@ limitations under the License.
     }
 
     /**
+     * Writes a new user on the Firebase database.
+     * Each user will have these attributes: affiliation, email, first name, last name, and score
+     *
+     */
+    function writeNewUser(userId, firstName, lastName, email){
+      firebase.database().ref('users/' + userId).set({
+        affiliation: 1,
+        email: email,
+        first_name: firstName,
+        last_name: lastName,
+        score: 80
+      });
+    }
+
+    /**
      * Handles registering callbacks for the auth status.
      *
      * This method registers a listener with firebase.auth().onAuthStateChanged. This listener is called when
@@ -100,6 +117,8 @@ limitations under the License.
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
+          var firstName = document.getElementById('firstname').value;
+          var lastName = document.getElementById('lastname').value;
           var displayName = user.displayName;
           var email = user.email;  
           var emailVerified = user.emailVerified;
@@ -108,8 +127,9 @@ limitations under the License.
           var uid = user.uid;
           var refreshToken = user.refreshToken;
           var providerData = user.providerData;
-
-          window.location.href="home.html";
+          
+          window.location.href="../../index.html";
+          writeNewUser(uid, firstName, lastName, email);
         } 
       });
       // [END authstatelistener]
@@ -128,10 +148,10 @@ limitations under the License.
   <header class="mdl-layout__header mdl-color-text--white mdl-color--orange-900">
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
       <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
-        <a href="index.html">
-          <img src="../../resources/img/CE_Icon.png" alt="CampusEats Icon" style="width: 90px; height: 90px" href="index.html">
+        <a href="login.html">
+          <img src="../../resources/img/CE_Icon.png" alt="CampusEats Icon" style="width: 85px; height: 85px" href="login.html">
         </a>
-        <a href="index.html"><h3>CampusEats</h3></a>
+        <a href="login.html"><h3>CampusEats</h3></a>
       </div>
     </div>
   </header>
