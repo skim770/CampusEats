@@ -3,6 +3,7 @@ Copyright 2016 Sung Kim <kr.dev.sk@gmail.com>. All rights reserved.
 **/
 
 var gtCalURL = "http://www.calendar.gatech.edu/feeds/events.xml";
+var scheduler = require("node-schedule");
 var xmlHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var DOMParser = require("xmldom").DOMParser;
 var HTMLParser = require("htmlparser");
@@ -111,8 +112,9 @@ function updateFirebasePosts(posts) {
 	}
 }
 
-function refreshGTCalData() {
-	fetchGTCal();
-}
+function refreshGTCalData() { fetchGTCal(); }
 
-refreshGTCalData();
+// Refresh GT Calendar data at 5 AM (EST) everyday.
+scheduler.scheduleJob({hour: 5, minute: 0}, function() {
+	refreshGTCalData();
+});
