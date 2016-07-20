@@ -27,17 +27,14 @@
 	</script>
 
 	<script type="text/javascript">
-
-		function handleSignOut() {
-			firebase.auth().signOut().then(function() {
-			  window.location.href="src/login/index.html";
-			}, function(error) {
-			  alert(error.message);
-			});
-		}
-
 		function initApp() {
-		    document.getElementById('sign-out').addEventListener('click', handleSignOut);
+	    firebase.auth().onAuthStateChanged(function(user) {
+			  if (user) {
+			    // User is signed in.
+			  } else {
+			    window.location.href = "src/login/index.html";
+			  }
+			});
 		}
 
 		window.onload = function() {
@@ -60,13 +57,6 @@
 
 <main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid mdl-login">
-
-      <!-- Container for the sign out window -->
-      <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
-        <div class="mdl-card__supporting-text mdl-color-text--grey-600">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="sign-out" name="signout">Sign Out</button>
-        </div>
-      </div>
 
     </div>
   </main>

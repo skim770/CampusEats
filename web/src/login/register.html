@@ -75,14 +75,12 @@ limitations under the License.
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        alert(error.message);
-        // [START_EXCLUDE]
-        if (errorCode == 'auth/weak-password') {
-          alert('The password is too weak.');
+
+        if (error != null) {
+          alert(error.message);
         } else {
-          console.error(error);
+          window.location.href = "../../index.html";
         }
-        return;
         // [END_EXCLUDE]
       });
       // [END createwithemail]
