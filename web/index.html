@@ -15,30 +15,17 @@
   	<link rel="stylesheet" href="css/main.css">
 
   	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-	<script>
-	  // Initialize Firebase
-	  var config = {
-	    apiKey: "AIzaSyDVe12w7nFUG6gF8J1Drm_v3olm97zZp2E",
-	    authDomain: "project-2581007719456375150.firebaseapp.com",
-	    databaseURL: "https://project-2581007719456375150.firebaseio.com",
-	    storageBucket: "project-2581007719456375150.appspot.com",
-	  };
-	  firebase.initializeApp(config);
-	</script>
-
+	
+	<script src="src/js/firebaseHandler.js"></script>
 	<script type="text/javascript">
-		function initApp() {
+		window.onload = function() {
 	    firebase.auth().onAuthStateChanged(function(user) {
 			  if (user) {
-			    // User is signed in.
+			    loadFeed();
 			  } else {
 			    window.location.href = "src/login/index.html";
 			  }
 			});
-		}
-
-		window.onload = function() {
-		    initApp();
 		};
 	</script>
   </head>
