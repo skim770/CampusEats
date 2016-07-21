@@ -67,4 +67,22 @@ h3 {
   background-color: #ffffff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
   border-radius: 2px;
+  padding-left: 18px;
+  padding-right: 18px;
+  margin-top: 6px;
+  margin-bottom: 12px;
+}
+.eventTitle {
+  font-size: x-large;
+  padding-top: 20px;
+  padding-bottom: 5px;
+  line-height: 120%;
+}
+.sourceId {
+  opacity: 0.5;
+  padding-bottom: 12px;
+}
+.eventDesc {
+  opacity: 0.5;
+  padding-bottom: 20px;
 }
