@@ -44,7 +44,7 @@ limitations under the License.
     /**
      * Handles the sign in button press.
      */
-    function toggleSignIn() {
+    function handleSignIn() {
       if (firebase.auth().currentUser) {
         // [START signout]
         firebase.auth().signOut();
@@ -67,10 +67,16 @@ limitations under the License.
           var errorCode = error.code;
           var errorMessage = error.message;
           // [START_EXCLUDE]
-          if (error != null) {
-            alert(error.message);
+          if (errorCode === 'auth/invalid-email') {
+            alert('Invalid email.');
+          }
+          if (errorCode === 'auth/user-not-found') {
+            alert('User not found.');
+          }
+          if (errorCode === 'auth/wrong-password') {
+            alert('Wrong password.');
           } else {
-            window.location.href = "../../index.html";
+            console.log(error);
           }
           // [END_EXCLUDE]
         });
@@ -107,7 +113,7 @@ limitations under the License.
       });
       // [END authstatelistener]
 
-      document.getElementById('sign-in').addEventListener('click', toggleSignIn);
+      document.getElementById('sign-in').addEventListener('click', handleSignIn);
     }
 
     window.onload = function() {
@@ -147,7 +153,6 @@ limitations under the License.
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="sign-in" name="signin">Sign In</button>
           </div>
           <div style="float: right">
-            <small>Doesn't have an account?</small> &nbsp;
             <a href="register.html">
               <button class="mdl-button mdl-js-button mdl-button--raised" id="sign-up" name="signup">Register</button>
             </a>
