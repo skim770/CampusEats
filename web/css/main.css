@@ -63,6 +63,13 @@ h3 {
 .events_feed {
   width: 100%;
 }
+.dateHeader {
+  opacity: 0.5;
+  font-weight: bold;
+  font-size: large;
+  padding-top: 24px;
+  padding-bottom: 6px;
+}
 .eventPost {
   background-color: #ffffff;
   box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
