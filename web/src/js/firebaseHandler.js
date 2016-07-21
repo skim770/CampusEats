@@ -12,11 +12,3 @@ firebase.initializeApp(config);
 
 var firebaseDB = firebase.database();
 var postsRef = firebaseDB.ref('posts');
-
-function loadFeed() {
-	postsRef.orderByChild('rawDate').on('value', function(posts) {
-		posts.forEach(function(post) {
-			console.log(post.child("title").val());
-		});
-	});
-}

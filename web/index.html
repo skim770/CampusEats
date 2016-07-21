@@ -17,12 +17,11 @@
   	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 	
 	<script src="src/js/firebaseHandler.js"></script>
+	<script type="text/babel" src="src/js/feed.js"></script>
 	<script type="text/javascript">
 		window.onload = function() {
 	    firebase.auth().onAuthStateChanged(function(user) {
-			  if (user) {
-			    loadFeed();
-			  } else {
+			  if (!user) {
 			    window.location.href = "src/login/index.html";
 			  }
 			});
@@ -42,9 +41,9 @@
 		    </div>
 		  </header>
 
-<main class="mdl-layout__content mdl-color--grey-100">
+	<main class="mdl-layout__content mdl-color--grey-100">
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid mdl-login">
-
+    	<div class="events_feed" id="posts_container"></div>
     </div>
   </main>
 </div>
