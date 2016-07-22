@@ -9,13 +9,13 @@
     <EditText android:id="@+id/login_email"
         android:layout_width="match_parent"
         android:layout_height="118dp"
-        android:text="@string/login_email"
+        android:text="Email"
         />
 
     <EditText android:id="@+id/login_password"
         android:layout_width="match_parent"
         android:layout_height="118dp"
-        android:text="@string/login_password"
+        android:text="Password"
         />
     <Button android:id="@+id/signup_button"
         android:layout_width="wrap_content"
