@@ -115,5 +115,6 @@ postsRef.orderByChild('rawDate').on('value', function(snapshot) {
 			posts.push(post.val());
 		}
 	});
+	console.log("ReactDOM rendering " + posts.length + " items.");
 	renderDOM(posts);
 });
