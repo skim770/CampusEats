@@ -9,23 +9,36 @@
     <EditText android:id="@+id/login_email"
         android:layout_width="match_parent"
         android:layout_height="118dp"
-        android:text="Email"
+        android:hint="Email"
         />
 
     <EditText android:id="@+id/login_password"
         android:layout_width="match_parent"
         android:layout_height="118dp"
-        android:text="Password"
+        android:hint="Password"
         />
-    <Button android:id="@+id/signup_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:layout_gravity="center_horizontal" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">>
 
-    <Button android:id="@+id/signin_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign In"
-        android:layout_gravity="center_horizontal" />
+        <Button android:id="@+id/signin_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Sign In"
+            android:layout_alignParentLeft="true"
+            />
+        <Button android:id="@+id/signup_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:layout_alignParentRight="true"
+
+            />
+
+
+    </RelativeLayout>
 </LinearLayout>
+

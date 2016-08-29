@@ -30,7 +30,8 @@ public class LoginActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //create user
-                auth.createUserWithEmailAndPassword(emailEdit.getText().toString(),passwordEdit.getText().toString());
+                //auth.createUserWithEmailAndPassword(emailEdit.getText().toString(),passwordEdit.getText().toString());
+                startActivity(new Intent(LoginActivity.this, WebLogin.class));
             }
         });
 

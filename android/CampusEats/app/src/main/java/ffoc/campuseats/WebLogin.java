@@ -3,6 +3,7 @@ package ffoc.campuseats;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
@@ -13,6 +14,8 @@ public class WebLogin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         mWebview  = new WebView(this);
 
@@ -26,7 +29,9 @@ public class WebLogin extends AppCompatActivity {
             }
         });
 
-        mWebview.loadUrl("http://www.google.com");
+        mWebview.loadUrl("https://project-2581007719456375150.firebaseapp.com/src/login/register.html");
+        //mWebview.loadUrl("https://www.google.com");
+
 
         setContentView(mWebview );
         //setContentView(R.layout.activity_web_login);
