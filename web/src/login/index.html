@@ -62,13 +62,6 @@ limitations under the License.
           return;
         }
 
-       // if(!firebase.auth().currentUser.emailVerified){
-        //  alert('Please verify email first by clicking on link sent!');
-        //  firebase.auth().signOut();
-         // sendEmailVerification();
-         // return;
-       // }
-
         // Sign in with email and pass.
         // [START authwithemail]
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
