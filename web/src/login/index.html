@@ -52,6 +52,7 @@ limitations under the License.
       } else {
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
+
         if (email.length < 1) {
           alert('Please enter an email address.');
           return;
@@ -60,6 +61,14 @@ limitations under the License.
           alert('Please enter a password.');
           return;
         }
+
+       // if(!firebase.auth().currentUser.emailVerified){
+        //  alert('Please verify email first by clicking on link sent!');
+        //  firebase.auth().signOut();
+         // sendEmailVerification();
+         // return;
+       // }
+
         // Sign in with email and pass.
         // [START authwithemail]
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
@@ -109,6 +118,10 @@ limitations under the License.
           // [START_EXCLUDE silent]
           window.location.href="../../index.html";
           // [END_EXCLUDE]
+          if(!emailVerified){
+            firebase.auth().signOut();
+            alert('Please click on email link sent.');
+          }
         } 
       });
       // [END authstatelistener]

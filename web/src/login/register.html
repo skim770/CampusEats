@@ -102,6 +102,20 @@ limitations under the License.
     }
 
     /**
+     * Sends an email verification to the user.
+     */
+    function sendEmailVerification() {
+      // [START sendemailverification]
+      firebase.auth().currentUser.sendEmailVerification().then(function() {
+        // Email Verification sent!
+        // [START_EXCLUDE]
+        alert('Email Verification Sent! Please click on the link sent.');
+        // [END_EXCLUDE]
+      });
+      // [END sendemailverification]
+    }
+
+    /**
      * Handles registering callbacks for the auth status.
      *
      * This method registers a listener with firebase.auth().onAuthStateChanged. This listener is called when
@@ -115,6 +129,7 @@ limitations under the License.
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
+          user.sendEmailVerification();
           var firstName = document.getElementById('firstname').value;
           var lastName = document.getElementById('lastname').value;
           var displayName = user.displayName;
@@ -128,6 +143,11 @@ limitations under the License.
           
           window.location.href="../../index.html";
           writeNewUser(uid, firstName, lastName, email);
+
+          if(!emailVerified){
+            firebase.auth().signOut();
+          }
+
         } 
       });
       // [END authstatelistener]
