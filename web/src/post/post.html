@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!--
+Copyright (c) 2016 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<html>
+<head>
+  <meta charset=utf-8 />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusEats Create Events</title>
+
+  <!-- Material Design Theming -->
+  <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+  <link rel="stylesheet" href="../../css/main.css">
+
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyDVe12w7nFUG6gF8J1Drm_v3olm97zZp2E",
+	    authDomain: "project-2581007719456375150.firebaseapp.com",
+	    databaseURL: "https://project-2581007719456375150.firebaseio.com",
+	    storageBucket: "project-2581007719456375150.appspot.com",
+	  };
+	  firebase.initializeApp(config);
+
+    var database = firebase.database();
+	</script>
+
+  <script type="text/javascript">
+
+    function handlePost() {
+      var eventTitle = document.getElementById('title').value;
+      var orgName = document.getElementById('orgname').value;
+      var location = document.getElementById('location').value;
+      var month = Number(document.getElementById('month').value);
+      var day = Number(document.getElementById('day').value);
+      var year = Number(document.getElementById('year').value);
+      var time = document.getElementById('time').value;
+      var description = document.getElementById('desc').value;
+      if (eventTitle.length < 1) {
+        alert('Please enter the event\'s title.');
+        return;
+      }
+      if (orgName.length < 1) {
+        alert('Please enter your organization name.');
+        return;
+      }
+      if (location.length < 1) {
+        alert('Please enter a valid location.');
+        return;
+      }
+      if (month > 12 || month < 1) {
+        alert('Please enter a month.');
+        return;
+      }
+      if (day > 31 || day < 1) {
+        alert('Please enter a day.');
+        return;
+      }
+      if (year < 1) {
+        alert('Please enter a year.');
+        return;
+      }
+      if (time.length < 1) {
+        alert('Please enter a valid time.');
+        return;
+      }
+      if (description.length < 1) {
+        alert('Please enter a valid description.');
+        return;
+      }
+
+      var monthArr = [
+        "January", "February", "March", "April", "May", "June", 
+        "July", "August", "September", "October", "November", "December"
+      ]; 
+
+      var fullDate = new Date(year, month - 1, day);
+
+      window.location.href="../../index.html";
+      writeNewPost(eventTitle, location, fullDate.toString(), time, description);
+    }
+
+    /**
+     * Writes a new post on the Firebase database.
+     *
+     */
+    function writeNewPost(eventTitle, location, date, time, description){
+      var postData = {
+        category: 1,
+        comments: "",
+        cost: 0,
+        date: date,
+        desc: description,
+        likes: 0,
+        link: "",
+        loc: location,
+        pubDate: "",
+        rawDate: "",
+        reports: "",
+        sourceId: "User Submission",
+        status: "Active",
+        title: eventTitle
+      };
+
+      var newPostKey = firebase.database().ref().child('posts').push().key;
+      var updates = {};
+      updates['/posts/' + newPostKey] = postData;
+
+      return firebase.database().ref().update(updates);
+    }
+
+    window.onload = function() {
+          document.getElementById('post').addEventListener('click', handlePost, false);
+    };
+  </script>
+</head>
+ <body>
+    <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <!-- Header section containing title -->
+      <header class="mdl-layout__header mdl-color-text--white mdl-color--orange-900">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+          <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
+             <img src="../../resources/img/CE_Icon.png" alt="CampusEats Icon" style="width: 85px; height: 85px">
+            <h3>CampusEats</h3>
+          </div>
+        </div>
+      </header>
+
+  <main class="mdl-layout__content mdl-color--grey-100">
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid mdl-login">
+
+        <!-- Container for the create window -->
+        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
+          <div class="mdl-card__title mdl-color--orange-900 mdl-color-text--white">
+            <h2 class="mdl-card__title-text">Create an Event</h2>
+          </div>
+          <div class="mdl-card__supporting-text mdl-color-text--grey-600">
+            <div>
+              <div class="left">
+              <b>Event Title</b> <br>
+              <b>Posting as</b> <br>
+              <b>Location</b> <br>
+              <b>Date</b> <br>
+              <b>Time</b> <br> 
+              <b>Description</b> <br> 
+              <b>Add Photo</b> <br> 
+              </div>
+
+              <div class="right">
+                <input class="mdl-textfield__input" style="display:inline;width:300px;"   type="text" id="title" name="title" placeholder="Title"/><br>
+                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="orgname" name="orgname" placeholder="Organization Name"/><br>
+                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="location" name="location" placeholder="Choose Location"/><br>
+                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" id="month" name="month" placeholder="MM"/>/
+                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" id="day" name="day" placeholder="DD"/>/
+                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" id="year" name="year" placeholder="YY"/><br>
+                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="time" name="time" placeholder="Choose Time"/><br>
+                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="desc" name="desc" placeholder="Enter Description"/><br><br><br>
+              </div>
+              <div align="right">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="post" name="post">Post</button>
+              </div>
+            </div>
+          </div>
+
+    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid mdl-login">
+      <div class="events_feed" id="posts_container"></div>
+    </div>
+  </main>
+</div>
+</body>
+</html>
