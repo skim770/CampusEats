@@ -1,6 +1,7 @@
 package ffoc.campuseats;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -46,12 +47,18 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
         final LinearLayout linearLayout = (LinearLayout)findViewById(R.id.feedLayout);
-        //final LinearLayout tileLayout = (LinearLayout)findViewById(R.id.feedTile);
-        //final TextView[] textViews = new TextView[50];
+
         final TextView newText   = new TextView(this);
         final Context context = this;
-        //DatabaseReference ref = database.getReference();
-        //DataSnapshot snapshot = new DataSnapshot(ref);
+
+        final Button newPostButton = (Button) findViewById(R.id.newPostButton);
+        newPostButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                startActivity(new Intent(FeedActivity.this, SubmitActivity.class));
+            }
+        });
+
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
