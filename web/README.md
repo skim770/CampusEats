@@ -13,6 +13,7 @@ All the dependencies used to run the node server are installed in node_modules.
 - xmlhttprequest 	: Node wrapper for fetching XML data.
 - xmldom			: Node module for converting plain text to XML.
 - htmlparser		: Parse plain text to HTML. 
+- node-schedule		: Scheduler to fire method calls in time intervals.
 
 Firebase tools are used to initialize, modify, and deploy the web server.
 	$ npm install -g firebase-tools // be careful with this, DO NOT MODIFY if possible.

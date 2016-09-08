@@ -11,7 +11,7 @@ var sys = require("util");
 
 var firebase = require("firebase");
 firebase.initializeApp({
-	serviceAccount: "firebaseServiceAccountCred/node_server_private_key.json",
+	serviceAccount: "../../resources/firebase/node_server_private_key.json",
 	databaseURL: "https://project-2581007719456375150.firebaseio.com/"
 });
 
@@ -81,10 +81,24 @@ function parseGTCal(data) {
 				category: item.getElementsByTagName("category")[0].textContent,
 				comments: item.getElementsByTagName("comments")[0].textContent
 			}
-			posts.push(post);
+			if (!containsInstance(posts, post)) {
+				posts.push(post);
+			}
 		}
 	}
 	updateFirebasePosts(posts);
+}
+
+function containsInstance(haystack, needle) {
+	var isDuplicate = false;
+	for (h = 0; h < haystack.length; h++) {
+		if (haystack[h].rawDate === needle.rawDate
+				&& haystack[h].link === needle.link) {
+			isDuplicate = true;
+			break;
+		}
+	}
+	return isDuplicate;
 }
 
 function updateFirebasePosts(posts) {
@@ -112,7 +126,12 @@ function updateFirebasePosts(posts) {
 	}
 }
 
-function refreshGTCalData() { fetchGTCal(); }
+function refreshGTCalData() { 
+	console.log(new Date().toString() + " : GT Calendar refreshing began.");
+	fetchGTCal(); 
+	console.log(new Date().toString() + " : GT Calendar refreshing finished.");
+}
+refreshGTCalData();
 
 // Refresh GT Calendar data at 5 AM (EST) everyday.
 scheduler.scheduleJob({hour: 5, minute: 0}, function() {

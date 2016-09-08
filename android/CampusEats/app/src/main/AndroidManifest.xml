@@ -8,7 +8,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".WebLogin" />
+        <activity android:name=".WebLogin">
+        </activity>
+
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,12 +18,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".BadFeedActivity">
 
         </activity>
+
         <activity android:name=".FeedActivity">
 
         </activity>
+
+        <activity android:name=".SubmitActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

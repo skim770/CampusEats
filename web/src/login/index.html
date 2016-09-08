@@ -25,7 +25,7 @@ limitations under the License.
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="../../css/main.css">
 
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 	<script>
@@ -44,7 +44,7 @@ limitations under the License.
     /**
      * Handles the sign in button press.
      */
-    function toggleSignIn() {
+    function handleSignIn() {
       if (firebase.auth().currentUser) {
         // [START signout]
         firebase.auth().signOut();
@@ -52,6 +52,7 @@ limitations under the License.
       } else {
         var email = document.getElementById('email').value;
         var password = document.getElementById('password').value;
+
         if (email.length < 1) {
           alert('Please enter an email address.');
           return;
@@ -60,6 +61,7 @@ limitations under the License.
           alert('Please enter a password.');
           return;
         }
+
         // Sign in with email and pass.
         // [START authwithemail]
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
@@ -107,13 +109,17 @@ limitations under the License.
           var refreshToken = user.refreshToken;
           var providerData = user.providerData;
           // [START_EXCLUDE silent]
-          window.location.href="home.html";
+          window.location.href="../../index.html";
           // [END_EXCLUDE]
+          if(!emailVerified){
+            firebase.auth().signOut();
+            alert('Please click on email link sent.');
+          }
         } 
       });
       // [END authstatelistener]
 
-      document.getElementById('sign-in').addEventListener('click', toggleSignIn);
+      document.getElementById('sign-in').addEventListener('click', handleSignIn);
     }
 
     window.onload = function() {
@@ -128,7 +134,7 @@ limitations under the License.
   <header class="mdl-layout__header mdl-color-text--white mdl-color--orange-900">
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
       <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
-        <img src="CE_Icon.png" alt="CampusEats Icon" style="width: 90px; height: 90px">
+        <img src="../../resources/img/CE_Icon.png" alt="CampusEats Icon" style="width: 85px; height: 85px">
         <a href="/"><h3>CampusEats</h3></a>
       </div>
     </div>
@@ -153,7 +159,6 @@ limitations under the License.
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="sign-in" name="signin">Sign In</button>
           </div>
           <div style="float: right">
-            <small>Doesn't have an account?</small> &nbsp;
             <a href="register.html">
               <button class="mdl-button mdl-js-button mdl-button--raised" id="sign-up" name="signup">Register</button>
             </a>
