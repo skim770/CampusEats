@@ -51,6 +51,7 @@ class HomeTableViewController: UITableViewController {
                         let title = item.value!["title"] as! String
                         print(title)
                         let description = item.value!["desc"] as! String
+                        print(description)
                         let date = item.value!["date"] as! String
                         let post = Post(title: title, description: description, date: date)
                         self.posts += [post]

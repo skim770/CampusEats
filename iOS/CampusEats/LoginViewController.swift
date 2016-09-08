@@ -140,7 +140,7 @@ class LoginViewController: UIViewController {
         else {
             FIRAuth.auth()?.signInWithEmail(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
                 if error == nil{
-                    if user?.emailVerified == true{
+                    if user?.emailVerified == false{
                         self.doLogin()
                     }
                     else{

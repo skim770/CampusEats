@@ -10,27 +10,125 @@ import Foundation
 import Firebase
 
 class RegisterViewController: UIViewController {
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var firstNameTextField: UITextField!
-    @IBOutlet var lastNameTextField: UITextField!
+    var firstNameTextField: UITextField!
+    var lastNameTextField: UITextField!
+    var emailTextField: UITextField!
+    var passwordTextField: UITextField!
+    
+    var loginButton: UIButton!
+    var registerButton: UIButton!
+    var logoImage: UIImageView!
+    var logoText: UILabel!
     
     var ref:FIRDatabaseReference!
     var thisUser: FIRUser?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
         self.hideKeyboardWhenTappedAround()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
+        
+        //Background
+        let backgroundImageView = UIImageView(image: UIImage(named: "Background"))
+        backgroundImageView.frame = self.view.bounds
+        self.view.addSubview(backgroundImageView)
+        self.view.sendSubviewToBack(backgroundImageView)
+        
+        // ##Item Sizes##
+        //General
+        let width = self.view.frame.width
+        let height = self.view.frame.height
+        //TextField
+        let textFieldWidth = width/1.5
+        let textFieldHeight = width/10
+        let textFieldFontSize = width/18
+        //Button
+        let buttonTitleWidth = width/1.5
+        let buttonTitleHeight = width/6.5
+        let buttonFontSize = width/15
+        //Image
+        let logoSize = width/3
+        
+        // ##Logo Image##
+        logoImage = UIImageView(image: UIImage(named: "WhiteIcon"))
+        logoImage.frame = CGRect(x: width/2 - logoSize/2, y: logoSize/2, width: logoSize, height: logoSize * 0.75)
+        logoImage.alpha = 0.9
+        logoText = UILabel(frame: CGRect(x: width/2 - logoSize, y: logoSize/2 + logoSize/2, width: logoSize * 2, height: logoSize))
+        logoText.font = UIFont(name: CUSTOM_FONT, size: CGFloat(buttonFontSize*1.5))
+        logoText.textColor = UIColor.whiteColor()
+        logoText.textAlignment = NSTextAlignment.Center
+        logoText.text = "Register"
+        logoText.alpha = 0.8
+        
+        // ##Text Field##
+        // Email/Password
+        let textFieldY = height/2.5
+        
+        firstNameTextField = UITextField(frame: CGRect(x:width/2 - textFieldWidth/2, y:textFieldY - textFieldHeight * 4, width: textFieldWidth, height: textFieldHeight))
+        lastNameTextField = UITextField(frame: CGRect(x:width/2 - textFieldWidth/2, y:textFieldY - textFieldHeight * 2, width: textFieldWidth, height: textFieldHeight))
+        emailTextField = UITextField(frame: CGRect(x:width/2 - textFieldWidth/2, y:textFieldY, width: textFieldWidth, height: textFieldHeight))
+        passwordTextField = UITextField(frame: CGRect(x:width/2 - textFieldWidth/2, y:textFieldY + textFieldHeight * 2, width: textFieldWidth, height: textFieldHeight))
+        
+        firstNameTextField.textAlignment = NSTextAlignment.Center
+        lastNameTextField.textAlignment = NSTextAlignment.Center
+        emailTextField.textAlignment = NSTextAlignment.Center
+        passwordTextField.textAlignment = NSTextAlignment.Center
+        passwordTextField.secureTextEntry = true
+        
+        firstNameTextField.placeholder = "First Name"
+        lastNameTextField.placeholder = "Last Name"
+        emailTextField.placeholder = "Email"
+        passwordTextField.placeholder = "Password"
+        
+        //Font
+        firstNameTextField.font = UIFont(name: CUSTOM_FONT, size: CGFloat(textFieldFontSize))
+        lastNameTextField.font = UIFont(name: CUSTOM_FONT, size: CGFloat(textFieldFontSize))
+        emailTextField.font = UIFont(name: CUSTOM_FONT, size: CGFloat(textFieldFontSize))
+        passwordTextField.font = UIFont(name: CUSTOM_FONT, size: CGFloat(textFieldFontSize))
+        
+        //Color
+        firstNameTextField.textColor = UIColor.whiteColor()
+        lastNameTextField.textColor = UIColor.whiteColor()
+        emailTextField.textColor = UIColor.whiteColor()
+        passwordTextField.textColor = UIColor.whiteColor()
+        
+        //Alpha
+        firstNameTextField.alpha = 0.8
+        lastNameTextField.alpha = 0.8
+        emailTextField.alpha = 0.8
+        passwordTextField.alpha = 0.8
+        
+        // ##Buttons##
+        // Login
+        loginButton = UIButton(frame: CGRect(x:width/2 - buttonTitleWidth/2, y:height/1.5, width: buttonTitleWidth, height: buttonTitleHeight))
+        loginButton.backgroundColor = UIColor.whiteColor()
+        loginButton.setTitle("Register", forState: UIControlState.Normal)
+        loginButton.addTarget(self, action: #selector(registerDidTapped), forControlEvents: .TouchUpInside)
+        loginButton.titleLabel!.font = UIFont(name: CUSTOM_FONT, size: CGFloat(buttonFontSize))
+        loginButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        loginButton.alpha = 0.8
+        
+        // ##Add Components##
+        self.view.addSubview(firstNameTextField)
+        self.view.addSubview(lastNameTextField)
+        self.view.addSubview(emailTextField)
+        self.view.addSubview(passwordTextField)
+        self.view.addSubview(loginButton)
+        
         self.ref = FIRDatabase.database().reference()
     }
-    @IBAction func BackDidTapped(sender: AnyObject) {
+    
+    override func viewDidLayoutSubviews() {
+        firstNameTextField.setBottomBorder()
+        lastNameTextField.setBottomBorder()
+        emailTextField.setBottomBorder()
+        passwordTextField.setBottomBorder()
+    }
+    
+    func backDidTapped() {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func RegisterDidTapped(sender: AnyObject) {
+    func registerDidTapped() {
         let currentView = self
         if !emailTextField.hasText() || !passwordTextField.hasText() || !firstNameTextField.hasText() || !lastNameTextField.hasText() {
             errorMessage(TEXT_FIELD_EMPTY_TITLE, message: TEXT_FIELD_ERROR, location: self)
