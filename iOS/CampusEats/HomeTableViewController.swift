@@ -27,7 +27,11 @@ class HomeTableViewController: UITableViewController {
         populatePosts()
     }
     
-    @IBAction func RefreshDidTapped(sender: AnyObject) {
+    @IBAction func NewPostDidTapped(sender: AnyObject) {
+        performSegueWithIdentifier("CreatePost", sender: nil)
+    }
+    
+    func RefreshDidTapped() {
         posts = [Post]()
         populatePosts()
     }
@@ -82,6 +86,7 @@ class HomeTableViewController: UITableViewController {
         // find record for current cell
         let thisRecord : Post  = self.posts[indexPath.row]
         cell.titleLabel.text = thisRecord.title
+        cell.descriptionLabel.text = thisRecord.description
         
         return cell
     }
