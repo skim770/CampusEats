@@ -11,12 +11,17 @@ import UIKit
 
 // Variables
 let RSS_FEED_URL = "http://www.calendar.gatech.edu/feeds/events.xml"
+let TEXT_FIELD_FONT_SIZE = 15
+let BUTTON_TITLE_FONT_SIZE = 20
 
-// Error Messages
+// Alert Dialog
+let EMAIL_VERIFICATION_MESSAGE = "Registration successful! Please check your email to verify your account."
 let TEXT_FIELD_ERROR = "The Text Field Entries cannot be empty"
 let TEXT_FIELD_EMPTY_TITLE = "Text Field Empty"
 let LOGIN_ERROR = "Login Error"
+let EMAIL_ALERT = "Thank you!"
 let REGISTER_ERROR = "Register Error"
+let CUSTOM_FONT = "BebasNeue"
 
 
 // Extensions
@@ -41,6 +46,22 @@ extension UIViewController {
     func dismissKeyboard() {
         view.endEditing(true)
     }
+}
+
+extension UITextField
+{
+    func setBottomBorder()
+    {
+        self.borderStyle = UITextBorderStyle.None;
+        let border = CALayer()
+        let width = CGFloat(1.5)
+        border.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).CGColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width,   width:  self.frame.size.width, height: self.frame.size.height)
+        border.borderWidth = width
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+    }
+    
 }
 
 // Functions

@@ -21,6 +21,7 @@
 		75759A481D3AAF6900E16D8F /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75759A471D3AAF6900E16D8F /* HomeTableViewController.swift */; };
 		75759A4B1D3AB08E00E16D8F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75759A4A1D3AB08E00E16D8F /* HomeTableViewCell.swift */; };
 		75759A521D3ABD7200E16D8F /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75759A511D3ABD7200E16D8F /* Common.swift */; };
+		75E688B71D413A1900DCCDC5 /* BebasNeue.otf in Resources */ = {isa = PBXBuildFile; fileRef = 75E688B61D413A1900DCCDC5 /* BebasNeue.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		75759A471D3AAF6900E16D8F /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		75759A4A1D3AB08E00E16D8F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		75759A511D3ABD7200E16D8F /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		75E688B61D413A1900DCCDC5 /* BebasNeue.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BebasNeue.otf; sourceTree = "<group>"; };
 		868CD57BC8DD83769A3C55BA /* Pods_CampusEats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampusEats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2745DB16D11B39EF5849EC8 /* Pods-CampusEats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusEats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusEats/Pods-CampusEats.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,10 +127,10 @@
 		7571F2511D355D61005D243F /* CampusEats */ = {
 			isa = PBXGroup;
 			children = (
+				75E688B51D4139FA00DCCDC5 /* Resources */,
 				75759A4C1D3AB61300E16D8F /* Classes */,
 				75759A491D3AAF8900E16D8F /* View Controllers */,
 				7571F2521D355D61005D243F /* AppDelegate.swift */,
-				75759A511D3ABD7200E16D8F /* Common.swift */,
 				7571F2561D355D61005D243F /* Main.storyboard */,
 				7571F2591D355D61005D243F /* Assets.xcassets */,
 				7571F25B1D355D61005D243F /* LaunchScreen.storyboard */,
@@ -173,6 +175,23 @@
 				752C9D071D3ACDD1009B4540 /* Post.swift */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		75E688B51D4139FA00DCCDC5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				75E688B81D413A1E00DCCDC5 /* Fonts */,
+				75759A511D3ABD7200E16D8F /* Common.swift */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		75E688B81D413A1E00DCCDC5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				75E688B61D413A1900DCCDC5 /* BebasNeue.otf */,
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 		A1501E8063CFA8A5433F5B32 /* Frameworks */ = {
@@ -296,6 +315,7 @@
 				7571F25D1D355D61005D243F /* LaunchScreen.storyboard in Resources */,
 				7571F2811D355D7F005D243F /* GoogleService-Info.plist in Resources */,
 				7571F25A1D355D61005D243F /* Assets.xcassets in Resources */,
+				75E688B71D413A1900DCCDC5 /* BebasNeue.otf in Resources */,
 				7571F2581D355D61005D243F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

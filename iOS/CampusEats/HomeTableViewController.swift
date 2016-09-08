@@ -36,8 +36,7 @@ class HomeTableViewController: UITableViewController {
         let firebaseAuth = FIRAuth.auth()
         do {
             try firebaseAuth?.signOut()
-            let vc = self.storyboard?.instantiateViewControllerWithIdentifier("LoginView")
-            self.presentViewController(vc!, animated: false, completion: nil)
+            dismissViewControllerAnimated(true, completion: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }

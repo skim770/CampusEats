@@ -31,6 +31,7 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func RegisterDidTapped(sender: AnyObject) {
+        let currentView = self
         if !emailTextField.hasText() || !passwordTextField.hasText() || !firstNameTextField.hasText() || !lastNameTextField.hasText() {
             errorMessage(TEXT_FIELD_EMPTY_TITLE, message: TEXT_FIELD_ERROR, location: self)
         }
@@ -49,8 +50,27 @@ class RegisterViewController: UIViewController {
                     
                     //Add to list of user for organization
                     self.ref.child("/organizations/\(1)/users/\(thisUser!.uid)").setValue(true)
+                    //Email Verification
+                    user?.sendEmailVerificationWithCompletion({ (error) in
+                        if let error = error {
+                            print(error.localizedDescription)
+                            return
+                        }
+                        print("Sent")
+                    })
                     
-                    self.performSegueWithIdentifier("GoToHome", sender: nil)
+                    let alertController = UIAlertController(title: EMAIL_ALERT, message: EMAIL_VERIFICATION_MESSAGE, preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: { action in
+                        switch action.style{
+                        case UIAlertActionStyle.Default:
+                            currentView.dismissViewControllerAnimated(true, completion: nil)
+                        default:
+                            print("default?")
+                        }
+                        
+                    }))
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                    
                 }
                 else{
                     errorMessage(REGISTER_ERROR, message: error!.localizedDescription, location: self)
