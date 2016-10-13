@@ -31,7 +31,7 @@ class RegisterViewController: UIViewController {
         let backgroundImageView = UIImageView(image: UIImage(named: "Background"))
         backgroundImageView.frame = self.view.bounds
         self.view.addSubview(backgroundImageView)
-        self.view.sendSubviewToBack(backgroundImageView)
+        self.view.sendSubview(toBack: backgroundImageView)
         
         // ##Item Sizes##
         //General
@@ -54,8 +54,8 @@ class RegisterViewController: UIViewController {
         logoImage.alpha = 0.9
         logoText = UILabel(frame: CGRect(x: width/2 - logoSize, y: logoSize/2 + logoSize/2, width: logoSize * 2, height: logoSize))
         logoText.font = UIFont(name: CUSTOM_FONT, size: CGFloat(buttonFontSize*1.5))
-        logoText.textColor = UIColor.whiteColor()
-        logoText.textAlignment = NSTextAlignment.Center
+        logoText.textColor = UIColor.white
+        logoText.textAlignment = NSTextAlignment.center
         logoText.text = "Register"
         logoText.alpha = 0.8
         
@@ -68,11 +68,11 @@ class RegisterViewController: UIViewController {
         emailTextField = UITextField(frame: CGRect(x:width/2 - textFieldWidth/2, y:textFieldY, width: textFieldWidth, height: textFieldHeight))
         passwordTextField = UITextField(frame: CGRect(x:width/2 - textFieldWidth/2, y:textFieldY + textFieldHeight * 2, width: textFieldWidth, height: textFieldHeight))
         
-        firstNameTextField.textAlignment = NSTextAlignment.Center
-        lastNameTextField.textAlignment = NSTextAlignment.Center
-        emailTextField.textAlignment = NSTextAlignment.Center
-        passwordTextField.textAlignment = NSTextAlignment.Center
-        passwordTextField.secureTextEntry = true
+        firstNameTextField.textAlignment = NSTextAlignment.center
+        lastNameTextField.textAlignment = NSTextAlignment.center
+        emailTextField.textAlignment = NSTextAlignment.center
+        passwordTextField.textAlignment = NSTextAlignment.center
+        passwordTextField.isSecureTextEntry = true
         
         firstNameTextField.placeholder = "First Name"
         lastNameTextField.placeholder = "Last Name"
@@ -86,10 +86,10 @@ class RegisterViewController: UIViewController {
         passwordTextField.font = UIFont(name: CUSTOM_FONT, size: CGFloat(textFieldFontSize))
         
         //Color
-        firstNameTextField.textColor = UIColor.whiteColor()
-        lastNameTextField.textColor = UIColor.whiteColor()
-        emailTextField.textColor = UIColor.whiteColor()
-        passwordTextField.textColor = UIColor.whiteColor()
+        firstNameTextField.textColor = UIColor.white
+        lastNameTextField.textColor = UIColor.white
+        emailTextField.textColor = UIColor.white
+        passwordTextField.textColor = UIColor.white
         
         //Alpha
         firstNameTextField.alpha = 0.8
@@ -100,11 +100,11 @@ class RegisterViewController: UIViewController {
         // ##Buttons##
         // Login
         loginButton = UIButton(frame: CGRect(x:width/2 - buttonTitleWidth/2, y:height/1.5, width: buttonTitleWidth, height: buttonTitleHeight))
-        loginButton.backgroundColor = UIColor.whiteColor()
-        loginButton.setTitle("Register", forState: UIControlState.Normal)
-        loginButton.addTarget(self, action: #selector(registerDidTapped), forControlEvents: .TouchUpInside)
+        loginButton.backgroundColor = UIColor.white
+        loginButton.setTitle("Register", for: UIControlState())
+        loginButton.addTarget(self, action: #selector(registerDidTapped), for: .touchUpInside)
         loginButton.titleLabel!.font = UIFont(name: CUSTOM_FONT, size: CGFloat(buttonFontSize))
-        loginButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        loginButton.setTitleColor(UIColor.black, for: UIControlState())
         loginButton.alpha = 0.8
         
         // ##Add Components##
@@ -125,16 +125,16 @@ class RegisterViewController: UIViewController {
     }
     
     func backDidTapped() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     func registerDidTapped() {
         let currentView = self
-        if !emailTextField.hasText() || !passwordTextField.hasText() || !firstNameTextField.hasText() || !lastNameTextField.hasText() {
+        if !emailTextField.hasText || !passwordTextField.hasText || !firstNameTextField.hasText || !lastNameTextField.hasText {
             errorMessage(TEXT_FIELD_EMPTY_TITLE, message: TEXT_FIELD_ERROR, location: self)
         }
         else {
-            FIRAuth.auth()?.createUserWithEmail(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+            FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
                 if error == nil{
                     //Add to users
                     let thisUser = FIRAuth.auth()?.currentUser!
@@ -142,14 +142,14 @@ class RegisterViewController: UIViewController {
                         "last_name": self.lastNameTextField.text!,
                         "email": self.emailTextField.text!,
                         "affiliation": 1,
-                        "score": 80]
+                        "score": 80] as [String : Any]
                     let childUpdates = ["/users/\(thisUser!.uid)": post]
                     self.ref.updateChildValues(childUpdates)
                     
                     //Add to list of user for organization
                     self.ref.child("/organizations/\(1)/users/\(thisUser!.uid)").setValue(true)
                     //Email Verification
-                    user?.sendEmailVerificationWithCompletion({ (error) in
+                    user?.sendEmailVerification(completion: { (error) in
                         if let error = error {
                             print(error.localizedDescription)
                             return
@@ -157,17 +157,17 @@ class RegisterViewController: UIViewController {
                         print("Sent")
                     })
                     
-                    let alertController = UIAlertController(title: EMAIL_ALERT, message: EMAIL_VERIFICATION_MESSAGE, preferredStyle: UIAlertControllerStyle.Alert)
-                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: { action in
+                    let alertController = UIAlertController(title: EMAIL_ALERT, message: EMAIL_VERIFICATION_MESSAGE, preferredStyle: UIAlertControllerStyle.alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: { action in
                         switch action.style{
-                        case UIAlertActionStyle.Default:
-                            currentView.dismissViewControllerAnimated(true, completion: nil)
+                        case UIAlertActionStyle.default:
+                            currentView.dismiss(animated: true, completion: nil)
                         default:
                             print("default?")
                         }
                         
                     }))
-                    self.presentViewController(alertController, animated: true, completion: nil)
+                    self.present(alertController, animated: true, completion: nil)
                     
                 }
                 else{
@@ -177,7 +177,7 @@ class RegisterViewController: UIViewController {
         }
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 }

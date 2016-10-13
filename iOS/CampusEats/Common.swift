@@ -22,6 +22,8 @@ let LOGIN_ERROR = "Login Error"
 let EMAIL_ALERT = "Thank you!"
 let REGISTER_ERROR = "Register Error"
 let CUSTOM_FONT = "BebasNeue"
+let CREATE_ALERT = "Submit Post"
+let CREATE_MESSAGE = "Post submission successful!"
 
 
 // Extensions
@@ -31,9 +33,9 @@ extension String {
     }
 }
 
-extension NSUserDefaults {
-    func setString(string:String, forKey:String) {
-        setObject(string, forKey: forKey)
+extension UserDefaults {
+    func setString(_ string:String, forKey:String) {
+        set(string, forKey: forKey)
     }
 }
 
@@ -52,10 +54,10 @@ extension UITextField
 {
     func setBottomBorder()
     {
-        self.borderStyle = UITextBorderStyle.None;
+        self.borderStyle = UITextBorderStyle.none;
         let border = CALayer()
         let width = CGFloat(1.5)
-        border.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).CGColor
+        border.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
         border.frame = CGRect(x: 0, y: self.frame.size.height - width,   width:  self.frame.size.width, height: self.frame.size.height)
         border.borderWidth = width
         self.layer.addSublayer(border)
@@ -65,8 +67,8 @@ extension UITextField
 }
 
 // Functions
-func errorMessage(title: String, message: String, location: AnyObject) {
-    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-    location.presentViewController(alertController, animated: true, completion: nil)
+func errorMessage(_ title: String, message: String, location: AnyObject) {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+    location.present(alertController, animated: true, completion: nil)
 }

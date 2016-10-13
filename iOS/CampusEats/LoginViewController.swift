@@ -18,7 +18,7 @@ class LoginViewController: UIViewController {
     var logoImage: UIImageView!
     var logoText: UILabel!
     
-    let defaults = NSUserDefaults.standardUserDefaults()
+    let defaults = UserDefaults.standard
     
     
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
         let backgroundImageView = UIImageView(image: UIImage(named: "Background"))
         backgroundImageView.frame = self.view.bounds
         self.view.addSubview(backgroundImageView)
-        self.view.sendSubviewToBack(backgroundImageView)
+        self.view.sendSubview(toBack: backgroundImageView)
         
         // ##Item Sizes##
         //General
@@ -53,8 +53,8 @@ class LoginViewController: UIViewController {
         logoImage.alpha = 0.9
         logoText = UILabel(frame: CGRect(x: width/2 - logoSize, y: logoSize/2 + logoSize/2, width: logoSize * 2, height: logoSize))
         logoText.font = UIFont(name: CUSTOM_FONT, size: CGFloat(buttonFontSize*1.5))
-        logoText.textColor = UIColor.whiteColor()
-        logoText.textAlignment = NSTextAlignment.Center
+        logoText.textColor = UIColor.white
+        logoText.textAlignment = NSTextAlignment.center
         logoText.text = "CampusEats"
         logoText.alpha = 0.8
         
@@ -63,18 +63,18 @@ class LoginViewController: UIViewController {
         let textFieldY = height/2.5
         emailTextField = UITextField(frame: CGRect(x:width/2 - textFieldWidth/2, y:textFieldY, width: textFieldWidth, height: textFieldHeight))
         passwordTextField = UITextField(frame: CGRect(x:width/2 - textFieldWidth/2, y:textFieldY + textFieldHeight * 2, width: textFieldWidth, height: textFieldHeight))
-        emailTextField.textAlignment = NSTextAlignment.Center
-        passwordTextField.textAlignment = NSTextAlignment.Center
-        passwordTextField.secureTextEntry = true
+        emailTextField.textAlignment = NSTextAlignment.center
+        passwordTextField.textAlignment = NSTextAlignment.center
+        passwordTextField.isSecureTextEntry = true
         //Font
         emailTextField.font = UIFont(name: CUSTOM_FONT, size: CGFloat(textFieldFontSize))
         passwordTextField.font = UIFont(name: CUSTOM_FONT, size: CGFloat(textFieldFontSize))
         //Color
-        emailTextField.textColor = UIColor.whiteColor()
-        passwordTextField.textColor = UIColor.whiteColor()
+        emailTextField.textColor = UIColor.white
+        passwordTextField.textColor = UIColor.white
         //Autofill
-        let email = defaults.stringForKey("Email")
-        let password = defaults.stringForKey("Password")
+        let email = defaults.string(forKey: "Email")
+        let password = defaults.string(forKey: "Password")
         if email != nil && password != nil{
             emailTextField.text = email
             passwordTextField.text = password
@@ -91,18 +91,18 @@ class LoginViewController: UIViewController {
         // ##Buttons##
         // Login
         loginButton = UIButton(frame: CGRect(x:width/2 - buttonTitleWidth/2, y:height/1.5, width: buttonTitleWidth, height: buttonTitleHeight))
-        loginButton.backgroundColor = UIColor.whiteColor()
-        loginButton.setTitle("Login", forState: UIControlState.Normal)
-        loginButton.addTarget(self, action: #selector(loginDidTapped), forControlEvents: .TouchUpInside)
+        loginButton.backgroundColor = UIColor.white
+        loginButton.setTitle("Login", for: UIControlState())
+        loginButton.addTarget(self, action: #selector(loginDidTapped), for: .touchUpInside)
         loginButton.titleLabel!.font = UIFont(name: CUSTOM_FONT, size: CGFloat(buttonFontSize))
-        loginButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        loginButton.setTitleColor(UIColor.black, for: UIControlState())
         loginButton.alpha = 0.8
         // Register
         registerButton = UIButton(frame: CGRect(x:width/2 - buttonTitleWidth/2, y:height - buttonTitleHeight, width: buttonTitleWidth, height: buttonTitleHeight))
-        registerButton.setTitle("Don't have an account?", forState: .Normal)
-        registerButton.addTarget(self, action: #selector(registerDidTapped), forControlEvents: .TouchUpInside)
+        registerButton.setTitle("Don't have an account?", for: UIControlState())
+        registerButton.addTarget(self, action: #selector(registerDidTapped), for: .touchUpInside)
         registerButton.titleLabel!.font = UIFont(name: CUSTOM_FONT, size: CGFloat(buttonFontSize/1.5))
-        registerButton.titleLabel!.textAlignment = NSTextAlignment.Center
+        registerButton.titleLabel!.textAlignment = NSTextAlignment.center
         registerButton.alpha = 0.8
         
         // ##Add Components##
@@ -130,17 +130,17 @@ class LoginViewController: UIViewController {
 //            defaults.setValue(nil, forKey: "Email")
 //            defaults.setValue(nil, forKey: "Password")
 //        }
-        self.performSegueWithIdentifier("GoToHome", sender: nil)
+        self.performSegue(withIdentifier: "GoToHome", sender: nil)
     }
     
     func loginDidTapped() {
-        if !emailTextField.hasText() || !passwordTextField.hasText() {
+        if !emailTextField.hasText || !passwordTextField.hasText {
             errorMessage(TEXT_FIELD_EMPTY_TITLE, message: TEXT_FIELD_ERROR, location: self)
         }
         else {
-            FIRAuth.auth()?.signInWithEmail(emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
+            FIRAuth.auth()?.signIn(withEmail: emailTextField.text!, password: passwordTextField.text!, completion: { (user, error) in
                 if error == nil{
-                    if user?.emailVerified == false{
+                    if user?.isEmailVerified == false{
                         self.doLogin()
                     }
                     else{
@@ -155,11 +155,11 @@ class LoginViewController: UIViewController {
     }
     
     func registerDidTapped() {
-        self.performSegueWithIdentifier("GoToRegister", sender: nil)
+        self.performSegue(withIdentifier: "GoToRegister", sender: nil)
     }
     
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
     }
 }
 

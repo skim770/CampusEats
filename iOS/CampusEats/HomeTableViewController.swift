@@ -27,8 +27,8 @@ class HomeTableViewController: UITableViewController {
         populatePosts()
     }
     
-    @IBAction func NewPostDidTapped(sender: AnyObject) {
-        performSegueWithIdentifier("CreatePost", sender: nil)
+    @IBAction func NewPostDidTapped(_ sender: AnyObject) {
+        performSegue(withIdentifier: "CreatePost", sender: nil)
     }
     
     func RefreshDidTapped() {
@@ -36,27 +36,28 @@ class HomeTableViewController: UITableViewController {
         populatePosts()
     }
     
-    @IBAction func LogoutDidTapped(sender: AnyObject) {
+    @IBAction func LogoutDidTapped(_ sender: AnyObject) {
         let firebaseAuth = FIRAuth.auth()
         do {
             try firebaseAuth?.signOut()
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
     }
     
     func populatePosts(){
-        let activePosts = ref.child("posts").queryOrderedByChild("date")
-        activePosts.observeSingleEventOfType(FIRDataEventType.Value, withBlock: {(snapshot) in
+        let activePosts = ref.child("posts").queryOrdered(byChild: "date")
+        activePosts.observeSingleEvent(of: FIRDataEventType.value, with: {(snapshot) in
             if (snapshot.childrenCount > 0){
-                for item in snapshot.children {
-                    if item.value!["status"] as! String == "Active"{
-                        let title = item.value!["title"] as! String
+                for child in (snapshot.value as! NSDictionary) {
+                    let item = child.value as? NSDictionary
+                    if item?["status"] as! String == "Active"{
+                        let title = item?["title"] as! String
                         print(title)
-                        let description = item.value!["desc"] as! String
+                        let description = item?["desc"] as! String
                         print(description)
-                        let date = item.value!["date"] as! String
+                        let date = item?["date"] as! String
                         let post = Post(title: title, description: description, date: date)
                         self.posts += [post]
                         self.tableView.reloadData()
@@ -69,22 +70,22 @@ class HomeTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "HomeTableViewCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! HomeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! HomeTableViewCell
         
         
         // MARK: - Fetch labels and insert here
         // find record for current cell
-        let thisRecord : Post  = self.posts[indexPath.row]
+        let thisRecord : Post  = self.posts[(indexPath as NSIndexPath).row]
         cell.titleLabel.text = thisRecord.title
         cell.descriptionLabel.text = thisRecord.description
         
