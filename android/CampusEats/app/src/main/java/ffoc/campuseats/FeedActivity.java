@@ -13,7 +13,10 @@ import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.shapes.Shape;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +34,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.nio.channels.Selector;
+import java.util.Calendar;
 
 public class FeedActivity extends AppCompatActivity {
 
@@ -52,6 +56,9 @@ public class FeedActivity extends AppCompatActivity {
         final Context context = this;
 
         final Button newPostButton = (Button) findViewById(R.id.newPostButton);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
         newPostButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -174,5 +181,34 @@ public class FeedActivity extends AppCompatActivity {
         //feedText.setText(queryRef.toString());
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.add_event_buton:
+                // User chose the "Settings" item, show the app settings UI...
+                startActivity(new Intent(FeedActivity.this, SubmitActivity.class));
+                return true;
+
+            case R.id.calendar_button:
+                // User chose the "Favorite" action, mark the current item
+                // as a favorite...
+                startActivity(new Intent(FeedActivity.this, CalendarActivity.class));
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+
+        }
     }
 }

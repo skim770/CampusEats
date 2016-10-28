@@ -3,12 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/login_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:backgroundTint="@color/colorPrimary"
+        />
 
 
     <EditText android:id="@+id/login_email"
         android:layout_width="match_parent"
-        android:layout_height="118dp"
+        android:layout_height="116dp"
         android:hint="Email"
         />
 
@@ -16,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="118dp"
         android:hint="Password"
-        />
+        android:inputType="textPassword" />
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
