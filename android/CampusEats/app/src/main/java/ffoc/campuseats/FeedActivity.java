@@ -88,8 +88,9 @@ public class FeedActivity extends AppCompatActivity {
                 descParams.setMargins(20, 0, 20, 20);
 
 
-
-                for(int i = 0; i < 50; i++){
+                if(childCount > 50)
+                    childCount = 50;
+                for(int i = 0; i < childCount; i++){
 
 
                     TextView dateText = new TextView(context);
@@ -125,7 +126,7 @@ public class FeedActivity extends AppCompatActivity {
 
                     DataSnapshot iteration = snap.iterator().next();
 
-                    String str = iteration.child("date").getValue().toString();
+                    String str = iteration.child("start").getValue().toString();
                     if(dateText.getText() != null && !str.equals(dateText.toString()))
                     {
                         dateText.setTextSize(18);
@@ -140,8 +141,8 @@ public class FeedActivity extends AppCompatActivity {
                     titleText.append(str);
                     linearLayout.addView(titleText);
 
-                    str = iteration.child("category").getValue().toString();
-                    descText.append(str);
+                    //str = iteration.child("category").getValue().toString();
+                    //descText.append(str);
 
 
 
@@ -149,7 +150,7 @@ public class FeedActivity extends AppCompatActivity {
                     //str = iteration.child("loc").getValue().toString();
                     //feedText.append("\n\n" + "Location: " + str);
 
-                    str = iteration.child("desc").getValue().toString();
+                    str = iteration.child("summary").getValue().toString();
                     descText.append("\n\n" + str);
 
                     //str = iteration.child("likes").getValue().toString();

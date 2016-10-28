@@ -76,7 +76,7 @@ public class CalendarActivity extends AppCompatActivity {
 
 
                 //ref.orderByChild("rawDate").startAt(selectedDateString).endAt(endOfSelectedDateString);
-                ref.orderByChild("rawDate").startAt(selectedDateString.substring(0,10)).endAt(endOfSelectedDateString).addValueEventListener(new ValueEventListener() {
+                ref.orderByChild("start").startAt(selectedDateString.substring(0,10)).endAt(endOfSelectedDateString).addValueEventListener(new ValueEventListener() {
 
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
@@ -103,7 +103,7 @@ public class CalendarActivity extends AppCompatActivity {
 
                     }
                 });
-                
+
 
             }
         });
