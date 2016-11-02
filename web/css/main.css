@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-html, body {
+html, body, main {
   font-family: 'Roboto', 'Helvetica', sans-serif;
+  width: 100%;
 }
 a {
   text-decoration: none;
@@ -24,7 +25,7 @@ li a {
   text-decoration: underline;
   color: #0288d1;
 }
-.mdl-grid {
+/*.mdl-grid {
   max-width: 1024px;
   margin: auto;
 }
@@ -34,7 +35,7 @@ li a {
 }
 .mdl-layout__header-row {
   padding: 0;
-}
+}*/
 pre {
   overflow-x: scroll;
   line-height: 18px;
@@ -49,15 +50,15 @@ h3 {
   color: white;
 }
 .left {
-    width: 30%;
-    float: left;
-    text-align: right;
-    line-height: 2;
+  width: 30%;
+  float: left;
+  text-align: right;
+  line-height: 2;
 }
 .right {
-    width: 65%;
-    margin-left: 10px;
-    float:left;
+  width: 65%;
+  margin-left: 10px;
+  float:left;
 }
 
 .events_feed {
@@ -79,17 +80,38 @@ h3 {
   margin-top: 6px;
   margin-bottom: 12px;
 }
+.eventPost table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.eventPost table td, th {
+  vertical-align: text-top;
+  padding: 0;
+}
+.eventPost img {
+  width: calc(100% - 5px);
+  padding-left: 5px;
+  vertical-align: top;
+}
 .eventTitle {
   font-size: x-large;
   padding-top: 20px;
   padding-bottom: 5px;
   line-height: 120%;
 }
-.sourceId {
-  opacity: 0.5;
-  padding-bottom: 12px;
+.eventTime {
+  padding-top: 3px;
+  padding-bottom: 2px;
+}
+.eventLoc {
+
 }
 .eventDesc {
   opacity: 0.5;
-  padding-bottom: 20px;
+  padding-top: 5px;
+  padding-bottom: 15px;
+}
+
+#month_calendar {
+  left: 40;
 }

@@ -1,7 +1,5 @@
 /**
 Copyright 2016 Sung Kim <kr.dev.sk@gmail.com>. All rights reserved.
-
-JSX script that renders ReactDOM for main feed.
 **/
 
 /**
@@ -28,38 +26,32 @@ var prevDateHeader = Date.parse(todayStamp);
 
 var EventPost = React.createClass({
 	render: function() {
-		var sourceID;
-		if (this.props.post.sourceID === "GTCal") {
-			sourceID = <div className="sourceId">{this.props.post.category}</div>;
-		} else {
-			sourceID = <div className="sourceId">{this.props.post.sourceID}</div>;
-		}
-
 		var post;
-		var eventDay = Date.parse(this.props.post.rawDate.substring(0, 10));
-		var dateHeader = <div className="dateHeader">{eventDay}</div>;
-		if (eventDay > prevDateHeader) {
-			post = (
-				<div>
-				<DateHeader day={eventDay} />
-				<div className="eventPost">
-					<div className="eventTitle">{this.props.post.title}</div>
-					{sourceID}
-					<div className="eventDesc">{this.props.post.desc}</div>
-				</div>
-				</div>
-			);
-			prevDateHeader = eventDay;
-		} else {
-			post = (
-				<div className="eventPost">
-					<div className="eventTitle">{this.props.post.title}</div>
-					{sourceID}
-					<div className="eventDesc">{this.props.post.desc}</div>
-				</div>
-			);
-		}
-		return post;
+		var eventDay = Date.parse(this.props.post.start.substring(0, 10));
+		var isLaterDay = eventDay > prevDateHeader;
+		prevDateHeader = eventDay;
+
+		var infoColWidth = this.props.post.image.length > 0 ? "80%" : "100%";
+		var imgColWidth = this.props.post.image.length > 0 ? "20%" : "0%";
+
+		return post = (
+			<div>
+			{isLaterDay ? <DateHeader day={eventDay} /> : null}
+			<div className="eventPost">
+				<table><tr>
+					<td width={infoColWidth}>
+						<div className="eventTitle">{this.props.post.title}</div>
+						<div className="eventTime">{timeRange(this.props.post.start, this.props.post.end)}</div>
+						<div className="eventLoc">{this.props.post.location}</div>
+					</td>
+					<td width={imgColWidth}>
+						<img src={this.props.post.image}/>
+					</td>
+				</tr></table>
+				<div className="eventDesc">{this.props.post.summary}</div>
+			</div>
+			</div>
+		);
 	}
 });
 
@@ -67,7 +59,7 @@ var EventFeed = React.createClass({
 	render: function() {
 		var postNodes = this.props.data.map(function(post) {
 			return (
-				<EventPost post={post} />
+				<EventPost key={post['key']} post={post} />
 			);
 		});
 		return (
@@ -100,6 +92,22 @@ var DateHeader = React.createClass({
 	}
 });
 
+function timeRange(start, end) {
+	var startAmPm = " AM";
+	var startHr = parseInt(start.substring(11, 13));
+	if (startHr >= 12) {
+		startAmPm = " PM";
+		if (startHr > 12) startHr = startHr - 12;
+	}
+	var endAmPm = " AM";
+	var endHr = parseInt(end.substring(11, 13));
+	if (endHr >= 12) {
+		endAmPm = " PM";
+		if (endHr > 12) endHr = endHr - 12;
+	}
+	return startHr + start.substring(13, 16) + startAmPm + "  -  " + endHr + end.substring(13, 16) + endAmPm;
+}
+
 function renderDOM(posts) {
 	ReactDOM.render(
 		<EventFeed data={posts} />,
@@ -107,14 +115,46 @@ function renderDOM(posts) {
 	);
 }
 
-postsRef.orderByChild('rawDate').on('value', function(snapshot) {
-	var posts = [];
-	snapshot.forEach(function(post) {
-		var eventDay = post.child("rawDate").val().substring(0, 10);
-		if (Date.parse(eventDay) >= Date.parse(todayStamp)) {
-			posts.push(post.val());
-		}
+function fetchFirebasePosts() {
+	postsRef.on('value', function(snapshot) {
+		var posts = [];
+		snapshot.forEach(function(post) {
+			var times = post.child('times').val();
+			for (var i = 0; i < times.length; i++) {
+				var eventDay = times[i].start.substring(0, 10);
+				if (Date.parse(eventDay) >= Date.parse(todayStamp)) {
+					var postInstance = post.val();
+					postInstance.key = post.key + ":" + i;
+					postInstance.start = times[i].start;
+					postInstance.end = times[i].end;
+					posts.push(postInstance);
+				}
+			}
+		});
+		posts.sort(function(a, b) {
+			return a.start.localeCompare(b.start);
+		});
+		renderDOM(posts);
 	});
-	console.log("ReactDOM rendering " + posts.length + " items.");
-	renderDOM(posts);
+}
+fetchFirebasePosts();
+
+/*
+ * Month View
+ */
+YUI().use('calendar', 'datatype-date', 'cssbutton', function (Y) {
+    var calendar = new Y.Calendar({
+        contentBox: "#month_calendar",
+        width: '75%',
+        showPrevMonth: true,
+        showNextMonth: true,
+        date: new Date() }).render();
+
+    var dtdate = Y.DataType.Date;
+
+    calendar.on("selectionChange", function (ev) {
+        var newDate = ev.newSelection[0];
+        var rawDate = dtdate.format(newDate);
+        Y.one("#selecteddate").setHTML(rawDate);
+    });
 });

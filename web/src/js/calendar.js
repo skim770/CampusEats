@@ -49,38 +49,44 @@ YUI().use('calendar', 'datatype-date', 'cssbutton', function (Y) {
 
         var EventPost = React.createClass({
             render: function() {
-                var sourceID;
-                if (this.props.post.sourceID === "GTCal") {
-                    sourceID = <div className="sourceId">{this.props.post.category}</div>;
-                } else {
-                    sourceID = <div className="sourceId">{this.props.post.sourceID}</div>;
-                }
+                // var sourceID;
+                // if (this.props.post.sourceID === "GTCal") {
+                //     sourceID = <div className="sourceId">{this.props.post.category}</div>;
+                // } else {
+                //     sourceID = <div className="sourceId">{this.props.post.sourceID}</div>;
+                // }
 
-                var post;
-                var eventDay = Date.parse(this.props.post.rawDate.substring(0, 10));
-                var dateHeader = <div className="dateHeader">{eventDay}</div>;
-                if (eventDay > prevDateHeader) {
-                    post = (
-                        <div>
-                            <DateHeader day={eventDay} />
-                            <div className="eventPost">
-                                <div className="eventTitle">{this.props.post.title}</div>
-                                {sourceID}
-                                <div className="eventDesc">{this.props.post.desc}</div>
-                            </div>
-                        </div>
-                    );
-                    prevDateHeader = eventDay;
-                } else {
-                    post = (
-                        <div className="eventPost">
-                            <div className="eventTitle">{this.props.post.title}</div>
-                            {sourceID}
-                            <div className="eventDesc">{this.props.post.desc}</div>
-                        </div>
-                    );
-                }
-                return post;
+                // var post;
+                // var eventDay = Date.parse(this.props.post.rawDate.substring(0, 10));
+                // var dateHeader = <div className="dateHeader">{eventDay}</div>;
+                // if (eventDay > prevDateHeader) {
+                //     post = (
+                //         <div>
+                //             <DateHeader day={eventDay} />
+                //             <div className="eventPost">
+                //                 <div className="eventTitle">{this.props.post.title}</div>
+                //                 {sourceID}
+                //                 <div className="eventDesc">{this.props.post.desc}</div>
+                //             </div>
+                //         </div>
+                //     );
+                //     prevDateHeader = eventDay;
+                // } else {
+                //     post = (
+                //         <div className="eventPost">
+                //             <div className="eventTitle">{this.props.post.title}</div>
+                //             {sourceID}
+                //             <div className="eventDesc">{this.props.post.desc}</div>
+                //         </div>
+                //     );
+                // }
+                // return post;
+                return (
+                    <div className="eventPost">
+                        <div className="eventTitle">{this.props.post.title}</div>
+                        <div className="eventDesc">{this.props.post.body}</div>
+                    </div>
+                )
             }
         });
 
@@ -93,7 +99,7 @@ YUI().use('calendar', 'datatype-date', 'cssbutton', function (Y) {
                 });
                 return (
                     <div className="eventFeed">
-                        <DateHeader day="Today" />
+                        // <DateHeader day="Today" />
                         {postNodes}
                     </div>
                 );
@@ -128,20 +134,21 @@ YUI().use('calendar', 'datatype-date', 'cssbutton', function (Y) {
         });
 
         function renderDOM(posts) {
+            console.log(posts);
             ReactDOM.render(
                 <EventFeed data={posts} />,
                 document.getElementById('posts_container')
             );
         }
 
-
-        postsRef.orderByChild('rawDate').on('value', function (snapshot) {
+        postsRef.orderByChild('start').on('value', function (snapshot) {
             var posts = [];
             snapshot.forEach(function (post) {
-                var eventDay = post.child("rawDate").val().substring(0, 10);
-                if (Date.parse(eventDay) == Date.parse(todayStamp)) {
-                    posts.push(post.val());
-                }
+                // var eventDay = post.child("rawDate").val().substring(0, 10);
+                // if (Date.parse(eventDay) == Date.parse(todayStamp)) {
+                //     posts.push(post.val());
+                // }
+                posts.push(post.val());
             });
             console.log("ReactDOM rendering " + posts.length + " items.");
             renderDOM(posts);
