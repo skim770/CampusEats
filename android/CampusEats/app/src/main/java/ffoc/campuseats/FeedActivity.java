@@ -11,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.shapes.Shape;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -34,6 +35,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.nio.channels.Selector;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class FeedActivity extends AppCompatActivity {
@@ -87,10 +90,45 @@ public class FeedActivity extends AppCompatActivity {
                 );
                 descParams.setMargins(20, 0, 20, 20);
 
+                ArrayList<Post> posts = new ArrayList<>();
 
                 if(childCount > 50)
                     childCount = 50;
-                for(int i = 0; i < childCount; i++){
+
+
+
+
+                for(int i = 0; i < childCount; i++) {
+                    DataSnapshot iteration = snap.iterator().next();
+
+                    String str = iteration.child("start").getValue().toString();
+                    int index = 0;
+
+                    String title = iteration.child("title").getValue().toString();
+                    String location = iteration.child("location").getValue().toString();
+                    String desc = iteration.child("summary").getValue().toString();
+
+                    DataSnapshot times = iteration.child("times_gmt");
+                    Iterable<DataSnapshot> iterableTimes = times.getChildren();
+
+                    //Post tPost = new Post(title, location, "2015-11-26");
+
+                    while(iterableTimes.iterator().hasNext()) {
+
+                        DataSnapshot timeSnap = iterableTimes.iterator().next();
+                        String time = timeSnap.child("start").getValue().toString();
+
+                        Post tempPost = new Post(title, location, time, desc);
+
+                        posts.add(tempPost);
+
+
+
+                    }
+                }
+
+
+                for(int i = 0; i < posts.size(); i++){
 
 
                     TextView dateText = new TextView(context);
@@ -124,21 +162,19 @@ public class FeedActivity extends AppCompatActivity {
 
 
 
-                    DataSnapshot iteration = snap.iterator().next();
-
-                    String str = iteration.child("start").getValue().toString();
-                    if(dateText.getText() != null && !str.equals(dateText.toString()))
+                    String date = posts.get(i).date;
+                    if(dateText.getText() != null && !date.equals(dateText.toString()))
                     {
                         dateText.setTextSize(18);
-                        dateText.append(str);
+                        dateText.append(date);
 
                         linearLayout.addView(dateText);
                     }
 
 
 
-                    str = iteration.child("title").getValue().toString();
-                    titleText.append(str);
+                    String title = posts.get(i).title;
+                    titleText.append(title);
                     linearLayout.addView(titleText);
 
                     //str = iteration.child("category").getValue().toString();
@@ -150,8 +186,8 @@ public class FeedActivity extends AppCompatActivity {
                     //str = iteration.child("loc").getValue().toString();
                     //feedText.append("\n\n" + "Location: " + str);
 
-                    str = iteration.child("summary").getValue().toString();
-                    descText.append("\n\n" + str);
+                    String summary = posts.get(i).desc;
+                    descText.append("\n\n" + summary);
 
                     //str = iteration.child("likes").getValue().toString();
                     //feedText.append("\n" + "Likes: " + str);

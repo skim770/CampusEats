@@ -55,8 +55,8 @@ public class SubmitActivity extends AppCompatActivity {
                 Map<String, Object> postValues = new HashMap<String, Object>();
                 postValues.put("title", post.title);
                 postValues.put("location", post.loc);
-                postValues.put("date", post.date);
-                postValues.put("time", post.time);
+                //postValues.put("date", post.date);
+                //postValues.put("time", post.time);
                 postValues.put("desc", post.desc);
 
                 Map<String, Object> childUpdates = new HashMap<>();

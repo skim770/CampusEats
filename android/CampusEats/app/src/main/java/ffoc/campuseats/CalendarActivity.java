@@ -2,6 +2,7 @@ package ffoc.campuseats;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,19 +40,26 @@ public class CalendarActivity extends AppCompatActivity {
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         eventName = (TextView) findViewById(R.id.eventName);
 
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.calendar_toolbar);
+        setSupportActionBar(myToolbar);
+
         final SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
         sdfDate.setTimeZone(TimeZone.getDefault());
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DATE, -1);
+
+        //cal.add(Calendar.MONTH, 0);
         date = cal.getTime();
+
 
         long minDate = date.getTime();
 
 
 
 
-        calendarView.setMinDate(minDate);
+
+       // calendarView.setMinDate(minDate);
 
 
 
