@@ -121,14 +121,14 @@ function fetchFirebasePosts() {
 		snapshot.forEach(function(post) {
 			var times = post.child('times').val();
 			for (var i = 0; i < times.length; i++) {
-				var eventDay = times[i].start.substring(0, 10);
-				if (Date.parse(eventDay) >= Date.parse(todayStamp)) {
+				// var eventDay = times[i].start.substring(0, 10);
+				// if (Date.parse(eventDay) >= Date.parse(todayStamp)) {
 					var postInstance = post.val();
 					postInstance.key = post.key + ":" + i;
 					postInstance.start = times[i].start;
 					postInstance.end = times[i].end;
 					posts.push(postInstance);
-				}
+				// }
 			}
 		});
 		posts.sort(function(a, b) {
