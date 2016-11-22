@@ -19,14 +19,22 @@
 	
 	<script src="src/js/firebaseHandler.js"></script>
 	<script type="text/babel" src="src/js/feed.js"></script>
-	<!-- <script type="text/babel" src="src/js/calendar.js"></script> -->
+	<script type="text/babel" src="src/js/calendar.js"></script>
 	<script type="text/javascript">
+		function handleSignOut(){
+			firebase.auth().signOut().then(function(error) {
+			  console.error('Sign Out Error', error);
+			});
+		}
+
 		window.onload = function() {
 	    firebase.auth().onAuthStateChanged(function(user) {
 			  if (!user) {
 			    window.location.href = "src/login/index.html";
 			  }
 			});
+
+      	document.getElementById('signout').addEventListener('click', handleSignOut, false);
 		};
 	</script>
 </head>
@@ -39,7 +47,8 @@
 	      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
 	         <img src="resources/img/CE_Icon.png" alt="CampusEats Icon" style="width: 85px; height: 85px">
 	        <h3>CampusEats</h3>
-	      </div>
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="signout" name="signout" style="position:absolute;right:50px; font-size: 16px">Sign Out</button>
+	      </div>	
 	    </div>
 	  </header>
 
@@ -54,7 +63,7 @@
 					<div class="events_feed" id="posts_container"></div>
 				</div>
 			</div>
-			<!-- <div id="demo" class="yui3-skin-sam yui3-g">
+			 <div id="demo" class="yui3-skin-sam yui3-g">
 				<div id="leftcolumn" class="yui3-u">
 					<div id="mycalendar" ></div>
 					<div id="links" style="padding-left:20px;">
@@ -67,7 +76,7 @@
 					<div align="right">
 						<a href="index.html">
 							<button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="original" name="original" style="margin: 4px 100px; font-size: 16px">Original</button>
-						</a>					
+						</a>
 					</div>
 				<div id="rightcolumn" class="yui3-u">
 					<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid mdl-login">
@@ -75,7 +84,7 @@
 					</div>
 					<p style="opacity: 0.5; padding-bottom: 20px" id="noevent"></p>
 				</div>
-			</div> -->
+			</div>
 	  </main>
   </div>
 </body>
