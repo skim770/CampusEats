@@ -25,6 +25,34 @@ todayStamp += today.getDate();
 var prevDateHeader = Date.parse(todayStamp);
 
 var EventPost = React.createClass({
+	handleClick: function(data) {
+		$('#overlay-event-detail').removeClass("none");
+		if (data.image != null && data.image.length > 0) {
+			document.getElementById("overlay-event-detail").style.width = "calc(100% - 140px)";
+			$('#overlay-img-container').removeClass("none");
+			$('#overlay-img-container').addClass("col-md-6");
+			$('#overlay-img').removeClass("none");
+			$('#overlay-contents').addClass("col-md-6");
+			$('#overlay-img').attr('src', data.image);
+		} else {
+			document.getElementById("overlay-event-detail").style.width = "50%";
+			$('#overlay-img-container').addClass("none");
+			$('#overlay-img-container').removeClass("col-md-6");
+			$('#overlay-img').addClass("none");
+			$('#overlay-contents').removeClass("col-md-6");
+		}
+		$('#overlay-event-title').text(data.title);
+		$('#overlay-event-location').html("<i class=\"material-icons\">location_on</i>  " + data.location);
+		$('#overlay-event-time').html("<i class=\"material-icons\">access_time</i>  " + dateTimeRange(data.start_gmt, data.end_gmt));
+		$('#overlay-event-body').html(data.body);
+		if (data.contact != null && data.contact.length > 0) {
+			$('.event-contact-info').removeClass("none");
+			$('#overlay-event-contact').html(data.contact);
+		} else {
+			$('.event-contact-info').addClass("none");
+		}
+		$('#overlay-event-detail').popup('show');
+	},
 	render: function() {
 		var post;
 		var eventDay = Date.parse(this.props.post.start.substring(0, 10));
@@ -37,7 +65,7 @@ var EventPost = React.createClass({
 		return post = (
 			<div>
 			{isLaterDay ? <DateHeader day={eventDay} /> : null}
-			<div className="eventPost">
+			<div className="eventPost" onClick={this.handleClick.bind(this, this.props.post)}>
 				<table><tr>
 					<td width={infoColWidth}>
 						<div className="eventTitle">{this.props.post.title}</div>
@@ -106,6 +134,28 @@ function timeRange(start, end) {
 		if (endHr > 12) endHr = endHr - 12;
 	}
 	return startHr + start.substring(13, 16) + startAmPm + "  -  " + endHr + end.substring(13, 16) + endAmPm;
+}
+
+function dateTimeRange(startGMT, endGMT) {
+	var startMonth = monthOfYear[parseInt(startGMT.substring(5,7)) - 1];
+	var startDay = startGMT.substring(8, 10);
+	var startHr = parseInt(startGMT.substring(11, 13));
+	var startMin = startGMT.substring(14, 16);
+	var startAmPm = " AM";
+	if (startHr >= 12) {
+		startAmPm = " PM";
+		if (startHr > 12) startHr = startHr - 12;
+	}
+	var endMonth = monthOfYear[parseInt(endGMT.substring(5,7)) - 1];
+	var endDay = endGMT.substring(8, 10);
+	var endHr = parseInt(endGMT.substring(11, 13));
+	var endMin = endGMT.substring(14, 16);
+	var endAmPm = " AM";
+	if (endHr >= 12) {
+		endAmPm = " PM";
+		if (endHr > 12) endHr = endHr - 12;
+	}
+	return startMonth + " " + startDay + ", " + startHr + ":" + startMin + " " + startAmPm + "\t-\t" + endMonth + " " + endDay + ", " + endHr + ":" + endMin + " " + endAmPm;
 }
 
 function renderDOM(posts) {

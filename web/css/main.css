@@ -60,6 +60,9 @@ h3 {
   margin-left: 10px;
   float:left;
 }
+.none {
+  display: none;
+}
 
 .events_feed {
   width: 100%;
@@ -103,13 +106,55 @@ h3 {
   padding-top: 3px;
   padding-bottom: 2px;
 }
-.eventLoc {
-
-}
+.eventLoc {}
 .eventDesc {
   opacity: 0.5;
   padding-top: 5px;
   padding-bottom: 15px;
+}
+.overlay-popup {
+  background-color: white;
+  /*width: calc(100% - 140px);*/
+  margin: 50px;
+  padding: 20px;
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+#overlay-img {
+  width: 100%;
+}
+#overlay-event-title {
+  font-weight: bold;
+  font-size: 22px;
+}
+.material-icons {
+  font-size: 15px;
+}
+.event-metadata {
+  background-color: #E1F5FE;
+  padding: 10px;
+  margin: 10px 0px;
+  border-radius: 5px;
+  font-size: 17px;
+  vertical-align: text-top;
+}
+#overlay-event-location,
+#overlay-event-time {
+  margin: 2px 0px;
+}
+.event-contact-info {
+  background-color: #424242;
+  color: #FAFAFA;
+  padding: 10px;
+  margin: 10px 0px;
+  border-radius: 5px;
+  font-size: 15px;
+}
+.event-contact-info a {
+  color: orange;
+}
+.event-contact-info p {
+  margin: 0px 0px;
 }
 
 #month_calendar {
