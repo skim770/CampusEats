@@ -7,29 +7,41 @@ import java.util.Date;
 /**
  * Created by Will on 9/6/2016.
  */
-public class Post {
+public class Post implements Comparable<Post>{
 
-    String desc;
+    String summary;
+    String body;
     //String time;
     String date;
     String loc;
     String title;
-    private Date realDate;
+    Date realDate;
     public String time;
 
-    public Post(String title, String loc, String date, String desc){
-        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+    public Post(String title, String loc, String date, String summary, String body) throws ParseException {
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 
         this.title = title;
         this.loc = loc;
-        //date = date.substring(0,22) + date.substring(23, 25);
+        String fixedDate = date.substring(0,22) + date.substring(23, 25);
+        try {
+            realDate = sdfDate.parse(fixedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         this.date = date;
         //this.time = time;
-        this.desc = desc;
+        this.summary = summary;
+        this.body = body;
 
     }
     public Post() {
 
+    }
+
+    @Override
+    public int compareTo(Post post) {
+        return realDate.compareTo(post.realDate);
     }
 
     /*public Date getDate(){

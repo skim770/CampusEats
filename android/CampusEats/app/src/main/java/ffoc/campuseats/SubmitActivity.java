@@ -47,7 +47,7 @@ public class SubmitActivity extends AppCompatActivity {
 
                 post.title = titleText.getText().toString();
                 post.loc = locText.getText().toString();
-                post.desc = locText.getText().toString();
+                post.body = locText.getText().toString();
                 DatabaseReference postsRef = ref.child("posts");
                 String key = postsRef.push().getKey();
 
@@ -57,7 +57,7 @@ public class SubmitActivity extends AppCompatActivity {
                 postValues.put("location", post.loc);
                 //postValues.put("date", post.date);
                 //postValues.put("time", post.time);
-                postValues.put("desc", post.desc);
+                postValues.put("desc", post.body);
 
                 Map<String, Object> childUpdates = new HashMap<>();
                 childUpdates.put("/posts/" + key, postValues);

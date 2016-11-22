@@ -19,9 +19,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.vision.text.Line;
@@ -38,12 +40,15 @@ import java.nio.channels.Selector;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 
 public class FeedActivity extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference();
     Query queryRef = ref.child("posts");
+
+    //static Post chosenPost;
 
 
 
@@ -52,20 +57,46 @@ public class FeedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feed);
-        final LinearLayout linearLayout = (LinearLayout)findViewById(R.id.feedLayout);
+        //setContentView(R.layout.activity_feed);
+        setContentView(R.layout.activity_listview);
+        //final LinearLayout linearLayout = (LinearLayout)findViewById(R.id.feedLayout);
 
         final TextView newText   = new TextView(this);
         final Context context = this;
 
-        final Button newPostButton = (Button) findViewById(R.id.newPostButton);
+        //final Button newPostButton = (Button) findViewById(R.id.newPostButton);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        newPostButton.setOnClickListener(new View.OnClickListener() {
+        /*newPostButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 startActivity(new Intent(FeedActivity.this, SubmitActivity.class));
+            }
+        });*/
+
+        final ArrayList<Post> posts = new ArrayList<>();
+        final ArrayList<String> titles = new ArrayList<>();
+        final ListView listView = (ListView) findViewById(R.id.list_view);
+
+
+
+        listView.setOnItemClickListener( new AdapterView.OnItemClickListener(){
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
+
+                Post chosenPost = posts.get(position);
+                Intent intent = new Intent(context, EventActivity.class);
+                intent.putExtra("TITLE", chosenPost.title);
+                intent.putExtra("TIME", chosenPost.realDate.toString());
+                intent.putExtra("SUMMARY", chosenPost.summary);
+                intent.putExtra("BODY", chosenPost.body);
+
+
+
+                startActivity(intent);
+
             }
         });
 
@@ -90,7 +121,11 @@ public class FeedActivity extends AppCompatActivity {
                 );
                 descParams.setMargins(20, 0, 20, 20);
 
-                ArrayList<Post> posts = new ArrayList<>();
+                //ArrayList<Post> posts = new ArrayList<>();
+                //ArrayList<String> titles = new ArrayList<>();
+                //final ListView listView = (ListView) findViewById(R.id.list_view);
+                CustomAdapter adapter = new CustomAdapter(context, titles);
+                listView.setAdapter(adapter);
 
                 if(childCount > 50)
                     childCount = 50;
@@ -106,7 +141,8 @@ public class FeedActivity extends AppCompatActivity {
 
                     String title = iteration.child("title").getValue().toString();
                     String location = iteration.child("location").getValue().toString();
-                    String desc = iteration.child("summary").getValue().toString();
+                    String summary = iteration.child("summary").getValue().toString();
+                    String body = iteration.child("body").getValue().toString();
 
                     DataSnapshot times = iteration.child("times_gmt");
                     Iterable<DataSnapshot> iterableTimes = times.getChildren();
@@ -118,14 +154,28 @@ public class FeedActivity extends AppCompatActivity {
                         DataSnapshot timeSnap = iterableTimes.iterator().next();
                         String time = timeSnap.child("start").getValue().toString();
 
-                        Post tempPost = new Post(title, location, time, desc);
+                        Post tempPost = null;
+                        try {
+                            tempPost = new Post(title, location, time, summary, body);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
 
                         posts.add(tempPost);
+                        //titles.add(tempPost.realDate.toString());
 
 
 
                     }
+                    Collections.sort(posts);
+
                 }
+
+                for(int i = 0; i < posts.size(); i++) {
+                    titles.add(posts.get(i).title);
+
+                }
+
 
 
                 for(int i = 0; i < posts.size(); i++){
@@ -140,7 +190,7 @@ public class FeedActivity extends AppCompatActivity {
                     titleText.setBackgroundColor(Color.WHITE);
                     titleText.setLayoutParams(titleParams);
                     titleText.setPadding(10,10,10,0);
-                    titleText.setWidth(linearLayout.getWidth() - 20);
+                    //titleText.setWidth(linearLayout.getWidth() - 20);
 
 
                     //Rect rectangle = new Rect(2,2,2,2);
@@ -149,7 +199,7 @@ public class FeedActivity extends AppCompatActivity {
                     descText.setBackgroundColor(Color.WHITE);
                     descText.setLayoutParams(descParams);
                     descText.setPadding(10,0,10,10);
-                    descText.setWidth(linearLayout.getWidth() - 20);
+                    //descText.setWidth(linearLayout.getWidth() - 20);
 
                     TextView textOutline = new TextView(context);
                     textOutline.setBackgroundColor(Color.GRAY);
@@ -168,14 +218,14 @@ public class FeedActivity extends AppCompatActivity {
                         dateText.setTextSize(18);
                         dateText.append(date);
 
-                        linearLayout.addView(dateText);
+                        //linearLayout.addView(dateText);
                     }
 
 
 
-                    String title = posts.get(i).title;
-                    titleText.append(title);
-                    linearLayout.addView(titleText);
+                    //String title = posts.get(i).title;
+                    //titleText.append(title);
+                    //linearLayout.addView(titleText);
 
                     //str = iteration.child("category").getValue().toString();
                     //descText.append(str);
@@ -186,8 +236,8 @@ public class FeedActivity extends AppCompatActivity {
                     //str = iteration.child("loc").getValue().toString();
                     //feedText.append("\n\n" + "Location: " + str);
 
-                    String summary = posts.get(i).desc;
-                    descText.append("\n\n" + summary);
+                    //String summary = posts.get(i).desc;
+                    //descText.append("\n\n" + summary);
 
                     //str = iteration.child("likes").getValue().toString();
                     //feedText.append("\n" + "Likes: " + str);
@@ -201,7 +251,7 @@ public class FeedActivity extends AppCompatActivity {
 
                     //textViews[i] = feedText;
 
-                    linearLayout.addView(descText);
+                    //linearLayout.addView(descText);
 
                 }
 
