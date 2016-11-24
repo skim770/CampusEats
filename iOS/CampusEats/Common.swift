@@ -2,17 +2,12 @@
 //  Common.swift
 //  CampusEats
 //
-//  Created by Shawn Kim on 7/16/16.
-//  Copyright © 2016 FFOC. All rights reserved.
+//  Created by Shawn Kim on 11/23/16.
+//  Copyright © 2016 campuseats. All rights reserved.
 //
 
 import Foundation
 import UIKit
-
-// Variables
-let RSS_FEED_URL = "http://www.calendar.gatech.edu/feeds/events.xml"
-let TEXT_FIELD_FONT_SIZE = 15
-let BUTTON_TITLE_FONT_SIZE = 20
 
 // Alert Dialog
 let EMAIL_VERIFICATION_MESSAGE = "Registration successful! Please check your email to verify your account."
@@ -31,9 +26,9 @@ extension String {
     }
 }
 
-extension NSUserDefaults {
+extension UserDefaults {
     func setString(string:String, forKey:String) {
-        setObject(string, forKey: forKey)
+        set(string, forKey: forKey)
     }
 }
 
@@ -52,10 +47,10 @@ extension UITextField
 {
     func setBottomBorder()
     {
-        self.borderStyle = UITextBorderStyle.None;
+        self.borderStyle = UITextBorderStyle.none;
         let border = CALayer()
         let width = CGFloat(1.5)
-        border.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).CGColor
+        border.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
         border.frame = CGRect(x: 0, y: self.frame.size.height - width,   width:  self.frame.size.width, height: self.frame.size.height)
         border.borderWidth = width
         self.layer.addSublayer(border)
@@ -66,7 +61,7 @@ extension UITextField
 
 // Functions
 func errorMessage(title: String, message: String, location: AnyObject) {
-    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default, handler: nil))
-    location.presentViewController(alertController, animated: true, completion: nil)
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+    location.present(alertController, animated: true, completion: nil)
 }
