@@ -2,8 +2,8 @@
 //  Post.swift
 //  CampusEats
 //
-//  Created by Shawn Kim on 7/16/16.
-//  Copyright © 2016 FFOC. All rights reserved.
+//  Created by Shawn Kim on 11/23/16.
+//  Copyright © 2016 campuseats. All rights reserved.
 //
 
 import Foundation
