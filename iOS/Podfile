@@ -12,7 +12,7 @@ target 'CampusEats' do
   pod 'Firebase/Database'
 
   # Pods for Calendar
-
-  pod 'JTAppleCalendar', '~>6.0'
+  
+  pod 'JTAppleCalendar', '~> 6.0'
 
 end

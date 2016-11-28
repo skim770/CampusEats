@@ -5,10 +5,14 @@ target 'CampusEats' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for CampusEats
+  # Pods for Firebase
 
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+
+  # Pods for Calendar
+  
+  pod 'JTAppleCalendar', :git => 'https://github.com/patchthecode/JTAppleCalendar.git', :branch => 'Swift3'
 
 end

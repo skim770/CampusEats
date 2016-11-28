@@ -7,20 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7516B0A41DE6874A003C9271 /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7516B0A31DE6874A003C9271 /* CellView.xib */; };
+		7516B0A61DE6877B003C9271 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516B0A51DE6877B003C9271 /* CellView.swift */; };
 		751DEBB51DE63D65001CFB30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DEBB41DE63D65001CFB30 /* AppDelegate.swift */; };
-		751DEBB71DE63D65001CFB30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DEBB61DE63D65001CFB30 /* ViewController.swift */; };
 		751DEBBA1DE63D65001CFB30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 751DEBB81DE63D65001CFB30 /* Main.storyboard */; };
 		751DEBBC1DE63D65001CFB30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 751DEBBB1DE63D65001CFB30 /* Assets.xcassets */; };
 		751DEBBF1DE63D65001CFB30 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 751DEBBD1DE63D65001CFB30 /* LaunchScreen.storyboard */; };
 		751DEBCA1DE63D65001CFB30 /* CampusEatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DEBC91DE63D65001CFB30 /* CampusEatsTests.swift */; };
 		751DEBD51DE63D65001CFB30 /* CampusEatsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DEBD41DE63D65001CFB30 /* CampusEatsUITests.swift */; };
 		751DEBE41DE64484001CFB30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DEBE31DE64484001CFB30 /* LoginViewController.swift */; };
-		75830C7D1DE6474600FEC51D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75830C7C1DE6474600FEC51D /* GoogleService-Info.plist */; };
 		75830C7F1DE6499E00FEC51D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75830C7E1DE6499E00FEC51D /* RegisterViewController.swift */; };
 		75830C821DE6515400FEC51D /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75830C811DE6515400FEC51D /* Common.swift */; };
 		75830C861DE652FE00FEC51D /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75830C851DE652FE00FEC51D /* MainTableViewController.swift */; };
 		75830C881DE6532900FEC51D /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75830C871DE6532900FEC51D /* TableViewCell.swift */; };
 		75830C8A1DE6558F00FEC51D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75830C891DE6558F00FEC51D /* Post.swift */; };
+		759810131DE6A3C0004A378B /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759810121DE6A3C0004A378B /* CalendarViewController.swift */; };
+		75C594BF1DE93510002859A0 /* MonthHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75C594BE1DE93510002859A0 /* MonthHeaderView.xib */; };
+		75C594C31DE9358A002859A0 /* MonthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C594C21DE9358A002859A0 /* MonthHeaderView.swift */; };
+		75C594C91DE94BA2002859A0 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C594C81DE94BA2002859A0 /* CalendarTableViewCell.swift */; };
+		75C630251DE78C3E006C4A82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75C630241DE78C3E006C4A82 /* GoogleService-Info.plist */; };
 		DB4F87FA0E3E669D75B211DF /* Pods_CampusEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6364E654DCA371985D2B5808 /* Pods_CampusEats.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,9 +49,10 @@
 /* Begin PBXFileReference section */
 		2D72C85F5818BA03ADE806F1 /* Pods-CampusEats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusEats.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusEats/Pods-CampusEats.release.xcconfig"; sourceTree = "<group>"; };
 		6364E654DCA371985D2B5808 /* Pods_CampusEats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampusEats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7516B0A31DE6874A003C9271 /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellView.xib; sourceTree = "<group>"; };
+		7516B0A51DE6877B003C9271 /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		751DEBB11DE63D65001CFB30 /* CampusEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		751DEBB41DE63D65001CFB30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		751DEBB61DE63D65001CFB30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		751DEBB91DE63D65001CFB30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		751DEBBB1DE63D65001CFB30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		751DEBBE1DE63D65001CFB30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -58,12 +64,16 @@
 		751DEBD41DE63D65001CFB30 /* CampusEatsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusEatsUITests.swift; sourceTree = "<group>"; };
 		751DEBD61DE63D65001CFB30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		751DEBE31DE64484001CFB30 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		75830C7C1DE6474600FEC51D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75830C7E1DE6499E00FEC51D /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		75830C811DE6515400FEC51D /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		75830C851DE652FE00FEC51D /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		75830C871DE6532900FEC51D /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		75830C891DE6558F00FEC51D /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		759810121DE6A3C0004A378B /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		75C594BE1DE93510002859A0 /* MonthHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MonthHeaderView.xib; sourceTree = "<group>"; };
+		75C594C21DE9358A002859A0 /* MonthHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonthHeaderView.swift; sourceTree = "<group>"; };
+		75C594C81DE94BA2002859A0 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
+		75C630241DE78C3E006C4A82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		EB62DC8517D8452B9141DFBB /* Pods-CampusEats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusEats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusEats/Pods-CampusEats.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,12 +141,11 @@
 				751DEBE21DE6445F001CFB30 /* Authentication */,
 				75830C841DE6527900FEC51D /* Main */,
 				751DEBB41DE63D65001CFB30 /* AppDelegate.swift */,
-				751DEBB61DE63D65001CFB30 /* ViewController.swift */,
 				751DEBB81DE63D65001CFB30 /* Main.storyboard */,
 				751DEBBB1DE63D65001CFB30 /* Assets.xcassets */,
 				751DEBBD1DE63D65001CFB30 /* LaunchScreen.storyboard */,
 				751DEBC01DE63D65001CFB30 /* Info.plist */,
-				75830C7C1DE6474600FEC51D /* GoogleService-Info.plist */,
+				75C630241DE78C3E006C4A82 /* GoogleService-Info.plist */,
 			);
 			path = CampusEats;
 			sourceTree = "<group>";
@@ -179,6 +188,10 @@
 		75830C831DE6526400FEC51D /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				7516B0A31DE6874A003C9271 /* CellView.xib */,
+				7516B0A51DE6877B003C9271 /* CellView.swift */,
+				75C594BE1DE93510002859A0 /* MonthHeaderView.xib */,
+				75C594C21DE9358A002859A0 /* MonthHeaderView.swift */,
 			);
 			name = Calendar;
 			sourceTree = "<group>";
@@ -189,6 +202,8 @@
 				75830C851DE652FE00FEC51D /* MainTableViewController.swift */,
 				75830C871DE6532900FEC51D /* TableViewCell.swift */,
 				75830C891DE6558F00FEC51D /* Post.swift */,
+				759810121DE6A3C0004A378B /* CalendarViewController.swift */,
+				75C594C81DE94BA2002859A0 /* CalendarTableViewCell.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -315,8 +330,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7516B0A41DE6874A003C9271 /* CellView.xib in Resources */,
 				751DEBBF1DE63D65001CFB30 /* LaunchScreen.storyboard in Resources */,
-				75830C7D1DE6474600FEC51D /* GoogleService-Info.plist in Resources */,
+				75C594BF1DE93510002859A0 /* MonthHeaderView.xib in Resources */,
+				75C630251DE78C3E006C4A82 /* GoogleService-Info.plist in Resources */,
 				751DEBBC1DE63D65001CFB30 /* Assets.xcassets in Resources */,
 				751DEBBA1DE63D65001CFB30 /* Main.storyboard in Resources */,
 			);
@@ -391,13 +408,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				759810131DE6A3C0004A378B /* CalendarViewController.swift in Sources */,
 				751DEBE41DE64484001CFB30 /* LoginViewController.swift in Sources */,
-				751DEBB71DE63D65001CFB30 /* ViewController.swift in Sources */,
 				751DEBB51DE63D65001CFB30 /* AppDelegate.swift in Sources */,
 				75830C8A1DE6558F00FEC51D /* Post.swift in Sources */,
 				75830C821DE6515400FEC51D /* Common.swift in Sources */,
 				75830C861DE652FE00FEC51D /* MainTableViewController.swift in Sources */,
+				7516B0A61DE6877B003C9271 /* CellView.swift in Sources */,
 				75830C881DE6532900FEC51D /* TableViewCell.swift in Sources */,
+				75C594C91DE94BA2002859A0 /* CalendarTableViewCell.swift in Sources */,
+				75C594C31DE9358A002859A0 /* MonthHeaderView.swift in Sources */,
 				75830C7F1DE6499E00FEC51D /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,6 +571,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9XT99477P4;
 				INFOPLIST_FILE = CampusEats/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ffoc.CampusEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -565,6 +586,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 9XT99477P4;
 				INFOPLIST_FILE = CampusEats/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ffoc.CampusEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
