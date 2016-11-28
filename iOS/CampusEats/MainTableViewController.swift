@@ -37,7 +37,6 @@ class MainTableViewController: UITableViewController {
                         continue
                     }
                     let title = value["title"] as! String
-                    print(title)
                     let description = value["body"] as! String
                     let date = value["start"] as! String
                     let post = Post(title: title, description: description, date: date)

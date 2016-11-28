@@ -43,20 +43,12 @@ extension UIViewController {
     }
 }
 
-extension UITextField
-{
-    func setBottomBorder()
-    {
-        self.borderStyle = UITextBorderStyle.none;
-        let border = CALayer()
-        let width = CGFloat(1.5)
-        border.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
-        border.frame = CGRect(x: 0, y: self.frame.size.height - width,   width:  self.frame.size.width, height: self.frame.size.height)
-        border.borderWidth = width
-        self.layer.addSublayer(border)
-        self.layer.masksToBounds = true
+extension Date {
+    func getMonth() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        return dateFormatter.string(from: self)
     }
-    
 }
 
 // Functions

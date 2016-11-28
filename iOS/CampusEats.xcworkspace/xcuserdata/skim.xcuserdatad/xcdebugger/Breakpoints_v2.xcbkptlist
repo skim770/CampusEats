@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
             endingLineNumber = "29"
-            landmarkName = "NSUserDefaults"
+            landmarkName = "UserDefaults"
             landmarkType = "4">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CampusEats/MainTableViewController.swift"
-            timestampString = "501642288.236738"
+            timestampString = "501645344.274079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "numberOfSections(in:)"
             landmarkType = "7">
          </BreakpointContent>
