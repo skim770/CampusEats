@@ -23,7 +23,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         
         // Firebase
         ref = FIRDatabase.database().reference()
-        populatePosts()
+//        populatePosts()
         
         //Posts
         postsTableView.delegate = self
@@ -34,9 +34,14 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         calendarView.dataSource = self
         calendarView.registerCellViewXib(file: "CellView")
         calendarView.registerHeaderView(xibFileNames: ["MonthHeaderView"])
+        populatePosts(selectedDate: Date())
+        initializeCalendar()
     }
     
-    func populatePosts() {
+    func populatePosts(selectedDate: Date) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = DATE_FORMAT
+        
         let activePosts = ref.child("posts").queryOrdered(byChild: "date")
         activePosts.observe(FIRDataEventType.value, with: { snapshot in
             if (snapshot.childrenCount > 0) {
@@ -47,10 +52,20 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
                     }
                     let title = value["title"] as! String
                     let description = value["body"] as! String
-                    let date = value["start"] as! String
-                    let post = Post(title: title, description: description, date: date)
-                    self.posts += [post]
-                    self.postsTableView.reloadData()
+                    
+                    for date in value["times"] as! [NSDictionary] {
+                        let start = date["start"] as! String
+                        let end = date["end"] as! String
+                        let thisDate = formatter.date(from: end)
+                        guard let isSame = thisDate?.isSameDay(dateToCompare: selectedDate) else {
+                            continue
+                        }
+                        if isSame {
+                            let post = Post(title: title, description: description, start: start, end: end)
+                            self.posts += [post]
+                            self.postsTableView.reloadData()
+                        }
+                    }
                 }
             }
         })
@@ -78,6 +93,12 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
 
 // Calendar
 extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate {
+    func initializeCalendar() {
+        let date = Date()
+        calendarView.scrollToDate(date, animateScroll: false)
+        calendarView.selectDates([date])
+    }
+    
     func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy MM dd"

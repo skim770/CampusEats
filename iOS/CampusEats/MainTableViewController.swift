@@ -28,6 +28,9 @@ class MainTableViewController: UITableViewController {
     
     func populatePosts() {
         let activePosts = ref.child("posts").queryOrdered(byChild: "date")
+        let currentDate = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = DATE_FORMAT
         
         activePosts.observe(FIRDataEventType.value, with: { snapshot in
             if (snapshot.childrenCount > 0) {
@@ -36,12 +39,23 @@ class MainTableViewController: UITableViewController {
                     guard let value = item.value as? NSDictionary else {
                         continue
                     }
+                    
                     let title = value["title"] as! String
                     let description = value["body"] as! String
-                    let date = value["start"] as! String
-                    let post = Post(title: title, description: description, date: date)
-                    self.posts += [post]
-                    self.tableView.reloadData()
+                    
+                    for date in value["times"] as! [NSDictionary]{
+                        let start = date["start"] as! String
+                        let end = date["end"] as! String
+                        let thisDate = formatter.date(from: end)
+                        guard let isGreater = thisDate?.isGreaterThanDate(dateToCompare: currentDate) else {
+                            continue
+                        }
+                        if isGreater {
+                            let post = Post(title: title, description: description, start: start, end: end)
+                            self.posts += [post]
+                            self.tableView.reloadData()
+                        }
+                    }
                 }
             }
         })
