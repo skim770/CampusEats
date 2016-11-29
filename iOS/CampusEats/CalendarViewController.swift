@@ -16,6 +16,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     
     var posts = [Post]()
+    var allPosts = [String: [Post]]()
     var ref:FIRDatabaseReference!
     
     override func viewDidLoad() {
@@ -34,11 +35,33 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         calendarView.dataSource = self
         calendarView.registerCellViewXib(file: "CellView")
         calendarView.registerHeaderView(xibFileNames: ["MonthHeaderView"])
-        populatePosts(selectedDate: Date())
+        populatePosts()
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let date = Date()
+        filterPosts(selectedDate: formatter.string(from: date), clear: false)
+        
         initializeCalendar()
     }
+    @IBAction func PostDidTapped(_ sender: Any) {
+        performSegue(withIdentifier: "PostFromCalendar", sender: nil)
+    }
     
-    func populatePosts(selectedDate: Date) {
+    func filterPosts(selectedDate: String, clear: Bool) {
+        posts.removeAll()
+        if !clear {
+            guard let selectedPosts = allPosts[selectedDate] else {
+                self.postsTableView.reloadData()
+                return
+            }
+            for post in selectedPosts {
+                posts += [post]
+            }
+            self.postsTableView.reloadData()        }
+    }
+    
+    func populatePosts() {
         let formatter = DateFormatter()
         formatter.dateFormat = DATE_FORMAT
         
@@ -56,14 +79,14 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
                     for date in value["times"] as! [NSDictionary] {
                         let start = date["start"] as! String
                         let end = date["end"] as! String
-                        let thisDate = formatter.date(from: end)
-                        guard let isSame = thisDate?.isSameDay(dateToCompare: selectedDate) else {
-                            continue
+                        let post = Post(title: title, description: description, start: start, end: end)
+                        let index = end.index(end.startIndex, offsetBy: 10)
+                        let dateKey = end.substring(to: index)
+                        if self.allPosts[dateKey] != nil {
+                            self.allPosts[dateKey]! += [post]
                         }
-                        if isSame {
-                            let post = Post(title: title, description: description, start: start, end: end)
-                            self.posts += [post]
-                            self.postsTableView.reloadData()
+                        else {
+                            self.allPosts[dateKey] = [post]
                         }
                     }
                 }
@@ -148,10 +171,19 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
             return
         }
         if cellState.isSelected {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            if (calendarView.selectedDates.count > 0) {
+                let selectedDate = formatter.string(from: calendarView.selectedDates[0])
+                print(selectedDate)
+                filterPosts(selectedDate: selectedDate, clear: false)
+            }
+            
             myCustomCell.selectedView.layer.cornerRadius =  22.5
             myCustomCell.selectedView.isHidden = false
             myCustomCell.dayLabel.textColor = UIColor.white
         } else {
+            filterPosts(selectedDate: "", clear: true)
             myCustomCell.selectedView.isHidden = true
             if (update) {
                 myCustomCell.dayLabel.textColor = UIColor.black

@@ -33,6 +33,7 @@ class MainTableViewController: UITableViewController {
         formatter.dateFormat = DATE_FORMAT
         
         activePosts.observe(FIRDataEventType.value, with: { snapshot in
+            self.posts.removeAll()
             if (snapshot.childrenCount > 0) {
                 let enumerator = snapshot.children
                 while let item = enumerator.nextObject() as? FIRDataSnapshot {
@@ -59,6 +60,9 @@ class MainTableViewController: UITableViewController {
                 }
             }
         })
+    }
+    @IBAction func PostDidTapped(_ sender: Any) {
+        performSegue(withIdentifier: "PostFromMain", sender: nil)
     }
 
     // MARK: - Table view data source
