@@ -7,33 +7,124 @@
 //
 
 import UIKit
+import Firebase
 
 class PostTableViewController: UITableViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var startTimeTextField: UITextField!
+    @IBOutlet weak var endTimeTextField: UITextField!
+    @IBOutlet weak var summaryTextField: UITextField!
+    @IBOutlet weak var detailsTextField: UITextField!
+    
+    var ref: FIRDatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    @IBAction func PostDidTapped(_ sender: Any) {
         
+        ref = FIRDatabase.database().reference()
+    }
+
+    @IBAction func PostDidTapped(_ sender: Any) {
+        guard let title = titleTextField.text else {
+            return
+        }
+        guard let location = locationTextField.text else {
+            return
+        }
+        guard let summary = summaryTextField.text else {
+            return
+        }
+        guard let start = startTimeTextField.text else {
+            return
+        }
+        guard let end = endTimeTextField.text else {
+            return
+        }
+        guard let details = detailsTextField.text else {
+            return
+        }
+        
+        guard let user = FIRAuth.auth()?.currentUser else {
+            return
+        }
+        
+        let key = ref.child("posts").childByAutoId().key
+        let post = ["author": user.uid,
+                    "body": details,
+                    "changed_epoch": title,
+                    "changed_gmt": title,
+                    "contact": title,
+                    "created_epoch": title,
+                    "created_gmt": title,
+                    "email": user.email,
+                    "end": end,
+                    "end_gmt": end,
+                    "end_last": end,
+                    "end_last_gmt": end,
+                    "fee": "FREE",
+                    "feedback_score": 1,
+                    "image": "",
+                    "location": location,
+                    "phone": "",
+                    "start": start,
+                    "start_gmt": start,
+                    "summary": summary,
+                    "summary_withTags": summary,
+                    "times": [[
+                        "date_type": "datetime",
+                        "end": end,
+                        "rrule": "",
+                        "start": start,
+                        "timezone": "America/New_York",
+                        "timezone_db": "America/New_York"
+                    ]],
+                    "times_gmt": [[
+                        "date_type": "datetime",
+                        "end": end,
+                        "rrule": "",
+                        "start": start,
+                        "timezone": "America/New_York",
+                        "timezone_db": "America/New_York"
+                    ]],
+                    "title": title,
+                    "type": "user",
+                    "uid": user.uid,
+                    "url": "gatech.edu"] as [String : Any]
+        
+        let childUpdates = ["/posts/\(key)": post]
+        ref.updateChildValues(childUpdates)
     }
     
     @IBAction func CancelDidTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func StartTimeEditing(_ sender: UITextField) {
+        let datePickerView = UIDatePicker()
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(PostTableViewController.startTimeValueChanged), for: UIControlEvents.valueChanged)
+    }
+    
+    @IBAction func EndTimeEditing(_ sender: UITextField) {
+        let datePickerView = UIDatePicker()
+        sender.inputView = datePickerView
+        datePickerView.addTarget(self, action: #selector(PostTableViewController.endTimeValueChanged), for: UIControlEvents.valueChanged)
+    }
+    
+    func startTimeValueChanged(sender:UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DATE_FORMAT
+        startTimeTextField.text = dateFormatter.string(from: sender.date)
+    }
+    
+    func endTimeValueChanged(sender:UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = DATE_FORMAT
+        endTimeTextField.text = dateFormatter.string(from: sender.date)
+    }
+    
     // MARK: - Table view data source
 
 

@@ -307,15 +307,15 @@
         <scene sceneID="S3S-KN-jcK">
             <objects>
                 <tableViewController id="mTj-PL-JuP" customClass="PostTableViewController" customModule="CampusEats" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="yTq-P2-lAR">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="yTq-P2-lAR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="Event Title" id="2QK-Ll-Tjq">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Vwo-DF-Ud3">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vwo-DF-Ud3" id="g6g-fi-FLJ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -341,7 +341,7 @@
                             <tableViewSection headerTitle="Event Location" id="QpD-i4-Ahy">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vI7-DW-c23">
-                                        <rect key="frame" x="0.0" y="100" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="157" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vI7-DW-c23" id="OUU-15-4jC">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -377,7 +377,7 @@
                             <tableViewSection headerTitle="Event Time &amp; Date" id="kER-kT-eWp">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="VQk-P7-TMD">
-                                        <rect key="frame" x="0.0" y="172" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="258" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VQk-P7-TMD" id="LTr-aD-63Q">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -388,6 +388,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="StartTimeEditing:" destination="mTj-PL-JuP" eventType="editingDidBegin" id="8Gm-bu-OlX"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -399,7 +402,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="1VU-wh-nn6">
-                                        <rect key="frame" x="0.0" y="216" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="302" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1VU-wh-nn6" id="rbT-1h-WIN">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -410,6 +413,9 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="EndTimeEditing:" destination="mTj-PL-JuP" eventType="editingDidBegin" id="n6R-8F-v0y"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -425,7 +431,7 @@
                             <tableViewSection headerTitle="Event Summary" id="1uk-2U-2kG">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Eeu-je-UUm">
-                                        <rect key="frame" x="0.0" y="288" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="403" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Eeu-je-UUm" id="qLg-WW-bgR">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -451,7 +457,7 @@
                             <tableViewSection headerTitle="Event Details" id="dpk-KI-hUQ">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="p76-8G-rd5">
-                                        <rect key="frame" x="0.0" y="360" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="504" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p76-8G-rd5" id="3Gt-Sd-nXQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
@@ -493,7 +499,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="detailsTextField" destination="DTe-fT-sS4" id="Nxe-XU-dcc"/>
+                        <outlet property="endTimeTextField" destination="KzT-U8-AGJ" id="Z1u-jn-5Ly"/>
                         <outlet property="locationTextField" destination="60S-nI-hkm" id="sus-3F-CxI"/>
+                        <outlet property="startTimeTextField" destination="mbw-Iu-dfa" id="NWr-aY-Pdr"/>
+                        <outlet property="summaryTextField" destination="a9O-OA-AjO" id="WGS-TO-MBE"/>
                         <outlet property="titleTextField" destination="U3o-6P-9Qm" id="tUP-LG-ehi"/>
                     </connections>
                 </tableViewController>
