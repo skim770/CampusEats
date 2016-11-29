@@ -60,6 +60,9 @@ class MainTableViewController: UITableViewController {
             }
         })
     }
+    @IBAction func PostDidTapped(_ sender: Any) {
+        performSegue(withIdentifier: "PostFromMain", sender: nil)
+    }
 
     // MARK: - Table view data source
 

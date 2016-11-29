@@ -44,6 +44,9 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         
         initializeCalendar()
     }
+    @IBAction func PostDidTapped(_ sender: Any) {
+        performSegue(withIdentifier: "PostFromCalendar", sender: nil)
+    }
     
     func filterPosts(selectedDate: String, clear: Bool) {
         posts.removeAll()
