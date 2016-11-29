@@ -16,6 +16,7 @@
 		751DEBCA1DE63D65001CFB30 /* CampusEatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DEBC91DE63D65001CFB30 /* CampusEatsTests.swift */; };
 		751DEBD51DE63D65001CFB30 /* CampusEatsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DEBD41DE63D65001CFB30 /* CampusEatsUITests.swift */; };
 		751DEBE41DE64484001CFB30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DEBE31DE64484001CFB30 /* LoginViewController.swift */; };
+		752DC9D41DED3044003237E9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752DC9D31DED3044003237E9 /* PostViewController.swift */; };
 		75830C7F1DE6499E00FEC51D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75830C7E1DE6499E00FEC51D /* RegisterViewController.swift */; };
 		75830C821DE6515400FEC51D /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75830C811DE6515400FEC51D /* Common.swift */; };
 		75830C861DE652FE00FEC51D /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75830C851DE652FE00FEC51D /* MainTableViewController.swift */; };
@@ -64,6 +65,7 @@
 		751DEBD41DE63D65001CFB30 /* CampusEatsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusEatsUITests.swift; sourceTree = "<group>"; };
 		751DEBD61DE63D65001CFB30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		751DEBE31DE64484001CFB30 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		752DC9D31DED3044003237E9 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		75830C7E1DE6499E00FEC51D /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		75830C811DE6515400FEC51D /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		75830C851DE652FE00FEC51D /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				75830C891DE6558F00FEC51D /* Post.swift */,
 				759810121DE6A3C0004A378B /* CalendarViewController.swift */,
 				75C594C81DE94BA2002859A0 /* CalendarTableViewCell.swift */,
+				752DC9D31DED3044003237E9 /* PostViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				752DC9D41DED3044003237E9 /* PostViewController.swift in Sources */,
 				759810131DE6A3C0004A378B /* CalendarViewController.swift in Sources */,
 				751DEBE41DE64484001CFB30 /* LoginViewController.swift in Sources */,
 				751DEBB51DE63D65001CFB30 /* AppDelegate.swift in Sources */,

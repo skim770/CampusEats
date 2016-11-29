@@ -36,7 +36,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nhX-MF-g6B" id="oAE-6V-x60">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4y-Bs-7tp">
@@ -76,11 +76,81 @@
                     <connections>
                         <outlet property="calendarView" destination="6aq-8H-048" id="435-eM-dB8"/>
                         <outlet property="postsTableView" destination="OjD-fu-kke" id="ya3-hI-MfY"/>
+                        <segue destination="bVB-pE-lhY" kind="presentation" identifier="CalendarPost" id="fxQ-ed-iTq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ywo-f5-ThM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1308" y="288.30584707646182"/>
+        </scene>
+        <!--Post View Controller-->
+        <scene sceneID="K2d-M4-sAu">
+            <objects>
+                <viewController id="bVB-pE-lhY" customClass="PostViewController" customModule="CampusEats" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LvV-5K-KXg"/>
+                        <viewControllerLayoutGuide type="bottom" id="D4q-NS-x2R"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0HJ-ZJ-jcn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EqH-d2-5jt">
+                                <rect key="frame" x="16" y="318" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Details" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mNR-0b-aiv">
+                                <rect key="frame" x="16" y="280" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Summary" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JNG-gW-4hG">
+                                <rect key="frame" x="16" y="242" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hvT-jI-di8">
+                                <rect key="frame" x="16" y="204" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="W3E-Gs-eDN">
+                                <rect key="frame" x="0.0" y="394" width="375" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="502083861.13990498">
+                                    <!--2016-11-29 03:44:21 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hvT-jI-di8" firstAttribute="centerX" secondItem="JNG-gW-4hG" secondAttribute="centerX" id="1fj-4Y-mAi"/>
+                            <constraint firstItem="EqH-d2-5jt" firstAttribute="centerY" secondItem="0HJ-ZJ-jcn" secondAttribute="centerY" id="6vA-d4-isr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EqH-d2-5jt" secondAttribute="trailing" id="Cnv-Gr-Hc6"/>
+                            <constraint firstItem="mNR-0b-aiv" firstAttribute="centerX" secondItem="EqH-d2-5jt" secondAttribute="centerX" id="GXZ-NZ-Ri7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JNG-gW-4hG" secondAttribute="trailing" id="Gfi-Bd-aCd"/>
+                            <constraint firstItem="EqH-d2-5jt" firstAttribute="centerX" secondItem="0HJ-ZJ-jcn" secondAttribute="centerX" id="MD5-qp-hqf"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="JNG-gW-4hG" secondAttribute="leading" id="Rmc-Uk-JDD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hvT-jI-di8" secondAttribute="trailing" id="c1i-6b-f6f"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="mNR-0b-aiv" secondAttribute="leading" id="emD-j4-4fX"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="hvT-jI-di8" secondAttribute="leading" id="j48-QZ-bVK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mNR-0b-aiv" secondAttribute="trailing" id="lSB-Qt-Ddx"/>
+                            <constraint firstItem="JNG-gW-4hG" firstAttribute="top" secondItem="hvT-jI-di8" secondAttribute="bottom" constant="8" id="pIl-eK-DqG"/>
+                            <constraint firstItem="mNR-0b-aiv" firstAttribute="top" secondItem="JNG-gW-4hG" secondAttribute="bottom" constant="8" id="rsK-JZ-bks"/>
+                            <constraint firstItem="EqH-d2-5jt" firstAttribute="top" secondItem="mNR-0b-aiv" secondAttribute="bottom" constant="8" id="ueC-W5-E6t"/>
+                            <constraint firstItem="JNG-gW-4hG" firstAttribute="centerX" secondItem="mNR-0b-aiv" secondAttribute="centerX" id="uzh-Dc-8Ee"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="EqH-d2-5jt" secondAttribute="leading" id="weH-xH-Imo"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vRk-yX-3Zb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2308" y="-23.838080959520241"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="v6T-vR-7q5">
@@ -249,7 +319,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="114"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2kj-xf-bck" id="t0g-gC-rxK">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSR-34-Vxb">
@@ -286,6 +356,9 @@
                         <barButtonItem key="leftBarButtonItem" title="Menu" id="bVn-b3-jt3"/>
                         <barButtonItem key="rightBarButtonItem" title="Post" id="EQq-Zn-9GR"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="bVB-pE-lhY" kind="presentation" identifier="MainPost" id="Wi9-C1-XPo"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fNt-Sg-o7T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -330,4 +403,7 @@
             <point key="canvasLocation" x="572" y="289.20539730134936"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="fxQ-ed-iTq"/>
+    </inferredMetricsTieBreakers>
 </document>
