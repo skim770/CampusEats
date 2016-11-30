@@ -2,8 +2,8 @@
 //  CampusEatsTests.swift
 //  CampusEatsTests
 //
-//  Created by Shawn Kim on 7/12/16.
-//  Copyright © 2016 FFOC. All rights reserved.
+//  Created by Shawn Kim on 11/23/16.
+//  Copyright © 2016 campuseats. All rights reserved.
 //
 
 import XCTest
@@ -28,7 +28,7 @@ class CampusEatsTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

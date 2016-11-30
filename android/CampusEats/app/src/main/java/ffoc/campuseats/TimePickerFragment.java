@@ -36,5 +36,8 @@ public class TimePickerFragment extends DialogFragment
         // Do something with the time chosen by the user
         ((SubmitActivity)getActivity()).setTimeButtonText(hourOfDay,minute);
         ((SubmitActivity)getActivity()).post.time = hourOfDay + ":" + minute;
+        ((SubmitActivity)getActivity()).post.hour = hourOfDay;
+        ((SubmitActivity)getActivity()).post.minute = minute;
+
     }
 }

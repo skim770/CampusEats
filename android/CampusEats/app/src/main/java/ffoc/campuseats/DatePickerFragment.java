@@ -30,5 +30,8 @@ public class DatePickerFragment extends DialogFragment
         // Do something with the date chosen by the user
         ((SubmitActivity)getActivity()).setDateButtonText(year,month,day);
         ((SubmitActivity)getActivity()).post.date = month + "/" + day + "/" + year;
+        ((SubmitActivity)getActivity()).post.month = month;
+        ((SubmitActivity)getActivity()).post.day = day;
+        ((SubmitActivity)getActivity()).post.year = year;
     }
 }

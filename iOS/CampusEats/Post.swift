@@ -2,8 +2,8 @@
 //  Post.swift
 //  CampusEats
 //
-//  Created by Shawn Kim on 7/16/16.
-//  Copyright © 2016 FFOC. All rights reserved.
+//  Created by Shawn Kim on 11/23/16.
+//  Copyright © 2016 campuseats. All rights reserved.
 //
 
 import Foundation
@@ -11,17 +11,20 @@ import Foundation
 class Post {
     var title: String
     var description: String
-    var date: String
+    var start: String
+    var end: String
     
     init() {
         title = ""
         description = ""
-        date = ""
+        start = ""
+        end = ""
     }
     
-    init(title: String, description: String, date: String) {
+    init(title: String, description: String, start: String, end: String) {
         self.title = title
         self.description = description
-        self.date = date
+        self.start = start
+        self.end = end
     }
 }
