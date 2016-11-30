@@ -127,8 +127,8 @@ public class FeedActivity extends AppCompatActivity {
                 CustomAdapter adapter = new CustomAdapter(context, titles);
                 listView.setAdapter(adapter);
 
-                if(childCount > 50)
-                    childCount = 50;
+                if(childCount > 100)
+                    childCount = 100;
 
 
 

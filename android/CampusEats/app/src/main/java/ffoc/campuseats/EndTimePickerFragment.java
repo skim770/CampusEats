@@ -17,7 +17,7 @@ import java.util.Calendar;
 /**
  * Created by Will on 9/6/2016.
  */
-public class TimePickerFragment extends DialogFragment
+public class EndTimePickerFragment extends DialogFragment
         implements TimePickerDialog.OnTimeSetListener {
 
     @Override
@@ -34,10 +34,9 @@ public class TimePickerFragment extends DialogFragment
 
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         // Do something with the time chosen by the user
-        ((SubmitActivity)getActivity()).setTimeButtonText(hourOfDay,minute);
-        ((SubmitActivity)getActivity()).post.time = hourOfDay + ":" + minute;
-        ((SubmitActivity)getActivity()).post.hour = hourOfDay;
-        ((SubmitActivity)getActivity()).post.minute = minute;
+        ((SubmitActivity)getActivity()).setEndTimeButtonText(hourOfDay ,minute);
+        ((SubmitActivity)getActivity()).post.endHour = hourOfDay;
+        ((SubmitActivity)getActivity()).post.endMinute = minute;
 
     }
 }

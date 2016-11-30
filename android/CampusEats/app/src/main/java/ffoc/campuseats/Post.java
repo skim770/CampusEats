@@ -2,7 +2,9 @@ package ffoc.campuseats;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * Created by Will on 9/6/2016.
@@ -17,6 +19,26 @@ public class Post implements Comparable<Post>{
     String title;
     Date realDate;
     public String time;
+
+    int year;
+    int month;
+    int day;
+    int hour;
+    int minute;
+    int second = 0;
+
+    int endYear;
+    int endMonth;
+    int endDay;
+    int endHour;
+    int endMinute;
+    int endSecond = 0;
+
+    String test = "test";
+
+    String fullDateString;
+
+
 
     public Post(String title, String loc, String date, String summary, String body) throws ParseException {
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
@@ -61,4 +83,16 @@ public class Post implements Comparable<Post>{
 
         this.date = datetime;
     }*/
+
+    public void buildDate(int year, int month, int day, int hour, int minute, int second) {
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+
+        Calendar date = new GregorianCalendar(year, month, day, hour, minute, second);
+
+        String dateString = sdfDate.format(date.getTime());
+        fullDateString = dateString.substring(0,22) + ":" + dateString.substring(22,24);
+
+
+
+    }
 }

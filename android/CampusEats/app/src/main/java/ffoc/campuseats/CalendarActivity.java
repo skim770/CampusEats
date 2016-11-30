@@ -102,6 +102,7 @@ public class CalendarActivity extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView calendarView, int year, int month, int day) {
                 //String selectedDate =  year + " / " + month + " / " + day;
                 Calendar selectedDate = new GregorianCalendar(year, month, day,0,0,0);
+
                 //Calendar selectedDate = Calendar.getInstance(TimeZone.getDefault());
                 selectedDate.setTimeZone(TimeZone.getDefault());
                 Calendar endOfSelectedDate = new GregorianCalendar(year, month, day, 23,59,59);
