@@ -83,6 +83,9 @@ h3 {
   margin-top: 6px;
   margin-bottom: 12px;
 }
+.eventPost:hover {
+  cursor: pointer;
+}
 .eventPost table {
   width: 100%;
   border-collapse: collapse;
@@ -110,7 +113,24 @@ h3 {
 .eventDesc {
   opacity: 0.5;
   padding-top: 5px;
-  padding-bottom: 15px;
+  padding-bottom: 5px;
+}
+.eventScore {
+  background-color: white;
+  color: #424242;
+  font-weight: bold;
+  padding: 0;
+  margin-bottom: 15px;
+  border: none;
+}
+.eventScore:hover {
+  color: #1976D2;
+}
+.liked {
+  color: #2196F3 !important;
+}
+.liked:hover {
+  color: #1976D2 !important;
 }
 .overlay-popup {
   background-color: white;

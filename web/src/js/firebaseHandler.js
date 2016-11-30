@@ -12,3 +12,4 @@ firebase.initializeApp(config);
 
 var firebaseDB = firebase.database();
 var postsRef = firebaseDB.ref('posts');
+var usersRef = firebaseDB.ref('users');

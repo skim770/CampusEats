@@ -19,6 +19,7 @@
   	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 	
 	<script src="src/js/firebaseHandler.js"></script>
+	<script src="src/js/dateHelper.js"></script>
 	<script type="text/babel" src="src/js/feed.js"></script>
 	<script type="text/babel" src="src/js/calendar.js"></script>
 	<script type="text/javascript">
@@ -55,7 +56,7 @@
 
 		<main class="mdl-layout__content mdl-color--grey-100">
 			<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
-				<div class="mdl-cell mdl-cell--4-col">
+				<div class="calendar-col mdl-cell mdl-cell--4-col">
 					<div class="yui3-skin-sam yui3-g">
 						<div class="yui3-u" id="month_calendar"></div>
 					</div>
@@ -102,7 +103,6 @@
     	<div class="event-contact-info">
     		<div id="overlay-event-contact"></div>
     	</div>
-    	<!-- body, author, location, fee, url,  -->
     </div>
  	</div>
  	<script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
