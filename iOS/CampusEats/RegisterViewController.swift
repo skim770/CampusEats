@@ -19,8 +19,8 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.hideKeyboardWhenTappedAround()
     }
     @IBAction func registerDidTapped(_ sender: Any) {
         guard let firstName = firstNameTextField.text else {
