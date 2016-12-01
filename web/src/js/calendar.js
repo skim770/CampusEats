@@ -6,8 +6,8 @@ YUI().use('calendar', 'datatype-date', 'cssbutton', function (Y) {
     // dates in available empty cells to true, and setting
     // the date to today's date.
     var calendar = new Y.Calendar({
-        contentBox: "#mycalendar",
-        width: '340px',
+        contentBox: "#month_calendar",
+        width: '240px',
         showPrevMonth: true,
         showNextMonth: true,
         date: new Date() }).render();
@@ -206,14 +206,18 @@ YUI().use('calendar', 'datatype-date', 'cssbutton', function (Y) {
                         }
                     }
                 });
+                if (posts.length == 0) {
+                    Y.one("#noevent").setHTML("No events this day.");
+                }
+                else{
+                    Y.one("#noevent").setHTML("");
+                }
                 posts.sort(function (a, b) {
                     return a.start.localeCompare(b.start);
                 });
                 console.log("ReactDOM rendering " + posts.length + " items.");
                 renderDOM(posts);
-                if (posts.length == 0) {
-                    Y.one("#noevent").setHTML("No events this day.");
-                }
+                
             });
         }
         fetchFirebasePosts();
