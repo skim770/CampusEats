@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.orange-indigo.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
@@ -30,16 +31,15 @@
 		}
 
 		function dropdownmenu() {
-			document.getElementById("myDropdown").classList.toggle("show");
+			// document.getElementById("myDropdown").classList.toggle("show");
+			$('#myDropdown').addClass("show");
 		}
 
 		// Close the dropdown menu if the user clicks outside of it
 		window.onclick = function(event) {
 			if (!event.target.matches('.dropbtn')) {
-
 				var dropdowns = document.getElementsByClassName("dropdown-content");
-				var i;
-				for (i = 0; i < dropdowns.length; i++) {
+				for (var i = 0; i < dropdowns.length; i++) {
 					var openDropdown = dropdowns[i];
 					if (openDropdown.classList.contains('show')) {
 						openDropdown.classList.remove('show');
@@ -51,25 +51,27 @@
 </head>
 
 <body>
-	<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 	  <!-- Header section containing title -->
 	  <header class="mdl-layout__header mdl-color-text--white mdl-color--orange-900">
-	    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
-	      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
-	        <img src="resources/img/CE_Icon.png" alt="CampusEats Icon" style="width: 85px; height: 85px">
-	        <h3>CampusEats</h3>
-			  	<div class="dropdown" style="padding-left:900px;">
-					  <a href="src/post/post.html">
-					  	<button class="accordion" style="background-color:#E65100;border: none;"></button>
-					  </a>
-					  <button onclick="dropdownmenu()" class="dropbtn" style="background-color:#E65100;border: none;"></button>
-					  <div id="myDropdown" class="dropdown-content">
-						  <a href="index.html">Home</a>
-						  <a href="#" onclick="logout()">Logout</a>
-					  </div>
+	  	<table height="100%"><tbody><tr>
+      	<td><img id="CE_Logo" src="resources/img/CE_Icon.png" alt="CampusEats Icon" /></td>
+      	<td><h3>CampusEats</h3></td>
+      </tr></tbody></table>
+      <table class="options"><tbody><tr>
+      	<td>
+      		<a href="src/post/post.html">
+				  	<i class="material-icons compose">add</i>
+				  </a>
+      	</td>
+      	<td>
+      		<button onclick="dropdownmenu()" class="dropbtn"></button>
+				  <div id="myDropdown" class="dropdown-content">
+					  <a href="index.html">Home</a>
+					  <a href="#" onclick="logout()">Logout</a>
 				  </div>
-	      </div>
-	    </div>
+      	</td>
+      </tr></tbody></table>
 	  </header>
 
 		<main class="mdl-layout__content mdl-color--grey-100">
@@ -85,7 +87,7 @@
 			</div>
 		</main>
   </div>
-  
+
   <div id="overlay-event-detail" class="overlay-popup none">
 		<div id="overlay-img-container">
 			<img id="overlay-img"/>
@@ -106,7 +108,6 @@
   <script src="build/react.js"></script>
   <script src="build/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   <script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
   <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
   <script src="src/js/dateHelper.js"></script>

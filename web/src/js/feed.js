@@ -50,7 +50,7 @@ var EventPost = React.createClass({
 
 		firebaseDB.ref('users/' + firebase.auth().currentUser.uid + '/likes').set(userLikes);
 		firebaseDB.ref('posts/' + key + '/feedback_score').set(numPostLikes);
-		$('.' + key + ' > .eventScore').text("LIKE (" + numPostLikes + ")");
+		$('.' + key + ' > .eventScore').html("<b>LIKE</b> (" + numPostLikes + ")");
 		event.stopPropagation();
 	},
 	render: function() {
@@ -79,7 +79,7 @@ var EventPost = React.createClass({
 					</td>
 				</tr></tbody></table>
 				<div className="eventDesc">{this.props.post.summary}</div>
-				<button className={"eventScore " + (toggled?"liked":"")} onClick={this.handleLike}>LIKE ({score})</button>
+				<button className={"eventScore " + (toggled?"liked":"")} onClick={this.handleLike}><b>LIKE</b> ({score})</button>
 			</div>
 			</div>
 		);

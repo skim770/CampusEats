@@ -46,8 +46,15 @@ code {
 }
 h3 {
   background-size: 40px;
-  padding-left: 50px;
+  padding-left: 40px;
+  margin: 0 !important;
   color: white;
+}
+header {
+  height: 64px;
+}
+header table {
+  border: none;
 }
 .left {
   width: 30%;
@@ -62,6 +69,11 @@ h3 {
 }
 .none {
   display: none;
+}
+#CE_Logo {
+  height: 60px;
+  padding-left: 10px;
+  margin: 0;
 }
 
 .events_feed {
@@ -181,20 +193,29 @@ h3 {
   left: 40;
 }
 
-.accordion:after {
-  content: '+';
-  font-size: 50px;
-  color:white;
-  background-color: #E65100;
-  text-align: right;
-  border-style: hidden;
-  cursor: pointer;
+.options {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  height: 64px;
+}
+.compose {
+  color: white;
+  padding-top: 7px;
+  font-size: 44px !important;
+}
+
+.dropbtn {
+  background-color: transparent;
+  border: none;
+  height: 61px;
 }
 
 .dropbtn:after {
   content: '\2807';
   font-size: 50px;
-  color:white;
+  color: white;
   background-color: #E65100;
   text-align: right;
   border-style: hidden;
@@ -215,6 +236,8 @@ h3 {
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 10px;
+  right: -1px;
 }
 /* Links inside the dropdown */
 .dropdown-content a {
