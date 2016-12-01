@@ -7,13 +7,14 @@ YUI().use('calendar', 'datatype-date', 'cssbutton', function (Y) {
     // the date to today's date.
     var calendar = new Y.Calendar({
         contentBox: "#month_calendar",
-        width: '240px',
         showPrevMonth: true,
         showNextMonth: true,
         date: new Date() }).render();
 
     // Get a reference to Y.DataType.Date
     var dtdate = Y.DataType.Date;
+
+    $('.yui3-calendarnav-prevmonth')
 
     // Listen to calendar's selectionChange event.
     calendar.on("selectionChange", function (ev) {

@@ -15,7 +15,7 @@
  */
 
 html, body, main {
-  font-family: 'Roboto', 'Helvetica', sans-serif;
+  font-family: 'Roboto', 'Helvetica', sans-serif !important;
   width: 100%;
 }
 a {
@@ -66,6 +66,9 @@ header table {
   width: 65%;
   margin-left: 10px;
   float:left;
+}
+.float-right {
+  float: right;
 }
 .none {
   display: none;
@@ -190,7 +193,34 @@ header table {
 }
 
 #month_calendar {
-  left: 40;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border-radius: 2px;
+  border: none;
+  width: 300px;
+  margin: 20px;
+}
+.yui3-g,
+.yui3-u-1 {
+  font-family: 'Roboto', 'Helvetica', sans-serif !important;
+}
+.yui3-calendar-day {
+  padding: 10px !important;
+  border: none !important;
+  font-weight: normal !important;
+}
+.yui3-calendar-header {
+  margin-bottom: 10px;
+}
+.yui3-calendar-prevmonth-day,
+.yui3-calendar-nextmonth-day {
+  border: none !important;
+}
+.yui3-calendar-day:hover,
+.yui3-calendar-day-selected {
+  color: white !important;
+  background-color: #2196F3 !important;
+  border-radius: 20px;
 }
 
 .options {
