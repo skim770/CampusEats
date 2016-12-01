@@ -255,3 +255,11 @@ header table {
 .show {
   display: block;
 }
+
+select {
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: #757575;
+  cursor: pointer;
+}

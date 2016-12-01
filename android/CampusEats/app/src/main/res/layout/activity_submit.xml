@@ -88,6 +88,7 @@
         android:layout_height="wrap_content"
         android:text="Post Event"
         android:id="@+id/postButton"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        android:background="@color/colorPrimary"/>
 
 </LinearLayout>

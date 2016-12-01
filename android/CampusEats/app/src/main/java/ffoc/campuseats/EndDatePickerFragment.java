@@ -33,6 +33,7 @@ public class EndDatePickerFragment extends DialogFragment
         ((SubmitActivity)getActivity()).post.endMonth = month;
         ((SubmitActivity)getActivity()).post.endDay = day;
         ((SubmitActivity)getActivity()).post.endYear = year;
+        ((SubmitActivity)getActivity()).post.endDateSet = true;
 
     }
 }

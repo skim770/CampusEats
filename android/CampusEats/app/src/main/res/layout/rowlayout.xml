@@ -1,7 +1,27 @@
-<TextView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="asdf"
-    android:id="@+id/row_text"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="asdf"
+        android:id="@+id/feedTitle"
+        android:textSize="9pt"
+        android:textColor="@color/black"
+
+        />
+
+    <TextView android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="asdf"
+        android:id="@+id/feedTime"
+        android:layout_below="@+id/feedTitle" />
+
+
+</RelativeLayout>
+
+
+
 
 

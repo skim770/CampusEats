@@ -18,7 +18,7 @@ limitations under the License.
 <head>
   <meta charset=utf-8 />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CampusEats Create Events</title>
+  <title>CampusEats</title>
 
   <!-- Material Design Theming -->
   <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
@@ -43,21 +43,47 @@ limitations under the License.
 
   <script type="text/javascript">
 
-    function handlePost() {
+  var firstName, lastName, email, score;
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      var userId = firebase.auth().currentUser.uid;
+      return firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+        firstName = snapshot.val()["first_name"];
+        lastName = snapshot.val()["last_name"];
+        email = snapshot.val().email;
+        score = snapshot.val().score;
+      });
+    }
+  });
+
+  function tag(data) {
+    // console.log(data);
+    return "<p>" + data + "</p>";
+  }
+
+  function formatCP(name, email) {
+    return "<p>" + name + "</p>\n\n<p><a href=\"mailto:" + email + ">\"" + email + "</a></p>";
+  }
+    function handlePost() {    
+
       var eventTitle = document.getElementById('title').value;
-      var orgName = document.getElementById('orgname').value;
       var location = document.getElementById('location').value;
       var month = Number(document.getElementById('month').value);
       var day = Number(document.getElementById('day').value);
       var year = Number(document.getElementById('year').value);
-      var time = document.getElementById('time').value;
+      var startHour = Number(document.getElementById('stimeH').value);
+      var startMinutes = Number(document.getElementById('stimeM').value);
+      var startAMPM = document.getElementById('sAMPM').value;
+      var endHour = Number(document.getElementById('etimeH').value);
+      var endMinutes = Number(document.getElementById('etimeM').value);
+      var endAMPM = document.getElementById('eAMPM').value;
       var description = document.getElementById('desc').value;
+      var summary = document.getElementById('summ').value;
+      var contactName = document.getElementById('cp').value;
+      var contactEmail = document.getElementById('cpemail').value;
+
       if (eventTitle.length < 1) {
         alert('Please enter the event\'s title.');
-        return;
-      }
-      if (orgName.length < 1) {
-        alert('Please enter your organization name.');
         return;
       }
       if (location.length < 1) {
@@ -65,18 +91,30 @@ limitations under the License.
         return;
       }
       if (month > 12 || month < 1) {
-        alert('Please enter a month.');
+        alert('Please enter a valid month.');
         return;
       }
       if (day > 31 || day < 1) {
-        alert('Please enter a day.');
+        alert('Please enter a valid day.');
         return;
       }
-      if (year < 1) {
+      if (year < 1000) {
         alert('Please enter a year.');
         return;
       }
-      if (time.length < 1) {
+      if (startHour > 12 || startHour < 1) {
+        alert('Please enter a valid time.');
+        return;
+      }
+      if (endHour > 12 || endHour < 1) {
+        alert('Please enter a valid time.');
+        return;
+      }
+      if (startMinutes > 59 || startMinutes < 0) {
+        alert('Please enter a valid time.');
+        return;
+      }
+      if (endMinutes > 59 || endMinutes < 0) {
         alert('Please enter a valid time.');
         return;
       }
@@ -84,49 +122,117 @@ limitations under the License.
         alert('Please enter a valid description.');
         return;
       }
+      if (summary.length < 1) {
+        alert('Please enter a valid description.');
+        return;
+      }
+      if (contactName.length < 1) {
+        alert('Please enter a contact name.');
+        return;
+      }
+      if (contactEmail.length < 1) {
+        alert('Please enter a contact email.');
+        return;
+      }
 
-      var monthArr = [
-        "January", "February", "March", "April", "May", "June", 
-        "July", "August", "September", "October", "November", "December"
-      ]; 
+      var today = new Date();
+      var epoch = today.getTime();
+      var ISOTime = today.toISOString();
+      var gmt = ISOTime.substring(0,19).replace("T", " ");
 
-      var fullDate = new Date(year, month - 1, day);
+      startHour = startAMPM == "PM" ? startHour + 12 : startHour;
+      endHour = endAMPM == "PM" ? endHour + 12 : endHour;
+      var startTime = new Date(year, month-1, day, startHour, startMinutes);
+      var endTime = new Date(year, month-1, day, endHour, endMinutes);
+      var startISO = startTime.toISOString();
+      var endISO = endTime.toISOString();
+      var startgmt = startISO.substring(0,19).replace("T", " ");
+      var start = startISO.substring(0,11);
+      start += startTime.getHours() < 10 ? "0"+startTime.getHours() : startTime.getHours();
+      start += startISO.substring(13,19)+"-"+endISO.substring(11,16);
+
+      var endgmt = endISO.substring(0,19).replace("T", " ");
+      var end = endISO.substring(0,11);
+      end += endTime.getHours() < 10 ? "0"+endTime.getHours() : endTime.getHours();
+      end += endISO.substring(13,19)+"-"+endISO.substring(11,16);
+      var author = firstName + " " + lastName;
+      var taggedDesc = tag(description);
+      var taggedSumm = tag(summary);
+      var contact = formatCP(contactName,contactEmail);
+      writeNewPost(author, taggedDesc, epoch, gmt, contact, end, endgmt, location, start, startgmt, eventTitle, taggedSumm, summary);
 
       window.location.href="../../index.html";
-      writeNewPost(eventTitle, location, fullDate.toString(), time, description);
     }
 
     /**
      * Writes a new post on the Firebase database.
      *
      */
-    function writeNewPost(eventTitle, location, date, time, description){
-      var postData = {
-        category: 1,
-        comments: "",
-        cost: 0,
-        date: date,
-        desc: description,
-        likes: 0,
-        link: "",
-        loc: location,
-        pubDate: "",
-        rawDate: "",
-        reports: "",
-        sourceId: "User Submission",
-        status: "Active",
-        title: eventTitle
-      };
-
+    function writeNewPost(
+      author, body, epoch, gmt, contact, end, endgmt, location, start, startgmt, title, taggedSumm, summary
+    ){
       var newPostKey = firebase.database().ref().child('posts').push().key;
       var updates = {};
+      console.log(author, body, epoch, gmt, contact, end, endgmt, location, start, startgmt, title);
+      var postData = {
+        author:author,
+        body:body,
+        changed_epoch: epoch,
+        changed_gmt: gmt,
+        contact: contact,
+        email:"",
+        end:end,
+        end_gmt:endgmt,
+        end_last:end,
+        end_last_gmt:endgmt,
+        fee: "Free",
+        image: "",
+        location: location,
+        phone: "",
+        start: start,
+        start_gmt: startgmt,
+        summary:summary,
+        summary_withTags:taggedSumm,
+        times: {
+          0: {
+            date_type: "datetime",
+            end: end,
+            rrule: "",
+            start: start,
+            timezone: "America/New_York",
+            timezone_db: "America/New_York"
+          }
+        },
+        times_gmt: {
+          0: {
+            date_type: "datetime",
+            end: end,
+            rrule: "",
+            start: start,
+            timezone: "America/New_York",
+            timezene_db:"America/New_York"
+          }
+        },
+        title: title,
+        type: "event",
+        uid: newPostKey,
+        url: "",
+      };
+
       updates['/posts/' + newPostKey] = postData;
 
       return firebase.database().ref().update(updates);
     }
 
+    function isNumberKey(evt){
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
     window.onload = function() {
-          document.getElementById('post').addEventListener('click', handlePost, false);
+      document.getElementById('post').addEventListener('click', handlePost, false);
     };
   </script>
 </head>
@@ -154,23 +260,33 @@ limitations under the License.
             <div>
               <div class="left">
               <b>Event Title</b> <br>
-              <b>Posting as</b> <br>
               <b>Location</b> <br>
               <b>Date</b> <br>
-              <b>Time</b> <br> 
+              <b>Start Time</b> <br> 
+              <b>End Time</b> <br> 
               <b>Description</b> <br> 
+              <b>Short Summary</b> <br> 
+              <b>Contact Name</b> <br> 
+              <b>Contact Email</b> <br> 
               <b>Add Photo</b> <br> 
               </div>
 
               <div class="right">
-                <input class="mdl-textfield__input" style="display:inline;width:300px;"   type="text" id="title" name="title" placeholder="Title"/><br>
-                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="orgname" name="orgname" placeholder="Organization Name"/><br>
+                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="title" name="title" placeholder="Title"/><br>
                 <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="location" name="location" placeholder="Choose Location"/><br>
-                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" id="month" name="month" placeholder="MM"/>/
-                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" id="day" name="day" placeholder="DD"/>/
-                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" id="year" name="year" placeholder="YY"/><br>
-                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="time" name="time" placeholder="Choose Time"/><br>
-                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="desc" name="desc" placeholder="Enter Description"/><br><br><br>
+                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="month" name="month" placeholder="MM" onkeypress="return isNumberKey(event)"/>/
+                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="day" name="day" placeholder="DD" onkeypress="return isNumberKey(event)"/>/
+                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="4" id="year" name="year" placeholder="YYYY" onkeypress="return isNumberKey(event)"/><br>
+                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="stimeH" name="stimeH" placeholder="HH" onkeypress="return isNumberKey(event)"/>:
+                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="stimeM" name="stimeM" placeholder="mm" onkeypress="return isNumberKey(event)"/>
+                <select id="sAMPM" name="AMPM"> <option value="AM">AM</option> <option value="PM">PM</option></select><br>
+                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="etimeH" name="etimeH" placeholder="HH" onkeypress="return isNumberKey(event)"/>:
+                <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="etimeM" name="etimeM" placeholder="mm" onkeypress="return isNumberKey(event)"/>
+                <select id="eAMPM" name="AMPM"> <option value="AM">AM</option> <option value="PM">PM</option></select><br>
+                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="desc" name="desc" placeholder="Description"/><br>
+                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" maxlength = "140" id="summ" name="summ" placeholder="Short Summary (max 140 words)"/><br>
+                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="cp" name="cp" placeholder="Contact Name"/><br>
+                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="email" id="cpemail" name="cpemail" placeholder="Contact Email"/><br><br><br>
               </div>
               <div align="right">
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="post" name="post">Post</button>

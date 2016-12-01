@@ -34,7 +34,12 @@ public class Post implements Comparable<Post>{
     int endMinute;
     int endSecond = 0;
 
-    String test = "test";
+    boolean startTimeSet = false;
+    boolean startDateSet = false;
+    boolean endTimeSet = false;
+    boolean endDateSet = false;
+
+    String displayDate = "";
 
     String fullDateString;
 
@@ -42,6 +47,7 @@ public class Post implements Comparable<Post>{
 
     public Post(String title, String loc, String date, String summary, String body) throws ParseException {
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+        SimpleDateFormat postDate = new SimpleDateFormat("h:mm a EEE, MMM d");
 
         this.title = title;
         this.loc = loc;
@@ -55,6 +61,8 @@ public class Post implements Comparable<Post>{
         //this.time = time;
         this.summary = summary;
         this.body = body;
+
+        displayDate = postDate.format(realDate);
 
     }
     public Post() {
