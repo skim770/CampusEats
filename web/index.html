@@ -14,20 +14,13 @@
   	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
   	<link rel="stylesheet" href="css/main.css">
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-	
+
 	<script src="src/js/firebaseHandler.js"></script>
-	<script src="src/js/dateHelper.js"></script>
 	<script type="text/babel" src="src/js/feed.js"></script>
 	<script type="text/babel" src="src/js/calendar.js"></script>
 	<script type="text/javascript">
-		function handleSignOut(){
-			firebase.auth().signOut().then(function(error) {
-			  console.error('Sign Out Error', error);
-			});
-		}
 
 		window.onload = function() {
 	    firebase.auth().onAuthStateChanged(function(user) {
@@ -35,10 +28,82 @@
 			    window.location.href = "src/login/index.html";
 			  }
 			});
-
-      	document.getElementById('signout').addEventListener('click', handleSignOut, false);
 		};
+
+		function logout() {
+			firebase.auth().signOut();
+			window.location.href = "src/login/index.html";
+		}
+
+		function dropdownmenu() {
+			document.getElementById("myDropdown").classList.toggle("show");
+		}
+
+		// Close the dropdown menu if the user clicks outside of it
+		window.onclick = function(event) {
+			if (!event.target.matches('.dropbtn')) {
+
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+					var openDropdown = dropdowns[i];
+					if (openDropdown.classList.contains('show')) {
+						openDropdown.classList.remove('show');
+					}
+				}
+			}
+		}
 	</script>
+	  <style type="text/css">
+		  .accordion:after {
+			  content: '+';
+			  font-size: 50px;
+			  color:white;
+			  background-color: #E65100;
+			  text-align: right;
+			  border-style: hidden;
+			  cursor: pointer;
+		  }
+
+		  .dropbtn:after {
+			  content: '\2807';
+			  font-size: 50px;
+			  color:white;
+			  background-color: #E65100;
+			  text-align: right;
+			  border-style: hidden;
+			  cursor: pointer;
+		  }
+
+
+		  /* The container <div> - needed to position the dropdown content */
+		  .dropdown {
+			  position: relative;
+			  display: inline-block;
+			  background-color: #E65100;
+		  }
+
+		  /* Dropdown Content (Hidden by Default) */
+		  .dropdown-content {
+			  display: none;
+			  position: absolute;
+			  background-color: #f9f9f9;
+			  min-width: 160px;
+			  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		  }
+		  /* Links inside the dropdown */
+		  .dropdown-content a {
+			  color: black;
+			  padding: 12px 16px;
+			  text-decoration: none;
+			  display: block;
+		  }
+		  /* Change color of dropdown links on hover */
+		  .dropdown-content a:hover {background-color: #f1f1f1}
+
+		  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+		  .show {display:block;}
+	  </style>
 </head>
 
 <body>
@@ -49,63 +114,32 @@
 	      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
 	         <img src="resources/img/CE_Icon.png" alt="CampusEats Icon" style="width: 85px; height: 85px">
 	        <h3>CampusEats</h3>
-			<button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="signout" name="signout" style="position:absolute;right:50px; font-size: 16px">Sign Out</button>
-	      </div>	
+			  <div class="dropdown" style="padding-left:900px;">
+				  <a href="src/post/post.html"><button class="accordion" style="background-color:#E65100;border: none;"></button></a>
+				  <button onclick="dropdownmenu()" class="dropbtn" style="background-color:#E65100;border: none;"></button>
+				  <div id="myDropdown" class="dropdown-content">
+					  <a href="index.html">Home</a>
+					  <a href="#" onclick="logout()">Logout</a>
+				  </div>
+			  </div>
+
+	      </div>
 	    </div>
 	  </header>
-
-		<main class="mdl-layout__content mdl-color--grey-100">
+		<main class="mdl-layout__content mdl-color--grey-100" style="width:100%;">
 			<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
-				<div class="calendar-col mdl-cell mdl-cell--4-col">
-					<div class="yui3-skin-sam yui3-g">
-						<div class="yui3-u" id="month_calendar"></div>
-					</div>
-				</div>
-				<div class="mdl-cell mdl-cell--4-col">
-					<div class="events_feed" id="posts_container"></div>
-				</div>
-			</div>
-			 <div id="demo" class="yui3-skin-sam yui3-g">
-				<div id="leftcolumn" class="yui3-u">
-					<div id="mycalendar" ></div>
-					<div id="links" style="padding-left:20px;">
-						Selected date: <span id="selecteddate"></span>
-					</div>
-					<div align="right">
-						<a href="src/post/post.html">
-							<button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="post" name="post" style="margin: 4px 100px; font-size: 16px">Post</button>
-						</a>
-					<div align="right">
-						<a href="index.html">
-							<button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="original" name="original" style="margin: 4px 100px; font-size: 16px">Original</button>
-						</a>
-					</div>
-				<div id="rightcolumn" class="yui3-u">
-					<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid mdl-login">
-						<div class="events_feed" id="posts_container"></div>
-					</div>
-					<p style="opacity: 0.5; padding-bottom: 20px" id="noevent"></p>
+				<div id="demo" class="yui3-skin-sam yui3-g" style="padding-left:350px;padding-bottom:20px;">
+					<div id="month_calendar"></div>
+					<span class="yui3-u" style="padding-left:50px;width: 70%">
+						<div class="mdl-cell mdl-cell--8-col" style="float:left;">
+							<div class="events_feed" id="posts_container"></div>
+							<p style="opacity: 0.5; padding-bottom: 20px" id="noevent"></p>
+							<p style="opacity: 0.0; padding-bottom: 20px" id="selecteddate"></p>
+						</div>
+					</span>
 				</div>
 			</div>
-	  </main>
+		</main>
   </div>
- 	<div id="overlay-event-detail" class="overlay-popup none">
- 		<div id="overlay-img-container">
-      <img id="overlay-img"/>
-    </div>
-    <div id="overlay-contents">
-    	<div id="overlay-event-title"></div>
-    	<div class="event-metadata">
-    		<div id="overlay-event-location"></div>
-    		<div id="overlay-event-time"></div>
-    	</div>
-    	<div id="overlay-event-body"></div>
-    	<div class="event-contact-info">
-    		<div id="overlay-event-contact"></div>
-    	</div>
-    </div>
- 	</div>
- 	<script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
-  <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
 </body>
 </html>
