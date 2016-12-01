@@ -216,6 +216,9 @@ header table {
 .yui3-calendar-nextmonth-day {
   border: none !important;
 }
+.yui3-calendar-weekday {
+  text-align: center !important;
+}
 .yui3-calendar-day:hover,
 .yui3-calendar-day-selected {
   color: white !important;
