@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusEats</title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.orange-indigo.min.css">
+  	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
+  	<link rel="stylesheet" href="css/main.css">
+
+  	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+	<script src="src/js/firebaseHandler.js"></script>
+	<script type="text/babel" src="src/js/feed.js"></script>
+	<script type="text/babel" src="src/js/calendar.js"></script>
+	<script type="text/javascript">
+
+		window.onload = function() {
+	    firebase.auth().onAuthStateChanged(function(user) {
+			  if (!user) {
+			    window.location.href = "src/login/index.html";
+			  }
+			});
+		};
+
+		function logout() {
+			firebase.auth().signOut();
+			window.location.href = "src/login/index.html";
+		}
+
+		function dropdownmenu() {
+			document.getElementById("myDropdown").classList.toggle("show");
+		}
+
+		// Close the dropdown menu if the user clicks outside of it
+		window.onclick = function(event) {
+			if (!event.target.matches('.dropbtn')) {
+
+				var dropdowns = document.getElementsByClassName("dropdown-content");
+				var i;
+				for (i = 0; i < dropdowns.length; i++) {
+					var openDropdown = dropdowns[i];
+					if (openDropdown.classList.contains('show')) {
+						openDropdown.classList.remove('show');
+					}
+				}
+			}
+		}
+	</script>
+	  <style type="text/css">
+		  .accordion:after {
+			  content: '+';
+			  font-size: 50px;
+			  color:white;
+			  background-color: #E65100;
+			  text-align: right;
+			  border-style: hidden;
+			  cursor: pointer;
+		  }
+
+		  .dropbtn:after {
+			  content: '\2807';
+			  font-size: 50px;
+			  color:white;
+			  background-color: #E65100;
+			  text-align: right;
+			  border-style: hidden;
+			  cursor: pointer;
+		  }
+
+
+		  /* The container <div> - needed to position the dropdown content */
+		  .dropdown {
+			  position: relative;
+			  display: inline-block;
+			  background-color: #E65100;
+		  }
+
+		  /* Dropdown Content (Hidden by Default) */
+		  .dropdown-content {
+			  display: none;
+			  position: absolute;
+			  background-color: #f9f9f9;
+			  min-width: 160px;
+			  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		  }
+		  /* Links inside the dropdown */
+		  .dropdown-content a {
+			  color: black;
+			  padding: 12px 16px;
+			  text-decoration: none;
+			  display: block;
+		  }
+		  /* Change color of dropdown links on hover */
+		  .dropdown-content a:hover {background-color: #f1f1f1}
+
+		  /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+		  .show {display:block;}
+	  </style>
+</head>
+
+<body>
+	<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	  <!-- Header section containing title -->
+	  <header class="mdl-layout__header mdl-color-text--white mdl-color--orange-900">
+	    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+	      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
+	         <img src="resources/img/CE_Icon.png" alt="CampusEats Icon" style="width: 85px; height: 85px">
+	        <h3>CampusEats</h3>
+			  <div class="dropdown" style="padding-left:900px;">
+				  <a href="src/post/post.html"><button class="accordion" style="background-color:#E65100;border: none;"></button></a>
+				  <button onclick="dropdownmenu()" class="dropbtn" style="background-color:#E65100;border: none;"></button>
+				  <div id="myDropdown" class="dropdown-content">
+					  <a href="index.html">Home</a>
+					  <a href="#" onclick="logout()">Logout</a>
+				  </div>
+			  </div>
+
+	      </div>
+	    </div>
+	  </header>
+		<main class="mdl-layout__content mdl-color--grey-100" style="width:100%;">
+			<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+				<div id="demo" class="yui3-skin-sam yui3-g" style="padding-left:350px;padding-bottom:20px;">
+					<div id="month_calendar"></div>
+					<span class="yui3-u" style="padding-left:50px;width: 70%">
+						<div class="mdl-cell mdl-cell--8-col" style="float:left;">
+							<div class="events_feed" id="posts_container"></div>
+							<p style="opacity: 0.5; padding-bottom: 20px" id="noevent"></p>
+							<p style="opacity: 0.0; padding-bottom: 20px" id="selecteddate"></p>
+						</div>
+					</span>
+				</div>
+			</div>
+		</main>
+  </div>
+</body>
+</html>
