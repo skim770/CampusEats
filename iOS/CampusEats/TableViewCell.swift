@@ -10,8 +10,13 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
 
+    @IBOutlet weak var posterLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var coverImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

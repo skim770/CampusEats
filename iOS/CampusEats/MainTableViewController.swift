@@ -37,6 +37,9 @@ class MainTableViewController: UITableViewController {
                     
                     let title = value["title"] as! String
                     let description = value["body"] as! String
+                    let author = value["author"] as! String
+                    let location = value["location"] as! String
+                    let imageLocation = value["image"] as! String
                     
                     for date in value["times"] as! [NSDictionary]{
                         let start = date["start"] as! String
@@ -46,7 +49,14 @@ class MainTableViewController: UITableViewController {
                             continue
                         }
                         if isGreater {
-                            let post = Post(title: title, description: description, start: start, end: end)
+                            let post = Post(
+                                title: title,
+                                description: description,
+                                start: start,
+                                end: end,
+                                author: author,
+                                location: location,
+                                imageLocation: imageLocation)
                             self.posts += [post]
                             self.tableView.reloadData()
                         }
@@ -72,6 +82,10 @@ class MainTableViewController: UITableViewController {
         let thisRecord : Post  = self.posts[indexPath.row]
         cell.titleLabel.text = thisRecord.title
         cell.descriptionLabel.text = thisRecord.description
+        cell.posterLabel.text = thisRecord.author
+        cell.timeLabel.text = thisRecord.start
+        cell.dateLabel.text = thisRecord.start
+        cell.locationLabel.text = thisRecord.location
         
         return cell
     }
