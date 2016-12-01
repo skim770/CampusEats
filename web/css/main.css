@@ -247,7 +247,7 @@ header table {
 
 .dropbtn:after {
   content: '\2807';
-  font-size: 50px;
+  font-size: 44px;
   color: white;
   background-color: #E65100;
   text-align: right;
