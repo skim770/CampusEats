@@ -37,6 +37,10 @@
         <activity android:name=".EventActivity">
 
         </activity>
+        <activity android:name=".PopupWarning"
+            android:theme="@style/AppTheme.PopupTheme">
+
+        </activity>
 
     </application>
 

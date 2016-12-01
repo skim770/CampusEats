@@ -38,6 +38,6 @@ public class TimePickerFragment extends DialogFragment
         ((SubmitActivity)getActivity()).post.time = hourOfDay + ":" + minute;
         ((SubmitActivity)getActivity()).post.hour = hourOfDay;
         ((SubmitActivity)getActivity()).post.minute = minute;
-
+        ((SubmitActivity)getActivity()).post.startTimeSet = true;
     }
 }

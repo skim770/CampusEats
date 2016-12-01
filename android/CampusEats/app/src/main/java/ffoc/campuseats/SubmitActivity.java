@@ -139,30 +139,16 @@ public class SubmitActivity extends AppCompatActivity {
                 postValues.put("uid", uID);
                 postValues.put("url", "");
 
+                if(post.startDateSet && post.startTimeSet && post.endDateSet && post.endTimeSet && post.title.length() > 0 && post.loc.length() > 0) {
+                    Map<String, Object> childUpdates = new HashMap<>();
+                    childUpdates.put("/posts/" + key, postValues);
 
+                    ref.updateChildren(childUpdates);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-                //postValues.put("date", post.date);
-                //postValues.put("time", post.time);
-
-                Map<String, Object> childUpdates = new HashMap<>();
-                childUpdates.put("/posts/" + key, postValues);
-
-                ref.updateChildren(childUpdates);
-
-                startActivity(new Intent(SubmitActivity.this, FeedActivity.class));
+                    startActivity(new Intent(SubmitActivity.this, FeedActivity.class));
+                } else {
+                    startActivity(new Intent(SubmitActivity.this, PopupWarning.class));
+                }
 
 
             }

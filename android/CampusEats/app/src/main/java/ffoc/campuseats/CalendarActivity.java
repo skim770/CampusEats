@@ -123,7 +123,7 @@ public class CalendarActivity extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         Iterable<DataSnapshot> snap = dataSnapshot.getChildren();
 
-                        CustomAdapter adapter = new CustomAdapter(getBaseContext(), titles);
+                        CustomAdapter adapter = new CustomAdapter(getBaseContext(), posts);
                         listView.setAdapter(adapter);
 
                         if(!snap.iterator().hasNext()) {

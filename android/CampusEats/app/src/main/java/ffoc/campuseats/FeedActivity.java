@@ -124,7 +124,7 @@ public class FeedActivity extends AppCompatActivity {
                 //ArrayList<Post> posts = new ArrayList<>();
                 //ArrayList<String> titles = new ArrayList<>();
                 //final ListView listView = (ListView) findViewById(R.id.list_view);
-                CustomAdapter adapter = new CustomAdapter(context, titles);
+                CustomAdapter adapter = new CustomAdapter(context, posts);
                 listView.setAdapter(adapter);
 
                 if(childCount > 100)
@@ -178,7 +178,7 @@ public class FeedActivity extends AppCompatActivity {
 
 
 
-                for(int i = 0; i < posts.size(); i++){
+                /*for(int i = 0; i < posts.size(); i++){
 
 
                     TextView dateText = new TextView(context);
@@ -253,7 +253,7 @@ public class FeedActivity extends AppCompatActivity {
 
                     //linearLayout.addView(descText);
 
-                }
+                }*/
 
             }
 

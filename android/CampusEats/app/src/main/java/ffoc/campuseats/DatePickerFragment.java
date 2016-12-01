@@ -33,5 +33,7 @@ public class DatePickerFragment extends DialogFragment
         ((SubmitActivity)getActivity()).post.month = month;
         ((SubmitActivity)getActivity()).post.day = day;
         ((SubmitActivity)getActivity()).post.year = year;
+        ((SubmitActivity)getActivity()).post.startDateSet = true;
+
     }
 }

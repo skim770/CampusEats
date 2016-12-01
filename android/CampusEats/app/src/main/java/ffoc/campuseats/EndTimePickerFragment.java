@@ -37,6 +37,7 @@ public class EndTimePickerFragment extends DialogFragment
         ((SubmitActivity)getActivity()).setEndTimeButtonText(hourOfDay ,minute);
         ((SubmitActivity)getActivity()).post.endHour = hourOfDay;
         ((SubmitActivity)getActivity()).post.endMinute = minute;
+        ((SubmitActivity)getActivity()).post.endTimeSet = true;
 
     }
 }
