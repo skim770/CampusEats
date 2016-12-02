@@ -31,12 +31,14 @@ function timeRange(start, end) {
 		startAmPm = " PM";
 		if (startHr > 12) startHr = startHr - 12;
 	}
+	if (startHr == 0) startHr = 12;
 	var endAmPm = " AM";
 	var endHr = parseInt(end.substring(11, 13));
 	if (endHr >= 12) {
 		endAmPm = " PM";
 		if (endHr > 12) endHr = endHr - 12;
 	}
+	if (endHr == 0) endHr = 12;
 	return startHr + start.substring(13, 16) + startAmPm + "  -  " + endHr + end.substring(13, 16) + endAmPm;
 }
 
@@ -50,6 +52,7 @@ function dateTimeRange(startGMT, endGMT) {
 		startAmPm = " PM";
 		if (startHr > 12) startHr = startHr - 12;
 	}
+	if (startHr == 0) startHr = 12;
 	var endMonth = monthOfYear[parseInt(endGMT.substring(5,7)) - 1];
 	var endDay = endGMT.substring(8, 10);
 	var endHr = parseInt(endGMT.substring(11, 13));
@@ -59,5 +62,6 @@ function dateTimeRange(startGMT, endGMT) {
 		endAmPm = " PM";
 		if (endHr > 12) endHr = endHr - 12;
 	}
+	if (endHr == 0) endHr = 12;
 	return startMonth + " " + startDay + ", " + startHr + ":" + startMin + " " + startAmPm + "\t-\t" + endMonth + " " + endDay + ", " + endHr + ":" + endMin + " " + endAmPm;
 }

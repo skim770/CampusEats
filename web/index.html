@@ -61,9 +61,9 @@
       </tr></tbody></table>
       <table class="options"><tbody><tr>
       	<td>
-      		<a href="src/post/post.html">
+      		<button class="userSubBtn" onclick="showUserSubmissionForm()">
 				  	<i class="material-icons compose">add</i>
-				  </a>
+				  </button>
       	</td>
       	<td>
       		<button onclick="dropdownmenu()" class="dropbtn"></button>
@@ -108,6 +108,69 @@
 		</div>
 	</div>
 
+	<div id="overlay-post" class="overlay-popup mdl-shadow--2dp none">
+		<div class="mdl-card__title mdl-color--orange-900 mdl-color-text--white overlay-post-banner">
+      <h2 class="mdl-card__title-text">Create an Event</h2>
+    </div>
+    <table id="overlay-post-form"><tbody>
+    	<tr>
+    		<td><b>Title</b></td>
+    		<td><input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="title" placeholder="Title"/></td>
+    	</tr>
+    	<tr>
+    		<td><b>Location</b></td>
+    		<td><input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="location" placeholder="Event Location"/></td>
+    	</tr>
+    	<tr>
+    		<td><b>Date</b></td>
+    		<td>
+    			<input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="month" placeholder="MM" onkeypress="return isNumberKey(event)"/>/
+          <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="day" placeholder="DD" onkeypress="return isNumberKey(event)"/>/
+          <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="4" id="year" placeholder="YYYY" onkeypress="return isNumberKey(event)"/>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td><b>Start Time</b></td>
+    		<td>
+    			<input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="stimeH" placeholder="HH" onkeypress="return isNumberKey(event)"/>:
+          <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="stimeM" placeholder="mm" onkeypress="return isNumberKey(event)"/>
+          <select id="sAMPM" name="AMPM"> <option value="AM">AM</option> <option value="PM">PM</option></select>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td><b>End Time</b></td>
+    		<td>
+    			<input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="etimeH" placeholder="HH" onkeypress="return isNumberKey(event)"/>:
+          <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="etimeM" placeholder="mm" onkeypress="return isNumberKey(event)"/>
+          <select id="eAMPM" name="AMPM"> <option value="AM">AM</option> <option value="PM">PM</option></select>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td><b>Short Summary</b></td>
+    		<td><input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" maxlength = "140" id="summ" placeholder="Short Summary (max 140 words)"/></td>
+    	</tr>
+    	<tr>
+    		<td><b>Description</b></td>
+    		<td><input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="desc" placeholder="Description"/></td>
+    	</tr>
+    	<tr>
+    		<td><b>Contact Name</b></td>
+    		<td><input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="cp" placeholder="Name"/></td>
+    	</tr>
+    	<tr>
+    		<td><b>Contact Email</b></td>
+    		<td><input class="mdl-textfield__input" style="display:inline;width:300px;" type="email" id="cpemail" placeholder="Email"/></td>
+    	</tr>
+    	<tr>
+    		<td><b>Add Photo</b></td>
+    		<td></td>
+    	</tr>
+    </tbody></table>
+		<div align="right">
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="post" name="post">Post</button>
+    </div>
+	</div>
+
   <script src="build/react.js"></script>
   <script src="build/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
@@ -116,5 +179,6 @@
   <script src="src/js/dateHelper.js"></script>
 	<script type="text/babel" src="src/js/feed.js"></script>
 	<script type="text/babel" src="src/js/calendar.js"></script>
+	<script src="src/js/post.js"></script>
 </body>
 </html>

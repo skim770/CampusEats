@@ -23,7 +23,7 @@ var EventPost = React.createClass({
 		}
 		$('#overlay-event-title').text(data.title);
 		$('#overlay-event-location').html("<i class=\"material-icons\">location_on</i>  " + data.location);
-		$('#overlay-event-time').html("<i class=\"material-icons\">access_time</i>  " + dateTimeRange(data.start_gmt, data.end_gmt));
+		$('#overlay-event-time').html("<i class=\"material-icons\">access_time</i>  " + dateTimeRange(data.start, data.end));
 		$('#overlay-event-body').html(data.body);
 		if (data.contact != null && data.contact.length > 0) {
 			$('.event-contact-info').removeClass("none");

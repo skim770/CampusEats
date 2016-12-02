@@ -238,7 +238,10 @@ header table {
   padding-top: 7px;
   font-size: 44px !important;
 }
-
+.userSubBtn {
+  background-color: transparent;
+  border: none;
+}
 .dropbtn {
   background-color: transparent;
   border: none;
@@ -287,6 +290,21 @@ header table {
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {
   display: block;
+}
+.overlay-post-fields {
+  display: inline;
+  width: 300px;
+}
+.overlay-post-banner {
+  margin: -20px -20px 10px -20px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+#overlay-num-fields td:first-child {
+  width: 100px;
+}
+#overlay-post-form tr {
+  margin-bottom: 10px;
 }
 
 select {
