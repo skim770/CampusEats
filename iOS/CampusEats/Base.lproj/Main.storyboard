@@ -23,36 +23,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6aq-8H-048" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
-                                <rect key="frame" x="0.0" y="64" width="375" height="340"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="311"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="340" id="sjp-78-udb"/>
+                                    <constraint firstAttribute="height" constant="311" id="sjp-78-udb"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OjD-fu-kke">
-                                <rect key="frame" x="0.0" y="412" width="375" height="206"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="81" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OjD-fu-kke">
+                                <rect key="frame" x="0.0" y="383" width="375" height="235"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalendarTableViewCell" id="nhX-MF-g6B" customClass="CalendarTableViewCell" customModule="CampusEats" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalendarTableViewCell" rowHeight="81" id="nhX-MF-g6B" customClass="CalendarTableViewCell" customModule="CampusEats" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nhX-MF-g6B" id="oAE-6V-x60">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H4y-Bs-7tp">
-                                                    <rect key="frame" x="8" y="11" width="42" height="21"/>
+                                                    <rect key="frame" x="8" y="8" width="359" height="26"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="22"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAm-EM-bI5">
+                                                    <rect key="frame" x="367" y="40" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bA-86-YRb">
+                                                    <rect key="frame" x="8" y="40" width="359" height="0.0"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="H4y-Bs-7tp" firstAttribute="centerY" secondItem="oAE-6V-x60" secondAttribute="centerY" id="po8-0z-goP"/>
-                                                <constraint firstAttribute="leadingMargin" secondItem="H4y-Bs-7tp" secondAttribute="leading" id="upE-e2-3AM"/>
+                                                <constraint firstItem="2bA-86-YRb" firstAttribute="top" secondItem="H4y-Bs-7tp" secondAttribute="bottom" constant="6" id="1Pb-wC-Zg2"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="XAm-EM-bI5" secondAttribute="trailing" id="1oT-li-FoE"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="H4y-Bs-7tp" secondAttribute="trailing" id="8PD-lj-fdm"/>
+                                                <constraint firstAttribute="topMargin" secondItem="H4y-Bs-7tp" secondAttribute="top" id="DgL-4A-tVK"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="2bA-86-YRb" secondAttribute="trailing" id="Sbx-3a-P1T"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="H4y-Bs-7tp" secondAttribute="leading" id="miw-h5-krq"/>
+                                                <constraint firstItem="XAm-EM-bI5" firstAttribute="top" secondItem="H4y-Bs-7tp" secondAttribute="bottom" constant="6.5" id="qaP-Sy-SKE"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="2bA-86-YRb" secondAttribute="leading" id="yp1-lb-xEq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="locationLabel" destination="2bA-86-YRb" id="ex2-od-CgT"/>
+                                            <outlet property="timeLabel" destination="XAm-EM-bI5" id="gdj-B3-MiU"/>
                                             <outlet property="titleLabel" destination="H4y-Bs-7tp" id="5cG-Ee-jUI"/>
                                         </connections>
                                     </tableViewCell>

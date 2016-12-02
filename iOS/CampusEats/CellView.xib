@@ -15,11 +15,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yJB-dH-cA8">
-                    <rect key="frame" x="74" y="49.5" width="45" height="45"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <rect key="frame" x="79" y="55" width="35" height="35"/>
+                    <color key="backgroundColor" red="0.90196078431372551" green="0.31764705882352939" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="45" id="ASz-G0-P2H"/>
-                        <constraint firstAttribute="width" constant="45" id="RzU-u6-aJr"/>
+                        <constraint firstAttribute="height" constant="35" id="ASz-G0-P2H"/>
+                        <constraint firstAttribute="width" constant="35" id="RzU-u6-aJr"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f9I-Yp-XyJ">
@@ -31,10 +31,10 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="yJB-dH-cA8" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="1ch-bz-eIN"/>
                 <constraint firstItem="f9I-Yp-XyJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="2Vf-Iv-2PX"/>
                 <constraint firstItem="f9I-Yp-XyJ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="BvX-Yx-xK9"/>
-                <constraint firstItem="yJB-dH-cA8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="V3o-VZ-PA2"/>
+                <constraint firstItem="yJB-dH-cA8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UgO-Rq-kwe"/>
+                <constraint firstItem="yJB-dH-cA8" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="jOG-z4-Kqe"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
