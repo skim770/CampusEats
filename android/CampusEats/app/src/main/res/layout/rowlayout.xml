@@ -1,25 +1,46 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+<android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="3dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
+    card_view:cardCornerRadius="2dp"
+    card_view:cardUseCompatPadding="true">
 
-    <TextView android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="asdf"
-        android:id="@+id/feedTitle"
-        android:textSize="9pt"
-        android:textColor="@color/black"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        />
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="asdf"
+            android:id="@+id/feedTitle"
+            android:textSize="9pt"
+            android:textColor="@color/black"
 
-    <TextView android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="asdf"
-        android:id="@+id/feedTime"
-        android:layout_below="@+id/feedTitle" />
+            />
+
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="asdf"
+            android:id="@+id/feedTime"
+            android:layout_below="@+id/feedTitle"
+
+             />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/postImage"
+            />
+
+    </RelativeLayout>
 
 
-</RelativeLayout>
+</android.support.v7.widget.CardView>
 
 
 

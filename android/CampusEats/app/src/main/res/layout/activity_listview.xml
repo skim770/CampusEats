@@ -20,7 +20,9 @@
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/list_view"
-        android:layout_below="@+id/my_toolbar">
+        android:layout_below="@+id/my_toolbar"
+        android:divider="@null"
+        android:dividerHeight="0dp">
 
     </ListView>
 

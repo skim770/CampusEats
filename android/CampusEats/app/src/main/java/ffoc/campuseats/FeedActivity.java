@@ -143,6 +143,7 @@ public class FeedActivity extends AppCompatActivity {
                     String location = iteration.child("location").getValue().toString();
                     String summary = iteration.child("summary").getValue().toString();
                     String body = iteration.child("body").getValue().toString();
+                    String img = iteration.child("image").getValue().toString();
 
                     DataSnapshot times = iteration.child("times_gmt");
                     Iterable<DataSnapshot> iterableTimes = times.getChildren();
@@ -161,6 +162,8 @@ public class FeedActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
+
+                        tempPost.imgUrl = img;
                         posts.add(tempPost);
                         //titles.add(tempPost.realDate.toString());
 

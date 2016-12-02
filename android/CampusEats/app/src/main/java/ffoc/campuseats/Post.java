@@ -17,6 +17,7 @@ public class Post implements Comparable<Post>{
     String date;
     String loc;
     String title;
+    String imgUrl;
     Date realDate;
     public String time;
 
