@@ -23,6 +23,7 @@ limitations under the License.
   <!-- Material Design Theming -->
   <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
   <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
 
   <link rel="stylesheet" href="../../css/main.css">
@@ -54,7 +55,15 @@ limitations under the License.
         score = snapshot.val().score;
       });
     }
+    else {
+      window.location.href = "../login/index.html";
+    }
   });
+
+    function dropdownmenu() {
+      // document.getElementById("myDropdown").classList.toggle("show");
+      $('#myDropdown').addClass("show");
+    }
 
   function tag(data) {
     // console.log(data);
@@ -81,6 +90,7 @@ limitations under the License.
       var summary = document.getElementById('summ').value;
       var contactName = document.getElementById('cp').value;
       var contactEmail = document.getElementById('cpemail').value;
+      var imgURL = document.getElementById('image').src;
 
       if (eventTitle.length < 1) {
         alert('Please enter the event\'s title.');
@@ -231,6 +241,17 @@ limitations under the License.
         return true;
     }
 
+    function previewFile(){
+      var input = document.getElementById("img");
+      var fReader = new FileReader();
+      fReader.readAsDataURL(input.files[0]);
+      fReader.onloadend = function(event){
+        var img = document.getElementById("image");
+        img.src = event.target.result;
+        img.height = 150;
+      }
+    }
+
     window.onload = function() {
       document.getElementById('post').addEventListener('click', handlePost, false);
     };
@@ -240,12 +261,19 @@ limitations under the License.
     <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <!-- Header section containing title -->
       <header class="mdl-layout__header mdl-color-text--white mdl-color--orange-900">
-        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
-          <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
-             <img src="../../resources/img/CE_Icon.png" alt="CampusEats Icon" style="width: 85px; height: 85px">
-            <h3>CampusEats</h3>
+        <table height="100%"><tbody><tr>
+        <td><img id="CE_Logo" src="../../resources/img/CE_Icon.png" alt="CampusEats Icon" /></td>
+        <td><h3>CampusEats</h3></td>
+      </tr></tbody></table>
+      <table class="options"><tbody><tr>
+        <td></td><td>
+          <button onclick="dropdownmenu()" class="dropbtn"></button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="../../index.html">Home</a>
+            <a href="#" onclick="logout()">Logout</a>
           </div>
-        </div>
+        </td>
+      </tr></tbody></table>
       </header>
 
   <main class="mdl-layout__content mdl-color--grey-100">
@@ -264,11 +292,11 @@ limitations under the License.
               <b>Date</b> <br>
               <b>Start Time</b> <br> 
               <b>End Time</b> <br> 
-              <b>Description</b> <br> 
               <b>Short Summary</b> <br> 
+              <b>Description</b> <br> <br> <br>
               <b>Contact Name</b> <br> 
-              <b>Contact Email</b> <br> 
-              <b>Add Photo</b> <br> 
+              <b>Contact Email</b> <br> <br> <br>  
+              <b>Add Image</b> <br> 
               </div>
 
               <div class="right">
@@ -283,10 +311,12 @@ limitations under the License.
                 <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="etimeH" name="etimeH" placeholder="HH" onkeypress="return isNumberKey(event)"/>:
                 <input class="mdl-textfield__input" style="display:inline;width:50px;" type="text" maxlength="2" id="etimeM" name="etimeM" placeholder="mm" onkeypress="return isNumberKey(event)"/>
                 <select id="eAMPM" name="AMPM"> <option value="AM">AM</option> <option value="PM">PM</option></select><br>
-                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="desc" name="desc" placeholder="Description"/><br>
                 <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" maxlength = "140" id="summ" name="summ" placeholder="Short Summary (max 140 words)"/><br>
+                <textarea class="mdl-textfield__input" style="display:inline;width:300px;" rows="4" cols="50" id="desc" name="desc" placeholder="Description"></textarea><br>
                 <input class="mdl-textfield__input" style="display:inline;width:300px;" type="text" id="cp" name="cp" placeholder="Contact Name"/><br>
-                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="email" id="cpemail" name="cpemail" placeholder="Contact Email"/><br><br><br>
+                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="email" id="cpemail" name="cpemail" placeholder="Contact Email"/><br><br>
+                <img id="image" src="" alt="Image preview..."><br>
+                <input class="mdl-textfield__input" style="display:inline;width:300px;" type="file" id="img" name="img" onchange="previewFile()"/><br><br><br>
               </div>
               <div align="right">
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="post" name="post">Post</button>

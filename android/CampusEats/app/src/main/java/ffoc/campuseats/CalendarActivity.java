@@ -132,6 +132,7 @@ public class CalendarActivity extends AppCompatActivity {
                         } else {
                             eventName.setText("");
                         }
+                        posts.clear();
                         for(int i = 0; i < dataSnapshot.getChildrenCount(); i++) {
                             DataSnapshot iteration = snap.iterator().next();
                             //String str = iteration.child("title").getValue().toString();

@@ -1,6 +1,7 @@
 package ffoc.campuseats;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -33,7 +34,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //create user
                 //auth.createUserWithEmailAndPassword(emailEdit.getText().toString(),passwordEdit.getText().toString());
-                startActivity(new Intent(LoginActivity.this, WebLogin.class));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://project-2581007719456375150.firebaseapp.com/src/login/register.html"));
+                startActivity(intent);
+                //startActivity(new Intent(LoginActivity.this, WebLogin.class));
             }
         });
 

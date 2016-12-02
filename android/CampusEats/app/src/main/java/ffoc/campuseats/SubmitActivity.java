@@ -120,7 +120,7 @@ public class SubmitActivity extends AppCompatActivity {
                 postValues.put("email", "");
 
                 postValues.put("fee", "");
-                postValues.put("img", "");
+                postValues.put("image", "");
                 postValues.put("location", post.loc);
                 postValues.put("phone", "");
                 postValues.put("start", setDateString);
