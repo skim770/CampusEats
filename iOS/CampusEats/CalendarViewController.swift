@@ -58,7 +58,8 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             for post in selectedPosts {
                 posts += [post]
             }
-            self.postsTableView.reloadData()        }
+            self.postsTableView.reloadData()
+        }
     }
     
     func populatePosts() {
@@ -134,6 +135,19 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
         cell.locationLabel.text = thisRecord.location
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailCalendar",
+            let destination = segue.destination as? DetailViewController,
+            let postIndex = postsTableView.indexPathForSelectedRow?.row {
+            if posts.count > 0 {
+                destination.post = posts[postIndex]
+            }
+            else {
+                
+            }
+        }
     }
 }
 

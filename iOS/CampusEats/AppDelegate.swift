@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.white], for: UIControlState.normal)
         UINavigationBar.appearance().tintColor = UIColor.white
         UITabBar.appearance().isTranslucent = false
+        
+        UIApplication.shared.statusBarStyle = .lightContent
         return true
     }
 

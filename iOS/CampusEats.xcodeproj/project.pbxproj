@@ -17,6 +17,7 @@
 		751DEBD51DE63D65001CFB30 /* CampusEatsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DEBD41DE63D65001CFB30 /* CampusEatsUITests.swift */; };
 		751DEBE41DE64484001CFB30 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DEBE31DE64484001CFB30 /* LoginViewController.swift */; };
 		753841761DED3E1C00175DC9 /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 753841751DED3E1C00175DC9 /* PostTableViewController.swift */; };
+		7548383C1DF16959006C4DF7 /* AuthenticationTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7548383B1DF16959006C4DF7 /* AuthenticationTextField.swift */; };
 		75830C7F1DE6499E00FEC51D /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75830C7E1DE6499E00FEC51D /* RegisterViewController.swift */; };
 		75830C821DE6515400FEC51D /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75830C811DE6515400FEC51D /* Common.swift */; };
 		75830C861DE652FE00FEC51D /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75830C851DE652FE00FEC51D /* MainTableViewController.swift */; };
@@ -67,6 +68,7 @@
 		751DEBD61DE63D65001CFB30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		751DEBE31DE64484001CFB30 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		753841751DED3E1C00175DC9 /* PostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
+		7548383B1DF16959006C4DF7 /* AuthenticationTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationTextField.swift; sourceTree = "<group>"; };
 		75830C7E1DE6499E00FEC51D /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		75830C811DE6515400FEC51D /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		75830C851DE652FE00FEC51D /* MainTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			children = (
 				75830C811DE6515400FEC51D /* Common.swift */,
 				75830C891DE6558F00FEC51D /* Post.swift */,
+				7548383B1DF16959006C4DF7 /* AuthenticationTextField.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				7597D4ED1DF066B40080E4E9 /* DetailViewController.swift in Sources */,
 				759810131DE6A3C0004A378B /* CalendarViewController.swift in Sources */,
 				753841761DED3E1C00175DC9 /* PostTableViewController.swift in Sources */,
+				7548383C1DF16959006C4DF7 /* AuthenticationTextField.swift in Sources */,
 				751DEBE41DE64484001CFB30 /* LoginViewController.swift in Sources */,
 				751DEBB51DE63D65001CFB30 /* AppDelegate.swift in Sources */,
 				75830C8A1DE6558F00FEC51D /* Post.swift in Sources */,
