@@ -2,6 +2,7 @@
 Copyright 2016 Sung Kim <kr.dev.sk@gmail.com>. All rights reserved.
 **/
 var userLikes = {};
+var dtdate;
 
 var EventPost = React.createClass({
 	handleClick: function() {
@@ -109,7 +110,11 @@ var DateHeader = React.createClass({
 		day.setTime(day.getTime() + (1000 * 60 * 60 * 24));
 		if (this.props.day === "Today") {
 			day = new Date();
-			dayString = "Today - ";
+            if (dtdate != null && dtdate.format(day) === todayStamp) {
+                dayString = "Today - ";
+            } else {
+                dayString = "";
+            }
 		}
 		dayString += dayOfWeek[day.getDay()] 
 			+ ", " + monthOfYear[day.getMonth()] 
@@ -142,13 +147,19 @@ function fetchFirebasePosts() {
 			var times = post.child('times').val();
 			for (var i = 0; i < times.length; i++) {
 				var eventDay = times[i].start.substring(0, 10);
-				// if (Date.parse(eventDay) >= Date.parse(todayStamp)) {
+				if (Date.parse(eventDay) >= Date.parse(todayStamp)) {
 					var postInstance = post.val();
 					postInstance.key = post.key + ":" + i;
 					postInstance.start = times[i].start;
 					postInstance.end = times[i].end;
 					posts.push(postInstance);
-				// }
+				} else {
+					var postInstance = post.val();
+					postInstance.key = post.key + ":" + i;
+					postInstance.start = times[i].start.substring(0, 2) + (parseInt(times[i].start.substring(2, 4)) + 4) + times[i].start.substring(4);
+					postInstance.end = times[i].end.substring(0, 2) + (parseInt(times[i].end.substring(2, 4)) + 4) + times[i].end.substring(4);
+					posts.push(postInstance);
+				}
 			}
 		});
 		posts.sort(function(a, b) {
@@ -157,4 +168,58 @@ function fetchFirebasePosts() {
 		renderDOM(posts);
 	});
 }
+
+YUI().use('calendar', 'datatype-date', 'cssbutton', function (Y) {
+    var calendar = new Y.Calendar({
+        contentBox: "#month_calendar",
+        showPrevMonth: true,
+        showNextMonth: true,
+        date: new Date() }).render();
+    dtdate = Y.DataType.Date;
+
+    calendar.on("selectionChange", function (ev) {
+        var newDate = ev.newSelection[0];
+        var rawDate = dtdate.format(newDate);
+        Y.one("#selecteddate").setHTML(rawDate);
+
+        var today = new Date();
+        var todayStamp = newDate.getFullYear() + "-";
+        if (newDate.getMonth() + 1 < 10) {
+            todayStamp += "0";
+        }
+        todayStamp += newDate.getMonth() + 1 + "-";
+        if (newDate.getDate() < 10) {
+            todayStamp += "0";
+        }
+        todayStamp += newDate.getDate();
+        var prevDateHeader = Date.parse(todayStamp);
+
+        postsRef.on('value', function(snapshot) {
+            var posts = [];
+            snapshot.forEach(function(post) {
+                var times = post.child('times').val();
+                for (var i = 0; i < times.length; i++) {
+                    var eventDay = times[i].start.substring(0, 10);
+                    if (Date.parse(eventDay) == Date.parse(todayStamp)) {
+                        var postInstance = post.val();
+                        postInstance.key = post.key + ":" + i;
+                        postInstance.start = times[i].start;
+                        postInstance.end = times[i].end;
+                        posts.push(postInstance);
+                    } 
+                }
+            });
+            if (posts.length == 0) {
+                Y.one("#noevent").setHTML("No events this day.");
+            } else {
+                Y.one("#noevent").setHTML("");
+            }
+            posts.sort(function(a, b) {
+                return a.start.localeCompare(b.start);
+            });
+            renderDOM(posts);
+        });
+    });
+});
+
 fetchFirebasePosts();

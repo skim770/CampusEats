@@ -149,7 +149,6 @@ header table {
 }
 .overlay-popup {
   background-color: white;
-  /*width: calc(100% - 140px);*/
   margin: 50px;
   padding: 20px;
   border-radius: 4px;
@@ -245,7 +244,7 @@ header table {
 .dropbtn {
   background-color: transparent;
   border: none;
-  height: 61px;
+  height: 70px;
 }
 
 .dropbtn:after {

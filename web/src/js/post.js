@@ -141,6 +141,7 @@ function writeNewPost(author, body, epoch, gmt, contact, end, endgmt, location, 
         end_last:end,
         end_last_gmt:endgmt,
         fee: "Free",
+        feedback_score: 0,
         image: "",
         location: location,
         phone: "",
@@ -175,7 +176,9 @@ function writeNewPost(author, body, epoch, gmt, contact, end, endgmt, location, 
     };
 
     updates['/posts/' + newPostKey] = postData;
-    return firebase.database().ref().update(updates);
+    firebase.database().ref().update(updates);
+    $('#overlay-post').addClass("none");
+    $('#overlay-post').popup('hide');
 }
 
 function isNumberKey(evt){
