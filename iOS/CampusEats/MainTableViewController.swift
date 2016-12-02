@@ -22,7 +22,7 @@ class MainTableViewController: UITableViewController {
     }
     
     func populatePosts() {
-        let activePosts = ref.child("posts").queryOrdered(byChild: "date")
+        let activePosts = ref.child("posts").queryOrdered(byChild: "start")
         let currentDate = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = DATE_FORMAT
@@ -41,6 +41,7 @@ class MainTableViewController: UITableViewController {
                     let author = value["author"] as! String
                     let location = value["location"] as! String
                     let imageLocation = value["image"] as! String
+                    let body = value["body"] as! String
                     
                     for date in value["times"] as! [NSDictionary]{
                         let start = formatter.date(from: date["start"] as! String)
@@ -57,7 +58,8 @@ class MainTableViewController: UITableViewController {
                                 end: end,
                                 author: author,
                                 location: location,
-                                imageLocation: imageLocation)
+                                imageLocation: imageLocation,
+                                body: body)
                             self.posts += [post]
                             self.tableView.reloadData()
                         }

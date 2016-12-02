@@ -74,8 +74,11 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
                         continue
                     }
                     let title = value["title"] as! String
-                    let description = value["body"] as! String
+                    let description = value["summary"] as! String
+                    let author = value["author"] as! String
                     let location = value["location"] as! String
+                    let imageLocation = value["image"] as! String
+                    let body = value["body"] as! String
                     
                     for date in value["times"] as! [NSDictionary] {
                         let start = formatter.date(from: date["start"] as! String)
@@ -85,9 +88,10 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
                             description: description,
                             start: start!,
                             end: end,
-                            author: "",
+                            author: author,
                             location: location,
-                            imageLocation: "")
+                            imageLocation: imageLocation,
+                            body: body)
                         let index = end.index(end.startIndex, offsetBy: 10)
                         let dateKey = end.substring(to: index)
                         if self.allPosts[dateKey] != nil {

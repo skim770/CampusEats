@@ -16,6 +16,7 @@ class Post {
     var author: String
     var location: String
     var imageLocation: String
+    var body: String
     
     init() {
         title = ""
@@ -25,9 +26,10 @@ class Post {
         author = ""
         location = ""
         imageLocation = ""
+        body = ""
     }
     
-    init(title: String, description: String, start: Date, end: String, author: String, location: String, imageLocation: String) {
+    init(title: String, description: String, start: Date, end: String, author: String, location: String, imageLocation: String, body: String) {
         self.title = title
         self.description = description
         self.start = start
@@ -35,5 +37,6 @@ class Post {
         self.author = author
         self.location = location
         self.imageLocation = imageLocation
+        self.body = body
     }
 }
