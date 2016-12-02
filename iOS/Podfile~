@@ -13,6 +13,6 @@ target 'CampusEats' do
 
   # Pods for Calendar
   
-  pod 'JTAppleCalendar', :git => 'https://github.com/patchthecode/JTAppleCalendar.git', :branch => 'Swift3'
+  pod 'JTAppleCalendar', '~> 6.0'
 
 end

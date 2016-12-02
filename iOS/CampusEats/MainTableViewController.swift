@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class MainTableViewController: UITableViewController {
     var posts = [Post]()
@@ -36,13 +37,13 @@ class MainTableViewController: UITableViewController {
                     }
                     
                     let title = value["title"] as! String
-                    let description = value["body"] as! String
+                    let description = value["summary"] as! String
                     let author = value["author"] as! String
                     let location = value["location"] as! String
                     let imageLocation = value["image"] as! String
                     
                     for date in value["times"] as! [NSDictionary]{
-                        let start = date["start"] as! String
+                        let start = formatter.date(from: date["start"] as! String)
                         let end = date["end"] as! String
                         let thisDate = formatter.date(from: end)
                         guard let isGreater = thisDate?.isGreaterThanDate(dateToCompare: currentDate) else {
@@ -52,7 +53,7 @@ class MainTableViewController: UITableViewController {
                             let post = Post(
                                 title: title,
                                 description: description,
-                                start: start,
+                                start: start!,
                                 end: end,
                                 author: author,
                                 location: location,
@@ -74,22 +75,26 @@ class MainTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-
+        
+        let formatter = DateFormatter()
         // Configure the cell...
         let thisRecord : Post  = self.posts[indexPath.row]
         cell.titleLabel.text = thisRecord.title
         cell.descriptionLabel.text = thisRecord.description
         cell.posterLabel.text = thisRecord.author
-        cell.timeLabel.text = thisRecord.start
-        cell.dateLabel.text = thisRecord.start
+        
+        formatter.dateFormat = CELL_TIME_FORMAT
+        cell.timeLabel.text = formatter.string(from: thisRecord.start)
+        formatter.dateFormat = CELL_DATE_FORMAT
+        cell.dateLabel.text = formatter.string(from: thisRecord.start)
         cell.locationLabel.text = thisRecord.location
+        cell.coverImageView.sd_setImage(with: URL(string: thisRecord.imageLocation), placeholderImage:UIImage(named:"placeholder")!)
         
         return cell
     }
-    
     
     // MARK: - Navigation
     @IBAction func PostDidTapped(_ sender: Any) {

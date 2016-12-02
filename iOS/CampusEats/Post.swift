@@ -11,7 +11,7 @@ import Foundation
 class Post {
     var title: String
     var description: String
-    var start: String
+    var start: Date
     var end: String
     var author: String
     var location: String
@@ -20,14 +20,14 @@ class Post {
     init() {
         title = ""
         description = ""
-        start = ""
+        start = Date()
         end = ""
         author = ""
         location = ""
         imageLocation = ""
     }
     
-    init(title: String, description: String, start: String, end: String, author: String, location: String, imageLocation: String) {
+    init(title: String, description: String, start: Date, end: String, author: String, location: String, imageLocation: String) {
         self.title = title
         self.description = description
         self.start = start

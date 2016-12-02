@@ -79,7 +79,14 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
                     for date in value["times"] as! [NSDictionary] {
                         let start = date["start"] as! String
                         let end = date["end"] as! String
-                        let post = Post(title: title, description: description, start: start, end: end)
+                        let post = Post(
+                            title: title,
+                            description: description,
+                            start: Date(),
+                            end: end,
+                            author: "",
+                            location: "",
+                            imageLocation: "")
                         let index = end.index(end.startIndex, offsetBy: 10)
                         let dateKey = end.substring(to: index)
                         if self.allPosts[dateKey] != nil {

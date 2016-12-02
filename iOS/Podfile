@@ -15,4 +15,7 @@ target 'CampusEats' do
   
   pod 'JTAppleCalendar', '~> 6.0'
 
+  # Pods to show Images asynchrnously
+  pod 'SDWebImage/WebP'
+
 end
