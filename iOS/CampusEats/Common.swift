@@ -17,9 +17,14 @@ let LOGIN_ERROR = "Login Error"
 let EMAIL_ALERT = "Thank you!"
 let REGISTER_ERROR = "Register Error"
 let CUSTOM_FONT = "BebasNeue"
+<<<<<<< HEAD
 let DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
 let CELL_DATE_FORMAT = "EEEE, MMMM d, yyyy"
 let CELL_TIME_FORMAT = "hh:mma"
+=======
+let CREATE_ALERT = "Submit Post"
+let CREATE_MESSAGE = "Post submission successful!"
+>>>>>>> origin/shawn
 
 
 // Extensions
@@ -30,7 +35,11 @@ extension String {
 }
 
 extension UserDefaults {
+<<<<<<< HEAD
     func setString(string:String, forKey:String) {
+=======
+    func setString(_ string:String, forKey:String) {
+>>>>>>> origin/shawn
         set(string, forKey: forKey)
     }
 }
@@ -46,20 +55,40 @@ extension UIViewController {
     }
 }
 
+<<<<<<< HEAD
 extension Date {
     func getMonth() -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"
         return dateFormatter.string(from: self)
+=======
+extension UITextField
+{
+    func setBottomBorder()
+    {
+        self.borderStyle = UITextBorderStyle.none;
+        let border = CALayer()
+        let width = CGFloat(1.5)
+        border.borderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.8).cgColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width,   width:  self.frame.size.width, height: self.frame.size.height)
+        border.borderWidth = width
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
+>>>>>>> origin/shawn
     }
 }
 
 // Functions
+<<<<<<< HEAD
 func errorMessage(title: String, message: String, location: AnyObject) {
+=======
+func errorMessage(_ title: String, message: String, location: AnyObject) {
+>>>>>>> origin/shawn
     let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
     alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
     location.present(alertController, animated: true, completion: nil)
 }
+<<<<<<< HEAD
 
 extension Date {
     func isGreaterThanDate(dateToCompare: Date) -> Bool {
@@ -121,3 +150,5 @@ extension Date {
         return dateWithHoursAdded
     }
 }
+=======
+>>>>>>> origin/shawn
