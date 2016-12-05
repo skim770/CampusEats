@@ -1,13 +1,24 @@
 # CampusEats on Web
 
-CampusEats is hosted at https://project-2581007719456375150.firebaseapp.com
+## Release Notes
+_v1.0_
+- New Features
+	- Feed of events from GT calendar and user submissions
+		- Feed is clickable to show event details
+	- User submissions
+	- Month view calendar to navigate to specific dates
+	- Users can 'like' a post
+- Bugs
+	- Known
+		- Date headers do not display correctly when specific dates are clicked from month view.
 
-## Install Node.js and npm via Homebrew.
+## Installation Guide
+### Install Node.js and npm via Homebrew.
 	$ brew install node
 	$ node -v 	// currently v6.3.0
 	$ npm -v 	// currently v3.10.6
 
-## Dependencies
+### Dependencies
 All the dependencies used to run the node server are installed in node_modules.
 - firebase 			: Firebase core web library.
 - xmlhttprequest 	: Node wrapper for fetching XML data.
@@ -18,5 +29,9 @@ All the dependencies used to run the node server are installed in node_modules.
 Firebase tools are used to initialize, modify, and deploy the web server.
 	$ npm install -g firebase-tools // be careful with this, DO NOT MODIFY if possible.
 
-## Run Node Server
-	$ node node_server.js
+### Run Node Server
+	$ node node_server.js	// you must be in the directory of this file
+
+### Deploy Firebase module
+	$ firebase deploy
+CampusEats is hosted at https://project-2581007719456375150.firebaseapp.com
