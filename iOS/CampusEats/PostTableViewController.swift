@@ -57,7 +57,7 @@ class PostTableViewController: UITableViewController {
         }
         
         let key = ref.child("posts").childByAutoId().key
-        let post = ["author": user.uid,
+        let post = ["author": "John Doe",
                     "body": details,
                     "changed_epoch": title,
                     "changed_gmt": title,
@@ -70,7 +70,7 @@ class PostTableViewController: UITableViewController {
                     "end_last": end,
                     "end_last_gmt": end,
                     "fee": "FREE",
-                    "feedback_score": 1,
+                    "feedback_score": 0,
                     "image": imageLocation,
                     "location": location,
                     "phone": "",
