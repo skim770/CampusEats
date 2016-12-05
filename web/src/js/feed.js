@@ -16,7 +16,7 @@ var EventPost = React.createClass({
 			$('#overlay-contents').addClass("col-md-6");
 			$('#overlay-img').attr('src', data.image);
 		} else {
-			document.getElementById("overlay-event-detail").style.width = "40%";
+			document.getElementById("overlay-event-detail").style.width = "60%";
 			$('#overlay-img-container').addClass("none");
 			$('#overlay-img-container').removeClass("col-md-6");
 			$('#overlay-img').addClass("none");
