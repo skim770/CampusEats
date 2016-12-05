@@ -41,11 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-<<<<<<< HEAD
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-=======
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
->>>>>>> origin/shawn
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -56,10 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-<<<<<<< HEAD
 
 }
 
-=======
-}
->>>>>>> origin/shawn

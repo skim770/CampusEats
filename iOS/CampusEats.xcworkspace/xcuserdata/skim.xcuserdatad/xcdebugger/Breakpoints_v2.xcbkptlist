@@ -13,7 +13,6 @@
             timestampString = "502363933.809477"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-<<<<<<< HEAD
             startingLineNumber = "32"
             endingLineNumber = "32"
             landmarkName = "registerDidTapped(_:)"
@@ -113,11 +112,6 @@
             startingLineNumber = "67"
             endingLineNumber = "67"
             landmarkName = "PostDidTapped(_:)"
-=======
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "viewDidLoad()"
->>>>>>> origin/shawn
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

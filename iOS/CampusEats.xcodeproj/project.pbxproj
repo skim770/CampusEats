@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-<<<<<<< HEAD
 		7516B0A41DE6874A003C9271 /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7516B0A31DE6874A003C9271 /* CellView.xib */; };
 		7516B0A61DE6877B003C9271 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7516B0A51DE6877B003C9271 /* CellView.swift */; };
 		751DEBB51DE63D65001CFB30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751DEBB41DE63D65001CFB30 /* AppDelegate.swift */; };
@@ -31,24 +30,6 @@
 		75C594C91DE94BA2002859A0 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C594C81DE94BA2002859A0 /* CalendarTableViewCell.swift */; };
 		75C630251DE78C3E006C4A82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75C630241DE78C3E006C4A82 /* GoogleService-Info.plist */; };
 		DB4F87FA0E3E669D75B211DF /* Pods_CampusEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6364E654DCA371985D2B5808 /* Pods_CampusEats.framework */; };
-=======
-		3DCAA14DB8CFCDF1CC02F5CC /* Pods_CampusEats.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 868CD57BC8DD83769A3C55BA /* Pods_CampusEats.framework */; };
-		752C9D081D3ACDD1009B4540 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752C9D071D3ACDD1009B4540 /* Post.swift */; };
-		754A22FD1D39EA9C00C66579 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754A22FC1D39EA9C00C66579 /* RegisterViewController.swift */; };
-		7571F2531D355D61005D243F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7571F2521D355D61005D243F /* AppDelegate.swift */; };
-		7571F2551D355D61005D243F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7571F2541D355D61005D243F /* LoginViewController.swift */; };
-		7571F2581D355D61005D243F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7571F2561D355D61005D243F /* Main.storyboard */; };
-		7571F25A1D355D61005D243F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7571F2591D355D61005D243F /* Assets.xcassets */; };
-		7571F25D1D355D61005D243F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7571F25B1D355D61005D243F /* LaunchScreen.storyboard */; };
-		7571F2681D355D61005D243F /* CampusEatsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7571F2671D355D61005D243F /* CampusEatsTests.swift */; };
-		7571F2731D355D61005D243F /* CampusEatsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7571F2721D355D61005D243F /* CampusEatsUITests.swift */; };
-		7571F2811D355D7F005D243F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7571F2801D355D7F005D243F /* GoogleService-Info.plist */; };
-		75759A481D3AAF6900E16D8F /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75759A471D3AAF6900E16D8F /* HomeTableViewController.swift */; };
-		75759A4B1D3AB08E00E16D8F /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75759A4A1D3AB08E00E16D8F /* HomeTableViewCell.swift */; };
-		75759A521D3ABD7200E16D8F /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75759A511D3ABD7200E16D8F /* Common.swift */; };
-		758CC7611D9C3BB700644C65 /* CreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758CC7601D9C3BB700644C65 /* CreateViewController.swift */; };
-		75E688B71D413A1900DCCDC5 /* BebasNeue.otf in Resources */ = {isa = PBXBuildFile; fileRef = 75E688B61D413A1900DCCDC5 /* BebasNeue.otf */; };
->>>>>>> origin/shawn
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +50,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-<<<<<<< HEAD
 		2D72C85F5818BA03ADE806F1 /* Pods-CampusEats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusEats.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusEats/Pods-CampusEats.release.xcconfig"; sourceTree = "<group>"; };
 		6364E654DCA371985D2B5808 /* Pods_CampusEats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampusEats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7516B0A31DE6874A003C9271 /* CellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CellView.xib; sourceTree = "<group>"; };
@@ -101,33 +81,6 @@
 		75C594C81DE94BA2002859A0 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
 		75C630241DE78C3E006C4A82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		EB62DC8517D8452B9141DFBB /* Pods-CampusEats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusEats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusEats/Pods-CampusEats.debug.xcconfig"; sourceTree = "<group>"; };
-=======
-		38435C4234EF09D452504ECA /* Pods-CampusEats.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusEats.release.xcconfig"; path = "Pods/Target Support Files/Pods-CampusEats/Pods-CampusEats.release.xcconfig"; sourceTree = "<group>"; };
-		752C9D071D3ACDD1009B4540 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
-		754A22FC1D39EA9C00C66579 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		7571F24F1D355D61005D243F /* CampusEats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CampusEats.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		7571F2521D355D61005D243F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7571F2541D355D61005D243F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		7571F2571D355D61005D243F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		7571F2591D355D61005D243F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7571F25C1D355D61005D243F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7571F25E1D355D61005D243F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7571F2631D355D61005D243F /* CampusEatsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CampusEatsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7571F2671D355D61005D243F /* CampusEatsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusEatsTests.swift; sourceTree = "<group>"; };
-		7571F2691D355D61005D243F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7571F26E1D355D61005D243F /* CampusEatsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CampusEatsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7571F2721D355D61005D243F /* CampusEatsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusEatsUITests.swift; sourceTree = "<group>"; };
-		7571F2741D355D61005D243F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7571F2801D355D7F005D243F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		75759A471D3AAF6900E16D8F /* HomeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
-		75759A4A1D3AB08E00E16D8F /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		75759A511D3ABD7200E16D8F /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
-		758CC7601D9C3BB700644C65 /* CreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateViewController.swift; sourceTree = "<group>"; };
-		75D477731D98A1A500B565E7 /* CampusEats.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CampusEats.entitlements; sourceTree = "<group>"; };
-		75E688B61D413A1900DCCDC5 /* BebasNeue.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BebasNeue.otf; sourceTree = "<group>"; };
-		868CD57BC8DD83769A3C55BA /* Pods_CampusEats.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CampusEats.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D2745DB16D11B39EF5849EC8 /* Pods-CampusEats.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CampusEats.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CampusEats/Pods-CampusEats.debug.xcconfig"; sourceTree = "<group>"; };
->>>>>>> origin/shawn
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -189,7 +142,6 @@
 		751DEBB31DE63D65001CFB30 /* CampusEats */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				75830C801DE6513A00FEC51D /* Common */,
 				75830C831DE6526400FEC51D /* Calendar */,
 				751DEBE21DE6445F001CFB30 /* Authentication */,
@@ -200,18 +152,6 @@
 				751DEBBD1DE63D65001CFB30 /* LaunchScreen.storyboard */,
 				751DEBC01DE63D65001CFB30 /* Info.plist */,
 				75C630241DE78C3E006C4A82 /* GoogleService-Info.plist */,
-=======
-				75D477731D98A1A500B565E7 /* CampusEats.entitlements */,
-				75E688B51D4139FA00DCCDC5 /* Resources */,
-				75759A4C1D3AB61300E16D8F /* Classes */,
-				75759A491D3AAF8900E16D8F /* View Controllers */,
-				7571F2521D355D61005D243F /* AppDelegate.swift */,
-				7571F2561D355D61005D243F /* Main.storyboard */,
-				7571F2591D355D61005D243F /* Assets.xcassets */,
-				7571F25B1D355D61005D243F /* LaunchScreen.storyboard */,
-				7571F25E1D355D61005D243F /* Info.plist */,
-				7571F2801D355D7F005D243F /* GoogleService-Info.plist */,
->>>>>>> origin/shawn
 			);
 			path = CampusEats;
 			sourceTree = "<group>";
@@ -237,16 +177,8 @@
 		751DEBE21DE6445F001CFB30 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				751DEBE31DE64484001CFB30 /* LoginViewController.swift */,
 				75830C7E1DE6499E00FEC51D /* RegisterViewController.swift */,
-=======
-				754A22FC1D39EA9C00C66579 /* RegisterViewController.swift */,
-				758CC7601D9C3BB700644C65 /* CreateViewController.swift */,
-				7571F2541D355D61005D243F /* LoginViewController.swift */,
-				75759A471D3AAF6900E16D8F /* HomeTableViewController.swift */,
-				75759A4A1D3AB08E00E16D8F /* HomeTableViewCell.swift */,
->>>>>>> origin/shawn
 			);
 			name = Authentication;
 			sourceTree = "<group>";
@@ -359,20 +291,13 @@
 		751DEBA91DE63D65001CFB30 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-<<<<<<< HEAD
 				LastSwiftUpdateCheck = 0810;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = campuseats;
-=======
-				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0800;
-				ORGANIZATIONNAME = FFOC;
->>>>>>> origin/shawn
 				TargetAttributes = {
 					751DEBB01DE63D65001CFB30 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = 9XT99477P4;
-<<<<<<< HEAD
 						ProvisioningStyle = Automatic;
 					};
 					751DEBC41DE63D65001CFB30 = {
@@ -386,26 +311,6 @@
 						DevelopmentTeam = 9XT99477P4;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 751DEBB01DE63D65001CFB30;
-=======
-						LastSwiftMigration = 0800;
-						SystemCapabilities = {
-							com.apple.Keychain = {
-								enabled = 1;
-							};
-						};
-					};
-					7571F2621D355D61005D243F = {
-						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = RM4PX252WN;
-						LastSwiftMigration = 0800;
-						TestTargetID = 7571F24E1D355D61005D243F;
-					};
-					7571F26D1D355D61005D243F = {
-						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = RM4PX252WN;
-						LastSwiftMigration = 0800;
-						TestTargetID = 7571F24E1D355D61005D243F;
->>>>>>> origin/shawn
 					};
 				};
 			};
@@ -502,11 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-<<<<<<< HEAD
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CampusEats/Pods-CampusEats-frameworks.sh\"\n";
-=======
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
->>>>>>> origin/shawn
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -516,7 +417,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-<<<<<<< HEAD
 				7597D4ED1DF066B40080E4E9 /* DetailViewController.swift in Sources */,
 				759810131DE6A3C0004A378B /* CalendarViewController.swift in Sources */,
 				753841761DED3E1C00175DC9 /* PostTableViewController.swift in Sources */,
@@ -531,16 +431,6 @@
 				75C594C91DE94BA2002859A0 /* CalendarTableViewCell.swift in Sources */,
 				75C594C31DE9358A002859A0 /* MonthHeaderView.swift in Sources */,
 				75830C7F1DE6499E00FEC51D /* RegisterViewController.swift in Sources */,
-=======
-				758CC7611D9C3BB700644C65 /* CreateViewController.swift in Sources */,
-				75759A4B1D3AB08E00E16D8F /* HomeTableViewCell.swift in Sources */,
-				754A22FD1D39EA9C00C66579 /* RegisterViewController.swift in Sources */,
-				7571F2551D355D61005D243F /* LoginViewController.swift in Sources */,
-				752C9D081D3ACDD1009B4540 /* Post.swift in Sources */,
-				7571F2531D355D61005D243F /* AppDelegate.swift in Sources */,
-				75759A481D3AAF6900E16D8F /* HomeTableViewController.swift in Sources */,
-				75759A521D3ABD7200E16D8F /* Common.swift in Sources */,
->>>>>>> origin/shawn
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,22 +581,12 @@
 			baseConfigurationReference = EB62DC8517D8452B9141DFBB /* Pods-CampusEats.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = 9XT99477P4;
-=======
-				CODE_SIGN_ENTITLEMENTS = CampusEats/CampusEats.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
->>>>>>> origin/shawn
 				INFOPLIST_FILE = CampusEats/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ffoc.CampusEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
-=======
-				PROVISIONING_PROFILE = "";
->>>>>>> origin/shawn
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -716,22 +596,12 @@
 			baseConfigurationReference = 2D72C85F5818BA03ADE806F1 /* Pods-CampusEats.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-<<<<<<< HEAD
 				DEVELOPMENT_TEAM = 9XT99477P4;
-=======
-				CODE_SIGN_ENTITLEMENTS = CampusEats/CampusEats.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
->>>>>>> origin/shawn
 				INFOPLIST_FILE = CampusEats/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ffoc.CampusEats;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
-=======
-				PROVISIONING_PROFILE = "";
->>>>>>> origin/shawn
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

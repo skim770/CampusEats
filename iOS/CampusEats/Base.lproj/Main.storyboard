@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="4YI-Tw-ahq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
@@ -8,12 +7,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-=======
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
->>>>>>> origin/shawn
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -118,7 +111,6 @@
         <!--Login View Controller-->
         <scene sceneID="v6T-vR-7q5">
             <objects>
-<<<<<<< HEAD
                 <viewController id="4YI-Tw-ahq" customClass="LoginViewController" customModule="CampusEats" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tBk-N6-FBz"/>
@@ -225,13 +217,6 @@
                             <constraint firstItem="0RI-df-gj8" firstAttribute="leading" secondItem="EiK-Rl-YtI" secondAttribute="leadingMargin" constant="14" id="vLZ-bC-4lf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0RI-df-gj8" secondAttribute="trailing" constant="14" id="zfk-sv-m4v"/>
                         </constraints>
-=======
-                <viewController storyboardIdentifier="LoginView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="LoginViewController" customModule="CampusEats" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
->>>>>>> origin/shawn
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="T2D-ep-Uzl" id="P7A-3H-KgK"/>
@@ -427,18 +412,12 @@
         <!--CampusEats-->
         <scene sceneID="acr-6M-c2w">
             <objects>
-<<<<<<< HEAD
                 <tableViewController id="n46-9M-crC" customClass="MainTableViewController" customModule="CampusEats" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="257" sectionHeaderHeight="28" sectionFooterHeight="28" id="bNc-UD-huQ">
-=======
-                <tableViewController storyboardIdentifier="HomeTableView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tfb-U0-Q7U" customClass="HomeTableViewController" customModule="CampusEats" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="117" sectionHeaderHeight="28" sectionFooterHeight="28" id="fwE-Dn-cLl">
->>>>>>> origin/shawn
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-<<<<<<< HEAD
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" rowHeight="257" id="2kj-xf-bck" customClass="TableViewCell" customModule="CampusEats" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="257"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -486,27 +465,6 @@
                                             <rect key="frame" x="335" y="10" width="25.5" height="14"/>
                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-=======
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HomeTableViewCell" rowHeight="117" id="BNY-UF-6lm" customClass="HomeTableViewCell" customModule="CampusEats" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="117"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BNY-UF-6lm" id="I4k-8H-E1A">
-                                    <frame key="frameInset" width="375" height="117"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ycg-EZ-hpv">
-                                            <frame key="frameInset" minX="8" minY="8" width="304" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DVn-ZT-jEn">
-                                            <frame key="frameInset" minX="8" minY="37" width="304" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
->>>>>>> origin/shawn
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -562,7 +520,6 @@
             </objects>
             <point key="canvasLocation" x="1308" y="-366.56671664167919"/>
         </scene>
-<<<<<<< HEAD
         <!--Detail View Controller-->
         <scene sceneID="LKN-TQ-vU1">
             <objects>
@@ -671,66 +628,15 @@
                         <outlet property="summaryLabel" destination="txK-wg-WSk" id="M1J-up-jxl"/>
                         <outlet property="timeLabel" destination="JP6-DH-eKZ" id="geu-Cv-Plj"/>
                         <outlet property="titleLabel" destination="nHZ-cw-dWa" id="yGg-ZX-Lmx"/>
-=======
-        <!--Create View Controller-->
-        <scene sceneID="84T-B4-tzy">
-            <objects>
-                <viewController id="Fyt-ui-exk" customClass="CreateViewController" customModule="CampusEats" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="DTw-v1-wDc">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Location" textAlignment="center" minimumFontSize="17" id="iBV-wJ-8Ju">
-                                <frame key="frameInset" minX="16" minY="318" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="center" minimumFontSize="17" id="wTV-K1-59a">
-                                <frame key="frameInset" minX="16" minY="356" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Event Name" textAlignment="center" minimumFontSize="17" id="SIW-NQ-6w7">
-                                <frame key="frameInset" minX="16" minY="280" width="343" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="sJ2-OL-oJi">
-                                <frame key="frameInset" minX="154" minY="394" width="66" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Submit"/>
-                                <connections>
-                                    <action selector="SubmitDidTapped:" destination="Fyt-ui-exk" eventType="touchUpInside" id="HSi-Hx-uQa"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <connections>
-                        <outlet property="eventDescriptionTextField" destination="wTV-K1-59a" id="Fm2-mo-vD2"/>
-                        <outlet property="eventLocationTextField" destination="iBV-wJ-8Ju" id="y7Y-Pa-fic"/>
-                        <outlet property="eventNameTextField" destination="SIW-NQ-6w7" id="yfB-yL-gvo"/>
->>>>>>> origin/shawn
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uSJ-Qp-upw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-<<<<<<< HEAD
             <point key="canvasLocation" x="2109.5999999999999" y="-481.70914542728639"/>
-=======
-            <point key="canvasLocation" x="1366.5" y="365.5"/>
->>>>>>> origin/shawn
         </scene>
         <!--New Event-->
         <scene sceneID="S3S-KN-jcK">
             <objects>
-<<<<<<< HEAD
                 <tableViewController id="mTj-PL-JuP" customClass="PostTableViewController" customModule="CampusEats" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="yTq-P2-lAR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -945,14 +851,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-=======
-                <viewController id="hc3-8w-TW2" customClass="RegisterViewController" customModule="CampusEats" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4e4-MH-ME7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
->>>>>>> origin/shawn
                     <connections>
                         <outlet property="detailsTextField" destination="DTe-fT-sS4" id="Nxe-XU-dcc"/>
                         <outlet property="endTimeTextField" destination="KzT-U8-AGJ" id="Z1u-jn-5Ly"/>
@@ -1024,7 +922,6 @@
             <point key="canvasLocation" x="2110" y="181"/>
         </scene>
     </scenes>
-<<<<<<< HEAD
     <resources>
         <image name="ic_close_white_48pt" width="48" height="48"/>
         <image name="ic_event_note_white" width="24" height="24"/>
@@ -1033,13 +930,6 @@
         <image name="logo_white" width="719" height="562"/>
         <image name="wallpaper" width="500" height="500"/>
     </resources>
-=======
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
-    </simulatedMetricsContainer>
->>>>>>> origin/shawn
     <inferredMetricsTieBreakers>
         <segue reference="YOd-dt-LgF"/>
         <segue reference="e1J-4T-tYy"/>
