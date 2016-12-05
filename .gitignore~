@@ -4,5 +4,4 @@
 build/
 xcuserdata
 Pods
-GoogleService-Info.plist
-*Tests/
+*.plist

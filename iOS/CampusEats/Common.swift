@@ -18,6 +18,8 @@ let EMAIL_ALERT = "Thank you!"
 let REGISTER_ERROR = "Register Error"
 let CUSTOM_FONT = "BebasNeue"
 let DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+let CELL_DATE_FORMAT = "EEEE, MMMM d, yyyy"
+let CELL_TIME_FORMAT = "hh:mma"
 
 
 // Extensions

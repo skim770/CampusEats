@@ -17,6 +17,7 @@ class PostTableViewController: UITableViewController {
     @IBOutlet weak var endTimeTextField: UITextField!
     @IBOutlet weak var summaryTextField: UITextField!
     @IBOutlet weak var detailsTextField: UITextField!
+    @IBOutlet weak var imageLocationTextField: UITextField!
     
     var ref: FIRDatabaseReference!
     
@@ -50,22 +51,27 @@ class PostTableViewController: UITableViewController {
             return
         }
         
+        var imageLocation = ""
+        if (!(imageLocationTextField.text?.isEmpty)!) {
+            imageLocation = imageLocationTextField.text!
+        }
+        
         let key = ref.child("posts").childByAutoId().key
-        let post = ["author": user.uid,
+        let post = ["author": "John Doe",
                     "body": details,
                     "changed_epoch": title,
                     "changed_gmt": title,
                     "contact": title,
                     "created_epoch": title,
                     "created_gmt": title,
-                    "email": user.email,
+                    "email": user.uid,
                     "end": end,
                     "end_gmt": end,
                     "end_last": end,
                     "end_last_gmt": end,
                     "fee": "FREE",
-                    "feedback_score": 1,
-                    "image": "",
+                    "feedback_score": 0,
+                    "image": imageLocation,
                     "location": location,
                     "phone": "",
                     "start": start,
@@ -95,6 +101,7 @@ class PostTableViewController: UITableViewController {
         
         let childUpdates = ["/posts/\(key)": post]
         ref.updateChildValues(childUpdates)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func CancelDidTapped(_ sender: Any) {

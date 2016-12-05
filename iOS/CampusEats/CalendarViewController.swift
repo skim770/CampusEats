@@ -58,7 +58,8 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
             for post in selectedPosts {
                 posts += [post]
             }
-            self.postsTableView.reloadData()        }
+            self.postsTableView.reloadData()
+        }
     }
     
     func populatePosts() {
@@ -74,12 +75,24 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
                         continue
                     }
                     let title = value["title"] as! String
-                    let description = value["body"] as! String
+                    let description = value["summary"] as! String
+                    let author = value["author"] as! String
+                    let location = value["location"] as! String
+                    let imageLocation = value["image"] as! String
+                    let body = value["body"] as! String
                     
                     for date in value["times"] as! [NSDictionary] {
-                        let start = date["start"] as! String
+                        let start = formatter.date(from: date["start"] as! String)
                         let end = date["end"] as! String
-                        let post = Post(title: title, description: description, start: start, end: end)
+                        let post = Post(
+                            title: title,
+                            description: description,
+                            start: start!,
+                            end: end,
+                            author: author,
+                            location: location,
+                            imageLocation: imageLocation,
+                            body: body)
                         let index = end.index(end.startIndex, offsetBy: 10)
                         let dateKey = end.substring(to: index)
                         if self.allPosts[dateKey] != nil {
@@ -99,18 +112,42 @@ class CalendarViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return posts.count
+        return max(posts.count, 1)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CalendarTableViewCell", for: indexPath) as! CalendarTableViewCell
         
+        if (posts.count == 0) {
+            cell.titleLabel.text = "No Events on this date"
+            cell.timeLabel.text = ""
+            cell.locationLabel.text = ""
+            return cell
+        }
+        let formatter = DateFormatter()
+        
         // Configure the cell...
         let thisRecord : Post  = self.posts[indexPath.row]
         cell.titleLabel.text = thisRecord.title
         
+        formatter.dateFormat = CELL_TIME_FORMAT
+        cell.timeLabel.text = formatter.string(from: thisRecord.start)
+        cell.locationLabel.text = thisRecord.location
+        
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailCalendar",
+            let destination = segue.destination as? DetailViewController,
+            let postIndex = postsTableView.indexPathForSelectedRow?.row {
+            if posts.count > 0 {
+                destination.post = posts[postIndex]
+            }
+            else {
+                
+            }
+        }
     }
 }
 
@@ -147,7 +184,7 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
         
         // Setup text color
         if cellState.dateBelongsTo == .thisMonth {
-            myCustomCell.dayLabel.textColor = UIColor.black
+            myCustomCell.dayLabel.textColor = UIColor(red:0.90, green:0.32, blue:0.00, alpha:1.0)
             myCustomCell.isUserInteractionEnabled = true
         } else {
             myCustomCell.dayLabel.textColor = UIColor.gray
@@ -179,14 +216,14 @@ extension CalendarViewController: JTAppleCalendarViewDataSource, JTAppleCalendar
                 filterPosts(selectedDate: selectedDate, clear: false)
             }
             
-            myCustomCell.selectedView.layer.cornerRadius =  22.5
+            myCustomCell.selectedView.layer.cornerRadius =  17.5
             myCustomCell.selectedView.isHidden = false
             myCustomCell.dayLabel.textColor = UIColor.white
         } else {
             filterPosts(selectedDate: "", clear: true)
             myCustomCell.selectedView.isHidden = true
             if (update) {
-                myCustomCell.dayLabel.textColor = UIColor.black
+                myCustomCell.dayLabel.textColor = UIColor(red:0.90, green:0.32, blue:0.00, alpha:1.0)
             }
         }
     }

@@ -14,14 +14,20 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var lastNameTextFIeld: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var registerButton: UIButton!
     
     var ref:FIRDatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.hideKeyboardWhenTappedAround()
+        registerButton.layer.cornerRadius = 5
     }
+    
+    @IBAction func backDidTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func registerDidTapped(_ sender: Any) {
         guard let firstName = firstNameTextField.text else {
             return

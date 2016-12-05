@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SDWebImage
 
 class MainTableViewController: UITableViewController {
     var posts = [Post]()
@@ -18,16 +19,10 @@ class MainTableViewController: UITableViewController {
         
         ref = FIRDatabase.database().reference()
         populatePosts()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     func populatePosts() {
-        let activePosts = ref.child("posts").queryOrdered(byChild: "date")
+        let activePosts = ref.child("posts").queryOrdered(byChild: "start")
         let currentDate = Date()
         let formatter = DateFormatter()
         formatter.dateFormat = DATE_FORMAT
@@ -42,17 +37,29 @@ class MainTableViewController: UITableViewController {
                     }
                     
                     let title = value["title"] as! String
-                    let description = value["body"] as! String
+                    let description = value["summary"] as! String
+                    let author = value["author"] as! String
+                    let location = value["location"] as! String
+                    let imageLocation = value["image"] as! String
+                    let body = value["body"] as! String
                     
                     for date in value["times"] as! [NSDictionary]{
-                        let start = date["start"] as! String
+                        let start = formatter.date(from: date["start"] as! String)
                         let end = date["end"] as! String
                         let thisDate = formatter.date(from: end)
                         guard let isGreater = thisDate?.isGreaterThanDate(dateToCompare: currentDate) else {
                             continue
                         }
                         if isGreater {
-                            let post = Post(title: title, description: description, start: start, end: end)
+                            let post = Post(
+                                title: title,
+                                description: description,
+                                start: start!,
+                                end: end,
+                                author: author,
+                                location: location,
+                                imageLocation: imageLocation,
+                                body: body)
                             self.posts += [post]
                             self.tableView.reloadData()
                         }
@@ -61,75 +68,51 @@ class MainTableViewController: UITableViewController {
             }
         })
     }
-    @IBAction func PostDidTapped(_ sender: Any) {
-        performSegue(withIdentifier: "PostFromMain", sender: nil)
-    }
-
+    
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return posts.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as! TableViewCell
-
+        
+        let formatter = DateFormatter()
         // Configure the cell...
         let thisRecord : Post  = self.posts[indexPath.row]
         cell.titleLabel.text = thisRecord.title
         cell.descriptionLabel.text = thisRecord.description
+        cell.posterLabel.text = thisRecord.author
+        
+        formatter.dateFormat = CELL_TIME_FORMAT
+        cell.timeLabel.text = formatter.string(from: thisRecord.start)
+        formatter.dateFormat = CELL_DATE_FORMAT
+        cell.dateLabel.text = formatter.string(from: thisRecord.start)
+        cell.locationLabel.text = thisRecord.location
+        cell.coverImageView.sd_setImage(with: URL(string: thisRecord.imageLocation), placeholderImage:UIImage(named:"placeholder")!)
         
         return cell
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
+    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func PostDidTapped(_ sender: Any) {
+        performSegue(withIdentifier: "PostFromMain", sender: nil)
     }
-    */
-
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        performSegue(withIdentifier: "showDetailMain", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetailMain",
+            let destination = segue.destination as? DetailViewController,
+            let postIndex = tableView.indexPathForSelectedRow?.row{
+            destination.post = posts[postIndex]
+        }
+    }
 }
