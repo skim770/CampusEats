@@ -19,10 +19,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".BadFeedActivity">
-
-        </activity>
-
         <activity android:name=".FeedActivity">
 
         </activity>

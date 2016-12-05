@@ -36,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
                 //auth.createUserWithEmailAndPassword(emailEdit.getText().toString(),passwordEdit.getText().toString());
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://project-2581007719456375150.firebaseapp.com/src/login/register.html"));
                 startActivity(intent);
-                //startActivity(new Intent(LoginActivity.this, WebLogin.class));
             }
         });
 
