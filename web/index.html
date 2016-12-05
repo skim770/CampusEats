@@ -7,45 +7,105 @@
     <script src="build/react.js"></script>
     <script src="build/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+    <script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
 
-    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.orange-indigo.min.css">
   	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  	<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+  	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
   	<link rel="stylesheet" href="css/main.css">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 	
 	<script src="src/js/firebaseHandler.js"></script>
 	<script type="text/babel" src="src/js/feed.js"></script>
+	<script type="text/babel" src="src/js/calendar.js"></script>
 	<script type="text/javascript">
+		function handleSignOut(){
+			firebase.auth().signOut().then(function(error) {
+			  console.error('Sign Out Error', error);
+			});
+		}
+
 		window.onload = function() {
 	    firebase.auth().onAuthStateChanged(function(user) {
 			  if (!user) {
 			    window.location.href = "src/login/index.html";
 			  }
 			});
+
+      	document.getElementById('signout').addEventListener('click', handleSignOut, false);
 		};
 	</script>
-  </head>
+</head>
 
-  <body>
-  	<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
-		  <!-- Header section containing title -->
-		  <header class="mdl-layout__header mdl-color-text--white mdl-color--orange-900">
-		    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
-		      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
-		         <img src="resources/img/CE_Icon.png" alt="CampusEats Icon" style="width: 85px; height: 85px">
-		        <h3>CampusEats</h3>
-		      </div>
-		    </div>
-		  </header>
+<body>
+	<div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	  <!-- Header section containing title -->
+	  <header class="mdl-layout__header mdl-color-text--white mdl-color--orange-900">
+	    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet">
+	      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
+	         <img src="resources/img/CE_Icon.png" alt="CampusEats Icon" style="width: 85px; height: 85px">
+	        <h3>CampusEats</h3>
+			<button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="signout" name="signout" style="position:absolute;right:50px; font-size: 16px">Sign Out</button>
+	      </div>	
+	    </div>
+	  </header>
 
-	<main class="mdl-layout__content mdl-color--grey-100">
-    <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid mdl-login">
-    	<div class="events_feed" id="posts_container"></div>
+		<main class="mdl-layout__content mdl-color--grey-100">
+			<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+				<div class="mdl-cell mdl-cell--4-col">
+					<div class="yui3-skin-sam yui3-g">
+						<div class="yui3-u" id="month_calendar"></div>
+					</div>
+				</div>
+				<div class="mdl-cell mdl-cell--4-col">
+					<div class="events_feed" id="posts_container"></div>
+				</div>
+			</div>
+			 <div id="demo" class="yui3-skin-sam yui3-g">
+				<div id="leftcolumn" class="yui3-u">
+					<div id="mycalendar" ></div>
+					<div id="links" style="padding-left:20px;">
+						Selected date: <span id="selecteddate"></span>
+					</div>
+					<div align="right">
+						<a href="src/post/post.html">
+							<button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="post" name="post" style="margin: 4px 100px; font-size: 16px">Post</button>
+						</a>
+					<div align="right">
+						<a href="index.html">
+							<button class="mdl-button mdl-js-button mdl-button--raised mdl-color--orange-900 mdl-color-text--white" id="original" name="original" style="margin: 4px 100px; font-size: 16px">Original</button>
+						</a>
+					</div>
+				<div id="rightcolumn" class="yui3-u">
+					<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid mdl-login">
+						<div class="events_feed" id="posts_container"></div>
+					</div>
+					<p style="opacity: 0.5; padding-bottom: 20px" id="noevent"></p>
+				</div>
+			</div>
+	  </main>
+  </div>
+ 	<div id="overlay-event-detail" class="overlay-popup none">
+ 		<div id="overlay-img-container">
+      <img id="overlay-img"/>
     </div>
-  </main>
-</div>
+    <div id="overlay-contents">
+    	<div id="overlay-event-title"></div>
+    	<div class="event-metadata">
+    		<div id="overlay-event-location"></div>
+    		<div id="overlay-event-time"></div>
+    	</div>
+    	<div id="overlay-event-body"></div>
+    	<div class="event-contact-info">
+    		<div id="overlay-event-contact"></div>
+    	</div>
+    	<!-- body, author, location, fee, url,  -->
+    </div>
+ 	</div>
+ 	<script src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
+  <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
 </body>
 </html>

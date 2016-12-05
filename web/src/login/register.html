@@ -79,7 +79,8 @@ limitations under the License.
         if (error != null) {
           alert(error.message);
         } else {
-          window.location.href = "../../index.html";
+          // window.location.href = "../../index.html";
+          sendEmailVerification();
         }
         // [END_EXCLUDE]
       });
@@ -129,7 +130,7 @@ limitations under the License.
       firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
           // User is signed in.
-          user.sendEmailVerification();
+          sendEmailVerification();
           var firstName = document.getElementById('firstname').value;
           var lastName = document.getElementById('lastname').value;
           var displayName = user.displayName;
@@ -144,9 +145,9 @@ limitations under the License.
           window.location.href="../../index.html";
           writeNewUser(uid, firstName, lastName, email);
 
-          if(!emailVerified){
-            firebase.auth().signOut();
-          }
+          // if(!emailVerified){
+          //   firebase.auth().signOut();
+          // }
 
         } 
       });

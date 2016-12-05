@@ -1,0 +1,8 @@
+#Xcode
+*~
+.DS_Store
+build/
+xcuserdata
+Pods
+GoogleService-Info.plist
+*Tests/

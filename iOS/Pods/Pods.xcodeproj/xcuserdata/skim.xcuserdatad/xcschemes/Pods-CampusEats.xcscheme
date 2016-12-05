@@ -13,11 +13,19 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
+<<<<<<< HEAD
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "808EF17911C6711E46CDEB4C5B66C815"
+               BuildableName = "Pods_CampusEats.framework"
+               BlueprintName = "Pods-CampusEats"
+               ReferencedContainer = "container:Pods.xcodeproj">
+=======
                BuildableIdentifier = 'primary'
                BlueprintIdentifier = 'C865E8BED1D604FA6CAC1C7B8912B239'
                BlueprintName = 'Pods-CampusEats'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods-CampusEats.framework'>
+>>>>>>> origin/shawn
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -40,6 +48,18 @@
       debugServiceExtension = "internal"
       buildConfiguration = "Debug"
       allowLocationSimulation = "YES">
+<<<<<<< HEAD
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "808EF17911C6711E46CDEB4C5B66C815"
+            BuildableName = "Pods_CampusEats.framework"
+            BlueprintName = "Pods-CampusEats"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+=======
+>>>>>>> origin/shawn
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

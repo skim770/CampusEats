@@ -2,7 +2,8 @@
 Copyright 2016 Sung Kim <kr.dev.sk@gmail.com>. All rights reserved.
 **/
 
-var gtCalURL = "http://www.calendar.gatech.edu/feeds/events.xml";
+// var gtCalURL = "http://www.calendar.gatech.edu/feeds/events.xml";
+var gtCalURL = "http://hg.gatech.edu/node/583270/xml";
 var scheduler = require("node-schedule");
 var xmlHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var DOMParser = require("xmldom").DOMParser;
@@ -27,103 +28,120 @@ function fetchGTCal() {
 }
 
 function parseGTCal(data) {
-	var posts = [];
+	var posts = {};
 	var domParser = new DOMParser();
 	var xmlData = domParser.parseFromString(data, 'text/xml');
-	var items = xmlData.getElementsByTagName("item");
-	for (i = 0; i < items.length; i++) {
-		var item = items[i];
-		var rawHtml = item.getElementsByTagName("description")[0].textContent;
-		var htmlHandler = new HTMLParser.DefaultHandler(function (error, dom) {
-			if (error) {
-				console.log(error.message);
-			}
-		});
-		var htmlParser = new HTMLParser.Parser(htmlHandler);
-		htmlParser.parseComplete(rawHtml);
+	var nodes = xmlData.getElementsByTagName("node");
 
-		var eventDesc = "";
-		var eventRawDates = [];
-		var eventFormatDates = [];
-		var eventLoc = "";
-		for (domInd = 0; domInd < htmlHandler.dom.length; domInd++) {
-			if (htmlHandler.dom[domInd].children.length == 1) {
-				eventDesc = htmlHandler.dom[domInd].children[0].children[0].children[0].children[0].raw;
-			} else {
-				if (htmlHandler.dom[domInd].children[0].children[0].raw === 'Location:&nbsp;') {
-					eventLoc = htmlHandler.dom[domInd].children[1].children[0].children[0].raw;
-				} else if (htmlHandler.dom[domInd].children[0].children[0].raw === 'Date:&nbsp;') {
-					var dateEntries = htmlHandler.dom[domInd].children[1].children;
-					for (dateInd = 0; dateInd < dateEntries.length; dateInd++) {
-						eventRawDates.push(dateEntries[dateInd].children[0].attribs.content);
-						eventFormatDates.push(dateEntries[dateInd].children[0].children[0].raw);
-					}
-				} else {
-					console.log("Anomaly in DOM object detected.");
-				}
-			}
+	for (i = 0; i < nodes.length; i++) {
+		var id = nodes[i].getAttribute("id");
+
+		var times = []
+		var nodeTimeItems = nodes[i].getElementsByTagName("times")[0].getElementsByTagName("item");
+		for (j = 0; j < nodeTimeItems.length; j++) {
+			times.push({
+				start: nodeTimeItems[j].getElementsByTagName("value")[0].textContent,
+				end: nodeTimeItems[j].getElementsByTagName("value2")[0].textContent,
+				rrule: nodeTimeItems[j].getElementsByTagName("rrule")[0].textContent,
+				timezone: nodeTimeItems[j].getElementsByTagName("timezone")[0].textContent,
+				timezone_db: nodeTimeItems[j].getElementsByTagName("timezone_db")[0].textContent,
+				date_type: nodeTimeItems[j].getElementsByTagName("date_type")[0].textContent,
+			});
 		}
 
-		for (day = 0; day < eventRawDates.length; day++) {
-			var post = {
-				title: item.getElementsByTagName("title")[0].textContent,
-				link: item.getElementsByTagName("link")[0].textContent,
-				desc: eventDesc,
-				rawDate: eventRawDates[day],
-				date: eventFormatDates[day],
-				loc: eventLoc,
-				likes: 0,
-				cost: 0,
-				sourceID: "GTCal",
-				reports: "DNE",
-				status: "Active",
-				pubDate: item.getElementsByTagName("pubDate")[0].textContent,
-				category: item.getElementsByTagName("category")[0].textContent,
-				comments: item.getElementsByTagName("comments")[0].textContent
-			}
-			if (!containsInstance(posts, post)) {
-				posts.push(post);
-			}
+		var timesGMT = []
+		var nodeTimeItemsGMT = nodes[i].getElementsByTagName("gmt_times")[0].getElementsByTagName("item");
+		for (j = 0; j < nodeTimeItems.length; j++) {
+			timesGMT.push({
+				start: nodeTimeItems[j].getElementsByTagName("value")[0].textContent,
+				end: nodeTimeItems[j].getElementsByTagName("value2")[0].textContent,
+				rrule: nodeTimeItems[j].getElementsByTagName("rrule")[0].textContent,
+				timezone: nodeTimeItems[j].getElementsByTagName("timezone")[0].textContent,
+				timezone_db: nodeTimeItems[j].getElementsByTagName("timezone_db")[0].textContent,
+				date_type: nodeTimeItems[j].getElementsByTagName("date_type")[0].textContent,
+			});
 		}
+
+		var imageLink = "";
+		var media = nodes[i].getElementsByTagName("hg_media")[0];
+		if (typeof media.getElementsByTagName("item")[0] != 'undefined') {
+			imageLink = media.getElementsByTagName("item")[0].getElementsByTagName("image_full_path")[0].textContent;
+		}
+
+		var related = []
+		var nodeRelated = nodes[i].getElementsByTagName("related")[0].getElementsByTagName("link");
+		for (j = 0; j < nodeRelated.length; j++) {
+			related.push({
+				title: nodeRelated[j].getElementsByTagName("title")[0].textContent,
+				url: nodeRelated[j].getElementsByTagName("url")[0].textContent
+			});
+		}
+
+		var categories = {}
+		var nodeCategories = nodes[i].getElementsByTagName("categories")[0].getElementsByTagName("category");
+		for (j = 0; j < nodeCategories.length; j++) {
+			categories[nodeCategories[j].getAttribute("tid")] = nodeCategories[j].textContent;
+		}
+
+		var eventTerms = {}
+		var nodeEvtTerms = nodes[i].getElementsByTagName("event_terms")[0].getElementsByTagName("term");
+		for (j = 0; j < nodeEvtTerms.length; j++) {
+			eventTerms[nodeEvtTerms[j].getAttribute("tid")] = nodeEvtTerms[j].textContent;
+		}
+
+		var eventAudience = {}
+		var nodeEvtAud = nodes[i].getElementsByTagName("event_audience")[0].getElementsByTagName("term");
+		for (j = 0; j < nodeEvtAud.length; j++) {
+			nodeEvtAud[nodeEvtAud[j].getAttribute("tid")] = nodeEvtAud[j].textContent;
+		}
+
+		var keywords = {}
+		var nodeKeywords = nodes[i].getElementsByTagName("keywords")[0].getElementsByTagName("keyword");
+		for (j = 0; j < nodeKeywords.length; j++) {
+			nodeKeywords[nodeKeywords[j].getAttribute("tid")] = nodeKeywords[j].textContent;
+		}
+
+		var post = {
+			title: nodes[i].getElementsByTagName("title")[0].textContent,
+			uid: nodes[i].getElementsByTagName("uid")[0].textContent,
+			body: nodes[i].getElementsByTagName("body")[0].textContent,
+			author: nodes[i].getElementsByTagName("author")[0].textContent,
+			created_epoch: nodes[i].getElementsByTagName("created")[0].textContent,
+			created_gmt: nodes[i].getElementsByTagName("gmt_created")[0].textContent,
+			changed_epoch: nodes[i].getElementsByTagName("changed")[0].textContent,
+			changed_gmt: nodes[i].getElementsByTagName("gmt_changed")[0].textContent,
+			summary: nodes[i].getElementsByTagName("teaser")[0].textContent,
+			type: nodes[i].getElementsByTagName("type")[0].textContent,
+			summary_withTags: nodes[i].getElementsByTagName("summary")[0].textContent,
+			start: nodes[i].getElementsByTagName("start")[0].textContent,
+			end: nodes[i].getElementsByTagName("end")[0].textContent,
+			end_last: nodes[i].getElementsByTagName("end_last")[0].textContent,
+			start_gmt: nodes[i].getElementsByTagName("gmt_start")[0].textContent,
+			end_gmt: nodes[i].getElementsByTagName("gmt_end")[0].textContent,
+			end_last_gmt: nodes[i].getElementsByTagName("gmt_end_last")[0].textContent,
+			times: times,
+			times_gmt: timesGMT,
+			phone: nodes[i].getElementsByTagName("phone")[0].textContent,
+			url: nodes[i].getElementsByTagName("url")[0].textContent,
+			email: nodes[i].getElementsByTagName("email")[0].textContent,
+			contact: nodes[i].getElementsByTagName("contact")[0].textContent,
+			fee: nodes[i].getElementsByTagName("fee")[0].textContent,
+			location: nodes[i].getElementsByTagName("location")[0].textContent,
+			image: imageLink,
+			related: related,
+			categories: categories,
+			event_terms: eventTerms,
+			event_audience: eventAudience,
+			keywords: keywords
+		}
+		posts[id] = post;
 	}
 	updateFirebasePosts(posts);
 }
 
-function containsInstance(haystack, needle) {
-	var isDuplicate = false;
-	for (h = 0; h < haystack.length; h++) {
-		if (haystack[h].rawDate === needle.rawDate
-				&& haystack[h].link === needle.link) {
-			isDuplicate = true;
-			break;
-		}
-	}
-	return isDuplicate;
-}
-
 function updateFirebasePosts(posts) {
-	var postsPending = posts;
 	var postRef = firebase.database().ref("posts");
-	postRef.orderByChild("sourceID").equalTo("GTCal").once("value").then(function(snapshot) {
-		snapshot.forEach(function(snapshotEntry) {
-			for (i = 0; i < postsPending.length; i++) {
-				var snapshotFound = false;
-				if (postsPending[i].rawDate == snapshotEntry.child("rawDate").val() 
-						&& postsPending[i].link == snapshotEntry.child("link").val()) {
-					postsPending.splice(i, 1);
-					snapshotFound = true;
-					break;
-				}
-			}
-			if (!snapshotFound) {
-				postRef.child(snapshotEntry.key).remove();
-			}
-		});
-	});
-	for (i = 0; i < postsPending.length; i++) {
-		var newPostKey = postRef.push().key;
-		postRef.child(newPostKey).set(postsPending[i]);
-	}
+	postRef.update(posts);
 }
 
 function refreshGTCalData() { 
@@ -134,6 +152,6 @@ function refreshGTCalData() {
 refreshGTCalData();
 
 // Refresh GT Calendar data at 5 AM (EST) everyday.
-scheduler.scheduleJob({hour: 5, minute: 0}, function() {
-	refreshGTCalData();
-});
+// scheduler.scheduleJob({hour: 5, minute: 0}, function() {
+// 	refreshGTCalData();
+// });
