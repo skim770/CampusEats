@@ -22,7 +22,8 @@
         android:id="@+id/list_view"
         android:layout_below="@+id/my_toolbar"
         android:divider="@null"
-        android:dividerHeight="0dp">
+        android:dividerHeight="0dp"
+        android:focusable="true">
 
     </ListView>
 

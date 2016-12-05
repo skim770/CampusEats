@@ -72,7 +72,6 @@ public class SubmitActivity extends AppCompatActivity {
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, 0);
 
-                //cal.add(Calendar.MONTH, 0);
                 date = cal.getTime();
                 long epoch = System.currentTimeMillis();
                 String epochString = "" + epoch;
@@ -116,6 +115,7 @@ public class SubmitActivity extends AppCompatActivity {
 
                 postValues.put("created_epoch", epochString);
                 postValues.put("created_gmt", dateString);
+                postValues.put("feedback_score", 0);
 
                 postValues.put("email", "");
 

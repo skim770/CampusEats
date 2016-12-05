@@ -16,7 +16,6 @@ public class EventActivity extends AppCompatActivity {
 
 
         TextView title = (TextView) findViewById(R.id.titleText);
-        //String s = getIntent().getStringExtra("TITLE");
         title.setText(getIntent().getStringExtra("TITLE"));
 
         TextView time = (TextView) findViewById(R.id.timeText);

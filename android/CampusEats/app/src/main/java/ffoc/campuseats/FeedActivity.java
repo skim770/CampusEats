@@ -41,6 +41,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 
 public class FeedActivity extends AppCompatActivity {
 
@@ -48,32 +49,19 @@ public class FeedActivity extends AppCompatActivity {
     DatabaseReference ref = database.getReference();
     Query queryRef = ref.child("posts");
 
-    //static Post chosenPost;
-
-
-
-    //public
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_feed);
         setContentView(R.layout.activity_listview);
-        //final LinearLayout linearLayout = (LinearLayout)findViewById(R.id.feedLayout);
 
         final TextView newText   = new TextView(this);
         final Context context = this;
 
-        //final Button newPostButton = (Button) findViewById(R.id.newPostButton);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
-        /*newPostButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
 
-                startActivity(new Intent(FeedActivity.this, SubmitActivity.class));
-            }
-        });*/
 
         final ArrayList<Post> posts = new ArrayList<>();
         final ArrayList<String> titles = new ArrayList<>();
@@ -121,34 +109,34 @@ public class FeedActivity extends AppCompatActivity {
                 );
                 descParams.setMargins(20, 0, 20, 20);
 
-                //ArrayList<Post> posts = new ArrayList<>();
-                //ArrayList<String> titles = new ArrayList<>();
-                //final ListView listView = (ListView) findViewById(R.id.list_view);
+
                 CustomAdapter adapter = new CustomAdapter(context, posts);
                 listView.setAdapter(adapter);
 
                 if(childCount > 100)
                     childCount = 100;
 
+                Date date = new Date();
+                Calendar cal = Calendar.getInstance();
+                cal.add(Calendar.DATE, -1);
 
+                date = cal.getTime();
 
 
                 for(int i = 0; i < childCount; i++) {
                     DataSnapshot iteration = snap.iterator().next();
 
-                    String str = iteration.child("start").getValue().toString();
-                    int index = 0;
 
                     String title = iteration.child("title").getValue().toString();
                     String location = iteration.child("location").getValue().toString();
                     String summary = iteration.child("summary").getValue().toString();
                     String body = iteration.child("body").getValue().toString();
                     String img = iteration.child("image").getValue().toString();
+                    String id = iteration.getKey().toString();
 
                     DataSnapshot times = iteration.child("times_gmt");
                     Iterable<DataSnapshot> iterableTimes = times.getChildren();
 
-                    //Post tPost = new Post(title, location, "2015-11-26");
 
                     while(iterableTimes.iterator().hasNext()) {
 
@@ -163,9 +151,14 @@ public class FeedActivity extends AppCompatActivity {
                         }
 
 
+
+
                         tempPost.imgUrl = img;
-                        posts.add(tempPost);
-                        //titles.add(tempPost.realDate.toString());
+                        tempPost.postID = id;
+                        //check if the date is before today
+                        if(!tempPost.realDate.before(date)) {
+                            posts.add(tempPost);
+                        }
 
 
 
@@ -181,82 +174,6 @@ public class FeedActivity extends AppCompatActivity {
 
 
 
-                /*for(int i = 0; i < posts.size(); i++){
-
-
-                    TextView dateText = new TextView(context);
-                    dateText.setPadding(10,20,0,0);
-
-                    TextView titleText = new TextView(context);
-                    titleText.setTextSize(20);
-                    titleText.setTextColor(Color.BLACK);
-                    titleText.setBackgroundColor(Color.WHITE);
-                    titleText.setLayoutParams(titleParams);
-                    titleText.setPadding(10,10,10,0);
-                    //titleText.setWidth(linearLayout.getWidth() - 20);
-
-
-                    //Rect rectangle = new Rect(2,2,2,2);
-                    TextView descText = new TextView(context);
-                    descText.setTextSize(12);
-                    descText.setBackgroundColor(Color.WHITE);
-                    descText.setLayoutParams(descParams);
-                    descText.setPadding(10,0,10,10);
-                    //descText.setWidth(linearLayout.getWidth() - 20);
-
-                    TextView textOutline = new TextView(context);
-                    textOutline.setBackgroundColor(Color.GRAY);
-                    textOutline.setPadding(10,10,10,10);
-                    //textOutline.setWidth(linearLayout.getWidth() - 18);
-
-                    GradientDrawable rect = new GradientDrawable();
-                    rect.setColor(Color.GRAY);
-
-
-
-
-                    String date = posts.get(i).date;
-                    if(dateText.getText() != null && !date.equals(dateText.toString()))
-                    {
-                        dateText.setTextSize(18);
-                        dateText.append(date);
-
-                        //linearLayout.addView(dateText);
-                    }
-
-
-
-                    //String title = posts.get(i).title;
-                    //titleText.append(title);
-                    //linearLayout.addView(titleText);
-
-                    //str = iteration.child("category").getValue().toString();
-                    //descText.append(str);
-
-
-
-
-                    //str = iteration.child("loc").getValue().toString();
-                    //feedText.append("\n\n" + "Location: " + str);
-
-                    //String summary = posts.get(i).desc;
-                    //descText.append("\n\n" + summary);
-
-                    //str = iteration.child("likes").getValue().toString();
-                    //feedText.append("\n" + "Likes: " + str);
-
-                    //str = iteration.child("status").getValue().toString();
-                    //feedText.append("\n" + "Status: " + str);
-
-                    //feedText.append("\n\n");
-
-                    //feedText.setId(i);
-
-                    //textViews[i] = feedText;
-
-                    //linearLayout.addView(descText);
-
-                }*/
 
             }
 
@@ -268,7 +185,7 @@ public class FeedActivity extends AppCompatActivity {
         queryRef.addListenerForSingleValueEvent(valueEventListener);
 
 
-        //feedText.setText(queryRef.toString());
+
 
 
     }
@@ -283,19 +200,16 @@ public class FeedActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_event_buton:
-                // User chose the "Settings" item, show the app settings UI...
                 startActivity(new Intent(FeedActivity.this, SubmitActivity.class));
                 return true;
 
             case R.id.calendar_button:
-                // User chose the "Favorite" action, mark the current item
-                // as a favorite...
+
                 startActivity(new Intent(FeedActivity.this, CalendarActivity.class));
                 return true;
 
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
+
                 return super.onOptionsItemSelected(item);
 
 

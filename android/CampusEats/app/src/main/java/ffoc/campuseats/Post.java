@@ -43,6 +43,9 @@ public class Post implements Comparable<Post>{
     String displayDate = "";
 
     String fullDateString;
+    String postID;
+    int likes = 0;
+    boolean wasliked = false;
 
 
 
@@ -75,23 +78,7 @@ public class Post implements Comparable<Post>{
         return realDate.compareTo(post.realDate);
     }
 
-    /*public Date getDate(){
 
-
-        return date;
-
-    }
-
-    public void setDateTime(String datetime) throws ParseException {
-        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-
-        this.date = sdfDate.parse(datetime);
-    }
-
-    public void setDateTime(Date datetime) {
-
-        this.date = datetime;
-    }*/
 
     public void buildDate(int year, int month, int day, int hour, int minute, int second) {
         SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");

@@ -6,12 +6,21 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.StrictMode;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -26,6 +35,11 @@ import java.util.List;
 public class CustomAdapter extends ArrayAdapter<Post> {
     private final Context context;
     private final ArrayList<Post> values;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference();
+    boolean hasFeedbackScore = false;
+    Query queryRef = ref.child("posts");
     public CustomAdapter(Context context, ArrayList<Post> values) {
         super(context, -1, values);
         this.context = context;
@@ -34,7 +48,9 @@ public class CustomAdapter extends ArrayAdapter<Post> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder viewHolder = new ViewHolder();
+        final ViewHolder viewHolder = new ViewHolder();
+
+        final int  pos = position;
 
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.rowlayout, parent, false);
@@ -44,6 +60,8 @@ public class CustomAdapter extends ArrayAdapter<Post> {
 
         viewHolder.title = (TextView) rowView.findViewById(R.id.feedTitle);
         viewHolder.time = (TextView) rowView.findViewById(R.id.feedTime);
+        viewHolder.likeButton = (ImageButton) rowView.findViewById(R.id.thumbsUp);
+        viewHolder.likes = (TextView) rowView.findViewById(R.id.likesText);
 
         rowView.setTag(viewHolder);
 
@@ -67,6 +85,51 @@ public class CustomAdapter extends ArrayAdapter<Post> {
             System.out.println(e);
         }*/
 
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                DataSnapshot snap = dataSnapshot.child(values.get(pos).postID);
+                if(snap.hasChild("feedback_score")) {
+                    hasFeedbackScore = true;
+                }
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        };
+
+        queryRef.addListenerForSingleValueEvent(valueEventListener);
+
+        viewHolder.likeButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                DatabaseReference postsRef = ref.child("posts");
+
+
+
+                if(!values.get(pos).wasliked) {
+                    values.get(pos).likes++;
+                    values.get(pos).wasliked = true;
+
+                    if(hasFeedbackScore) {
+
+                        postsRef.child(values.get(pos).postID).child("feedback_score").setValue(values.get(pos).likes);
+                    }
+
+                } else {
+                    values.get(pos).likes--;
+                    values.get(pos).wasliked = false;
+                    if(hasFeedbackScore) {
+                        postsRef.child(values.get(pos).postID).child("feedback_score").setValue(values.get(pos).likes);
+                    }
+                }
+
+                viewHolder.likes.setText("Likes (" + values.get(pos).likes + ")");
+            }
+        });
+
+
 
         return rowView;
     }
@@ -75,6 +138,8 @@ public class CustomAdapter extends ArrayAdapter<Post> {
     static class ViewHolder {
         TextView title;
         TextView time;
+        ImageButton likeButton;
+        TextView likes;
         int position;
     }
 }

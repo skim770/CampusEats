@@ -31,7 +31,6 @@ public class PopupWarning extends Activity {
 
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //startActivity(new Intent(PopupWarning.this, SubmitActivity.class));
                 finish();
 
             }

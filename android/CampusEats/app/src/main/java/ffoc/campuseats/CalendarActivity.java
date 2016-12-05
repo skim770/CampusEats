@@ -140,6 +140,7 @@ public class CalendarActivity extends AppCompatActivity {
                             String location = iteration.child("location").getValue().toString();
                             String summary = iteration.child("summary").getValue().toString();
                             String body = iteration.child("body").getValue().toString();
+                            String id = iteration.getKey().toString();
                             Post post = null;
                             try {
                                 post = new Post(title, location, dateString, summary, body);
@@ -148,6 +149,7 @@ public class CalendarActivity extends AppCompatActivity {
                             }
                             //eventName.append("\n" + str);
 
+                            post.postID = id;
                             posts.add(post);
                             titles.add(post.title);
 
